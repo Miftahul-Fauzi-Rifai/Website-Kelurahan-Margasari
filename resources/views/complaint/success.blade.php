@@ -64,16 +64,13 @@
                             <i class="bi bi-info-circle me-2 mt-1"></i>
                             <div class="text-start">
                                 <strong>Penting!</strong> 
-                                Mohon simpan nomor pengaduan dan gunakan fitur "Lacak Pengaduan" untuk memantau perkembangan status pengaduan Anda.
+                                Tim kami akan menghubungi Anda melalui kontak yang telah diberikan untuk memberikan update perkembangan pengaduan.
                             </div>
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                            <a href="{{ route('complaint.track') }}" class="btn btn-primary">
-                                <i class="bi bi-search me-2"></i>Lacak Pengaduan
-                            </a>
-                            <a href="{{ route('complaint.create') }}" class="btn btn-outline-primary">
+                            <a href="{{ route('complaint.create') }}" class="btn btn-primary">
                                 <i class="bi bi-plus me-2"></i>Buat Pengaduan Baru
                             </a>
                             <a href="{{ route('home') }}" class="btn btn-outline-secondary">

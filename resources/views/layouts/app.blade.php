@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="@yield('meta_description', 'Website resmi Kelurahan Marga Sari, Kota Balikpapan')">
     <meta name="keywords" content="@yield('meta_keywords', 'kelurahan, marga sari, balikpapan, layanan, berita, pengumuman')">
     
@@ -15,126 +15,127 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <!-- Running Text CSS -->
+    <!-- White Header Styling -->
     <style>
-        /* Running Text Animation */
-        .running-text-container {
-            width: 100%;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-            background-color: #212529;
-            transition: background-color 0.3s ease;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000;
+        /* White navbar styling */
+        .navbar-light .navbar-nav .nav-link {
+            color: #333 !important;
+            font-weight: 500;
         }
-
-        .running-text {
-            display: inline-block;
-            animation: marquee 45s linear infinite;
-            color: #ffffff;
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1.5;
-            will-change: transform;
+        
+        .navbar-light .navbar-nav .nav-link:hover,
+        .navbar-light .navbar-nav .nav-link:focus {
+            color: #007bff !important;
         }
-
-        .running-text-item {
-            display: inline-block;
-            margin-right: 4rem;
-            white-space: nowrap;
+        
+        .navbar-light .navbar-nav .nav-link.active {
+            color: #007bff !important;
+            font-weight: 600;
         }
-
-        .running-text-separator {
-            margin: 0 2rem;
-            color: #adb5bd;
-            font-weight: bold;
+        
+        .navbar-light .navbar-toggler {
+            border-color: rgba(0,0,0,.1);
         }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(100vw);
+        
+        .navbar-light .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Dropdown styling for white navbar */
+        .navbar-light .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-light .navbar-nav .dropdown-item {
+            color: #333;
+        }
+        
+        .navbar-light .navbar-nav .dropdown-item:hover,
+        .navbar-light .navbar-nav .dropdown-item:focus {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+        
+        /* Header shadow */
+        header.bg-white {
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        /* Sticky Header Styling */
+        .navbar-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 1) !important;
+        }
+        
+        /* Mobile navbar behavior */
+        @media (max-width: 991px) {
+            .navbar-sticky {
+                transform: translateY(0);
+                transition: transform 0.3s ease;
             }
-            100% {
-                transform: translateX(-100%);
+            
+            .navbar-sticky.navbar-hidden {
+                transform: translateY(-100%);
+            }
+            
+            .navbar-sticky.navbar-visible {
+                transform: translateY(0);
             }
         }
-
-        /* Pause animation on hover with smooth transition */
-        .running-text-container:hover .running-text {
-            animation-play-state: paused;
-            cursor: pointer;
-        }
-
-        /* Smooth hover effect */
-
-        .running-text-container:hover {
-            background-color: #495057;
-        }
-
-        /* Icons styling in running text */
-        .running-text .bi {
-            color: #ffc107;
-            margin-right: 0.5rem;
-            font-size: 1rem;
-        }
-
-        /* Enhanced mobile styling */
+        
+        /* Hide navbar initially on mobile for hero section */
         @media (max-width: 767px) {
-            .running-text {
-                animation: marquee 30s linear infinite;
-                font-size: 0.75rem;
-            }
-            
-            .running-text-item {
-                margin-right: 2rem;
-            }
-            
-            .running-text-separator {
-                margin: 0 1rem;
+            .navbar-sticky {
+                transform: translateY(-100%);
             }
         }
+        
+        /* Scrolled state - transparent background */
+        .navbar-sticky.scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
+        }
 
+        /* Mobile Navbar: Hidden at top, Show on scroll */
+        @media (max-width: 767px) {
+            .navbar-sticky {
+                transform: translateY(-100%);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+            }
+            
+            .navbar-sticky.show-on-scroll {
+                transform: translateY(0);
+                background-color: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15) !important;
+            }
+        }
+        
+        /* No body padding - let content flow naturally under fixed header */
+        
+        /* Smooth transitions for all navbar elements */
+        .navbar-sticky .navbar-brand,
+        .navbar-sticky .nav-link {
+            transition: all 0.3s ease;
+        }
     </style>
     
     @stack('styles')
 </head>
 <body>
     <!-- Header -->
-    <header class="bg-primary text-white">
-        <!-- Top Bar - Running Text (All Devices) -->
-        <div class="bg-dark py-2 overflow-hidden">
-            <div class="running-text-container">
-                <div class="running-text">
-                    <span class="running-text-item">
-                        <i class="bi bi-envelope me-2"></i>Email: admin@margasari.id
-                    </span>
-                    <span class="running-text-separator">•</span>
-                    <span class="running-text-item">
-                        <i class="bi bi-telephone me-2"></i>Telepon: (0542) 123-456
-                    </span>
-                    <span class="running-text-separator">•</span>
-                    <span class="running-text-item">
-                        <i class="bi bi-clock me-2"></i>Jam Operasional: Senin - Jumat: 08:00 - 16:00
-                    </span>
-                    <span class="running-text-separator">•</span>
-                    <span class="running-text-item">
-                        <i class="bi bi-geo-alt me-2"></i>Alamat: Jl. Marga Sari No. 123, Balikpapan Barat
-                    </span>
-                    <span class="running-text-separator">•</span>
-                    <span class="running-text-item">
-                        <i class="bi bi-info-circle me-2"></i>Selamat datang di website resmi Kelurahan Marga Sari
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        
+    <header class="bg-white shadow-sm navbar-sticky" id="mainHeader">
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="{{ route('home') }}">
+                <a class="navbar-brand fw-bold text-dark" href="{{ route('home') }}">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" width="40" height="40" class="me-2" onerror="this.style.display='none'">
                     Kelurahan Marga Sari
                 </a>
@@ -294,6 +295,72 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    <!-- Sticky Header JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('mainHeader');
+            const scrollThreshold = 50; // Pixels to scroll before header becomes transparent
+            const mobileShowThreshold = 150; // Pixels to scroll before showing navbar on mobile
+            let lastScrollTop = 0;
+            
+            function isMobile() {
+                return window.innerWidth <= 767;
+            }
+            
+            function updateHeader() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Regular desktop behavior
+                if (scrollTop > scrollThreshold) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Mobile specific behavior
+                if (isMobile()) {
+                    if (scrollTop > mobileShowThreshold) {
+                        // Show navbar when scrolled down past hero section
+                        header.classList.add('show-on-scroll');
+                    } else {
+                        // Hide navbar in hero section (default state)
+                        header.classList.remove('show-on-scroll');
+                    }
+                } else {
+                    // Desktop - ensure mobile classes are removed
+                    header.classList.remove('show-on-scroll');
+                }
+                
+                lastScrollTop = scrollTop;
+            }
+            
+            // Update header on scroll
+            window.addEventListener('scroll', updateHeader);
+            
+            // Update header on page load
+            updateHeader();
+            
+            // Throttle scroll events for better performance
+            let ticking = false;
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
+                    setTimeout(() => ticking = false, 10);
+                }
+            }
+            
+            window.addEventListener('scroll', requestTick);
+            
+            // Handle window resize to update mobile detection
+            window.addEventListener('resize', function() {
+                // Reset and update header when switching between mobile/desktop
+                header.classList.remove('show-on-scroll');
+                updateHeader();
+            });
+        });
+    </script>
     
     @stack('scripts')
 </body>

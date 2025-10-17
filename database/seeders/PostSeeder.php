@@ -110,7 +110,7 @@ class PostSeeder extends Seeder
 <p>Mari kita wujudkan lingkungan yang bersih, sehat, dan nyaman untuk kita semua. Partisipasi aktif dari seluruh warga sangat diharapkan.</p>
 
 <p>Untuk koordinasi lebih lanjut, hubungi Ketua RT masing-masing atau langsung ke kantor kelurahan.</p>',
-                'type' => 'agenda',
+                'type' => 'berita',
                 'status' => 'published',
                 'published_at' => now()->subHours(2),
                 'views' => 234,
@@ -150,7 +150,7 @@ class PostSeeder extends Seeder
 </ul>
 
 <p>Acara ini gratis dan terbuka untuk umum. Diharapkan partisipasi aktif dari seluruh warga untuk mendapatkan informasi terbaru mengenai program-program bantuan sosial.</p>',
-                'type' => 'agenda',
+                'type' => 'berita',
                 'status' => 'draft',
                 'published_at' => null,
                 'views' => 0,

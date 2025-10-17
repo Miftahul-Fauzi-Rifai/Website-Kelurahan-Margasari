@@ -55,8 +55,6 @@
                                         <span class="badge bg-info">Berita</span>
                                     @elseif($post->type === 'pengumuman')
                                         <span class="badge bg-warning">Pengumuman</span>
-                                    @else
-                                        <span class="badge bg-success">Agenda</span>
                                     @endif
                                 </span>
                                 <span>

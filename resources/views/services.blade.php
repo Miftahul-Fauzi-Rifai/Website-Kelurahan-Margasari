@@ -5,24 +5,20 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-primary text-white py-5">
+<section class="bg-primary text-white py-4 py-md-5 page-header-services">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <h1 class="display-5 fw-bold">Layanan Kelurahan</h1>
-                <p class="lead">Berbagai layanan publik yang tersedia untuk memudahkan urusan administrasi Anda</p>
-            </div>
-        </div>
+        <h1 class="display-5 display-md-4 fw-bold mobile-title">Layanan Kelurahan</h1>
+        <p class="lead mb-0 mobile-subtitle">Berbagai layanan publik yang tersedia untuk memudahkan urusan administrasi Anda</p>
     </div>
 </section>
 
 <!-- Services Grid -->
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container">
         @if($services->count() > 0)
             <div class="row g-4">
                 @foreach($services as $service)
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card h-100 border-0 shadow-sm service-card">
                         <div class="card-body p-4">
                             <div class="text-center mb-4">
@@ -177,9 +173,9 @@
 </section>
 
 <!-- Online Services Section -->
-<section class="py-4 py-md-5 bg-light">
+<section class="pt-0 pb-4 pt-md-1 pb-md-5 bg-light" style="margin-top: -4rem;">
     <div class="container">
-        <div class="text-center mb-4 mb-md-5">
+        <div class="text-center mb-3 mb-md-4" style="padding-top: -5rem;">
             <h2 class="fw-bold text-primary">
                 <i class="bi bi-laptop me-2 me-md-3"></i>KELURAHAN - LAYANAN ONLINE
             </h2>
@@ -187,109 +183,74 @@
             <p class="text-muted d-md-none">Layanan administrasi online</p>
         </div>
         
-        <div class="row g-3 g-md-4">
-            <!-- Surat Keterangan Belum Pernah Menikah -->
-            <div class="col-6 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm online-service-card">
-                    <div class="card-body p-3 p-md-4 text-center">
-                        <div class="online-service-icon bg-success text-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2 mb-md-3">
-                            <i class="bi bi-heart" style="font-size: 1.5rem;"></i>
-                        </div>
-                        <h6 class="card-title fw-bold mb-2 mb-md-3 small-title">Surat Keterangan Belum Pernah Menikah</h6>
-                        <p class="card-text text-muted mb-3 mb-md-4 small-text d-none d-md-block">Layanan online untuk pembuatan surat keterangan belum pernah menikah</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdGsM9e36Xnu1oKgQkQXDWUuztOSCAi48U6TXaHR6NvxzF_UA/viewform" 
-                           target="_blank" 
-                           class="btn btn-success w-100 btn-sm">
-                            <i class="bi bi-link-45deg me-1 me-md-2"></i><span class="d-none d-md-inline">Akses </span>Formulir
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="row g-4 justify-content-center">
+            @php
+            $onlineServices = [
+                [
+                    'name' => 'Surat Keterangan Belum Pernah Menikah',
+                    'description' => 'Layanan online untuk pembuatan surat keterangan belum pernah menikah',
+                    'icon' => 'bi-heart',
+                    'color' => 'success',
+                    'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdGsM9e36Xnu1oKgQkQXDWUuztOSCAi48U6TXaHR6NvxzF_UA/viewform'
+                ],
+                [
+                    'name' => 'Surat Keterangan Berpenghasilan Tidak Tetap',
+                    'description' => 'Layanan online untuk pembuatan surat keterangan penghasilan tidak tetap',
+                    'icon' => 'bi-currency-exchange',
+                    'color' => 'info',
+                    'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdxE8RzwhqP3NRPQAKA_4gLRRkY1TzSxrStCoa6mMDfbGsBlQ/viewform'
+                ],
+                [
+                    'name' => 'Surat Keterangan Bertempat Tinggal',
+                    'description' => 'Layanan online untuk warga ber KTP luar daerah',
+                    'icon' => 'bi-house-door',
+                    'color' => 'warning',
+                    'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSd5yk7PJs8w2zH9I7ShGUcSDv_ECWnY1djhhA-BqPq5br1rFg/viewform'
+                ],
+                [
+                    'name' => 'Surat Keterangan Domisili',
+                    'description' => 'Layanan online untuk warga ber KTP setempat',
+                    'icon' => 'bi-geo-alt',
+                    'color' => 'secondary',
+                    'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSf3CY5du5srC1-73PvF69pqBErpHnN0qclQL83lH-BOn1WU7w/viewform'
+                ],
+                [
+                    'name' => 'Surat Keterangan Janda/Duda',
+                    'description' => 'Layanan online untuk pembuatan surat keterangan status janda/duda',
+                    'icon' => 'bi-person-x',
+                    'color' => 'danger',
+                    'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLScHI8sYC1E9Xrqsm5XvjSekkj2WuhZFEjfgNjyXymb049-jWg/viewform'
+                ]
+            ];
+            @endphp
 
-            <!-- Surat Keterangan Berpenghasilan Tidak Tetap -->
-            <div class="col-6 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm online-service-card">
-                    <div class="card-body p-3 p-md-4 text-center">
-                        <div class="online-service-icon bg-info text-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2 mb-md-3">
-                            <i class="bi bi-currency-exchange" style="font-size: 1.5rem;"></i>
+            @foreach($onlineServices as $service)
+            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-3">
+                <div class="card service-online-card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4 d-flex flex-column">
+                        <!-- Service Icon -->
+                        <div class="service-online-icon mb-3">
+                            <div class="icon-wrapper bg-{{ $service['color'] }}">
+                                <i class="bi {{ $service['icon'] }}"></i>
+                            </div>
                         </div>
-                        <h6 class="card-title fw-bold mb-2 mb-md-3 small-title">Surat Keterangan Berpenghasilan Tidak Tetap</h6>
-                        <p class="card-text text-muted mb-3 mb-md-4 small-text d-none d-md-block">Layanan online untuk pembuatan surat keterangan penghasilan tidak tetap</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxE8RzwhqP3NRPQAKA_4gLRRkY1TzSxrStCoa6mMDfbGsBlQ/viewform" 
-                           target="_blank" 
-                           class="btn btn-info w-100 btn-sm">
-                            <i class="bi bi-link-45deg me-1 me-md-2"></i><span class="d-none d-md-inline">Akses </span>Formulir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Surat Keterangan Bertempat Tinggal -->
-            <div class="col-6 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm online-service-card">
-                    <div class="card-body p-3 p-md-4 text-center">
-                        <div class="online-service-icon bg-warning text-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2 mb-md-3">
-                            <i class="bi bi-house-door" style="font-size: 1.5rem;"></i>
-                        </div>
-                        <h6 class="card-title fw-bold mb-2 mb-md-3 small-title">Surat Keterangan Bertempat Tinggal</h6>
-                        <p class="card-text text-muted mb-3 mb-md-4 small-text d-none d-md-block">Layanan online untuk warga ber KTP luar daerah</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5yk7PJs8w2zH9I7ShGUcSDv_ECWnY1djhhA-BqPq5br1rFg/viewform" 
-                           target="_blank" 
-                           class="btn btn-warning w-100 btn-sm">
-                            <i class="bi bi-link-45deg me-1 me-md-2"></i><span class="d-none d-md-inline">Akses </span>Formulir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Surat Keterangan Domisili -->
-            <div class="col-6 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm online-service-card">
-                    <div class="card-body p-3 p-md-4 text-center">
-                        <div class="online-service-icon bg-secondary text-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2 mb-md-3">
-                            <i class="bi bi-geo-alt" style="font-size: 1.5rem;"></i>
-                        </div>
-                        <h6 class="card-title fw-bold mb-2 mb-md-3 small-title">Surat Keterangan Domisili</h6>
-                        <p class="card-text text-muted mb-3 mb-md-4 small-text d-none d-md-block">Layanan online untuk warga ber KTP setempat</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3CY5du5srC1-73PvF69pqBErpHnN0qclQL83lH-BOn1WU7w/viewform" 
-                           target="_blank" 
-                           class="btn btn-secondary w-100 btn-sm">
-                            <i class="bi bi-link-45deg me-1 me-md-2"></i><span class="d-none d-md-inline">Akses </span>Formulir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Surat Keterangan Janda/Duda -->
-            <div class="col-6 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm online-service-card">
-                    <div class="card-body p-3 p-md-4 text-center">
-                        <div class="online-service-icon bg-danger text-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2 mb-md-3">
-                            <i class="bi bi-person-x" style="font-size: 1.5rem;"></i>
-                        </div>
-                        <h6 class="card-title fw-bold mb-2 mb-md-3 small-title">Surat Keterangan Janda/Duda</h6>
-                        <p class="card-text text-muted mb-3 mb-md-4 small-text d-none d-md-block">Layanan online untuk pembuatan surat keterangan status janda/duda</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScHI8sYC1E9Xrqsm5XvjSekkj2WuhZFEjfgNjyXymb049-jWg/viewform" 
-                           target="_blank" 
-                           class="btn btn-danger w-100 btn-sm">
-                            <i class="bi bi-link-45deg me-1 me-md-2"></i><span class="d-none d-md-inline">Akses </span>Formulir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Placeholder untuk layanan online tambahan -->
-            <div class="col-6 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm online-service-card border-dashed">
-                    <div class="card-body p-3 p-md-4 text-center d-flex align-items-center justify-content-center">
-                        <div>
-                            <i class="bi bi-plus-circle text-muted" style="font-size: 2rem;"></i>
-                            <h6 class="mt-2 text-muted small-title">Layanan Lainnya</h6>
-                            <p class="text-muted small mb-0 d-none d-md-block">Akan segera hadir</p>
+                        
+                        <!-- Service Title -->
+                        <h5 class="service-online-title fw-bold mb-3">{{ $service['name'] }}</h5>
+                        
+                        <!-- Service Description -->
+                        <p class="service-online-description text-muted mb-4">{{ $service['description'] }}</p>
+                        
+                        <!-- Access Button -->
+                        <div class="service-online-action mt-auto">
+                            <a href="{{ $service['form_url'] }}" class="btn btn-{{ $service['color'] }} w-100 fw-semibold py-2" target="_blank">
+                                <i class="bi bi-link-45deg me-2"></i>Akses Formulir
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
         
         <div class="mt-4 mt-md-5 p-3 p-md-4 bg-primary text-white rounded">
@@ -335,7 +296,243 @@
     height: 80px;
 }
 
-/* Online Services Styling */
+/* Service Online Cards Styling - Matching Homepage */
+.service-online-card {
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.service-online-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1) !important;
+}
+
+/* Service Online Icon */
+.service-online-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.service-online-icon .icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.service-online-card:hover .icon-wrapper {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Service Online Content */
+.service-online-title {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.service-online-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+/* Service Online Action Button */
+.service-online-action .btn {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+}
+
+.service-online-action .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Service Online Action - Positioning */
+.service-online-action {
+    margin-top: auto;
+}
+
+/* Responsive Design for Service Online Cards */
+@media (max-width: 1200px) {
+    .service-online-icon .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+    }
+    
+    .service-online-title {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile responsive layout for service cards - matching home.blade.php */
+@media (max-width: 768px) {
+    .service-online-card {
+        margin-bottom: 1rem;
+        /* Ensure stable appearance without hover effects */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .service-online-card .card-body {
+        padding: 1.5rem 0.75rem !important;
+    }
+    
+    .service-online-icon {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .service-online-icon .icon-wrapper {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        /* Stable shadow without hover scaling */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    }
+    
+    .service-online-title {
+        font-size: 0.85rem !important;
+        line-height: 1.2;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .service-online-description {
+        font-size: 0.75rem !important;
+        line-height: 1.3;
+        margin-bottom: 1rem !important;
+    }
+    
+    .service-online-action .btn {
+        padding: 6px 12px !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* Extra small mobile screens - very compact layout, no hover effects */
+@media (max-width: 576px) {
+    /* Service cards very compact for small screens */
+    .service-online-card {
+        /* Consistent stable appearance */
+        box-shadow: 0 1px 6px rgba(0,0,0,0.1) !important;
+    }
+    
+    .service-online-card .card-body {
+        padding: 1rem 0.5rem !important;
+    }
+    
+    .service-online-icon {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .service-online-icon .icon-wrapper {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        /* Smaller stable shadow for compact layout */
+        box-shadow: 0 1px 6px rgba(0,0,0,0.12) !important;
+    }
+    
+    .service-online-title {
+        font-size: 0.8rem !important;
+        line-height: 1.1;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .service-online-description {
+        font-size: 0.7rem !important;
+        line-height: 1.2;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .service-online-action .btn {
+        padding: 5px 8px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    /* Compact section spacing for mobile */
+    .py-4 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    
+    .text-center.mb-4 h2 {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .text-center.mb-4 .text-muted {
+        font-size: 0.8rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    /* Reduce gap between service cards */
+    .row.g-4 {
+        --bs-gutter-x: 0.5rem;
+        --bs-gutter-y: 0.5rem;
+    }
+}
+
+/* Grid Layout Improvements */
+.row.g-4.justify-content-center {
+    margin: 0 -1rem;
+}
+
+.row.g-4.justify-content-center > * {
+    padding: 0 1rem;
+}
+
+/* Mobile grid layout improvements */
+@media (max-width: 576px) {
+    .row.g-4.justify-content-center {
+        margin: 0 -0.25rem;
+    }
+    
+    .row.g-4.justify-content-center > * {
+        padding: 0 0.25rem;
+    }
+}
+
+/* Additional hover effects */
+.service-online-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--bs-primary) 0%, 
+        var(--bs-success) 25%, 
+        var(--bs-info) 50%, 
+        var(--bs-warning) 75%, 
+        var(--bs-secondary) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-online-card:hover::before {
+    opacity: 1;
+}
+
+/* Legacy Online Services Styling - Keep for backward compatibility */ 
 .online-service-card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -358,6 +555,49 @@
 .border-dashed:hover {
     border-color: #6c757d !important;
     transform: translateY(-3px);
+}
+
+/* Disable hover effects on touch devices and mobile screens - matching home.blade.php */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    /* Completely disable all hover effects on mobile */
+    .card:hover,
+    .service-card:hover,
+    .service-online-card:hover,
+    .online-service-card:hover {
+        transform: none !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .service-online-card:hover .icon-wrapper {
+        transform: none !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    }
+    
+    .service-online-action .btn:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    .service-online-card:hover::before {
+        opacity: 0 !important;
+    }
+    
+    /* Remove all transitions on mobile to prevent tap zoom effects */
+    .card,
+    .service-card,
+    .service-online-card,
+    .online-service-card,
+    .service-online-card .icon-wrapper,
+    .service-online-action .btn,
+    .service-online-card::before {
+        transition: none !important;
+    }
+    
+    /* Ensure no transform animations trigger on tap */
+    .service-online-card,
+    .service-card {
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    }
 }
 
 /* Mobile Optimizations */
@@ -423,14 +663,142 @@
     margin-bottom: 0.5rem;
 }
 
+/* Page Header Spacing untuk menghindari navbar */
+.page-header-services {
+    padding-top: 90px !important; /* Reasonable space from fixed navbar */
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .page-header-services {
+        padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-services {
+        padding-top: 70px !important; /* Minimal padding on small mobile */
+    }
+    
+    .page-header-services h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.3;
+    }
+    
+    .page-header-services .lead {
+        font-size: 1rem !important;
+    }
+}
+
+/* Regular Service Cards Mobile Responsive */
+@media (max-width: 768px) {
+    .service-card .card-body {
+        padding: 1.5rem 1rem !important;
+    }
+    
     .service-icon {
         width: 60px;
         height: 60px;
+        margin-bottom: 1rem !important;
     }
     
     .service-icon i {
         font-size: 1.5rem !important;
+    }
+    
+    .service-card .card-title {
+        font-size: 1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .service-card .card-text {
+        font-size: 0.85rem !important;
+        line-height: 1.4;
+        margin-bottom: 1rem !important;
+    }
+    
+    .service-card h6 {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .service-card .small {
+        font-size: 0.75rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-card .card-body {
+        padding: 1rem 0.75rem !important;
+    }
+    
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .service-icon i {
+        font-size: 1.3rem !important;
+    }
+    
+    .service-card .card-title {
+        font-size: 0.9rem !important;
+        line-height: 1.2;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .service-card .card-text {
+        font-size: 0.8rem !important;
+        line-height: 1.3;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .service-card h6 {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .service-card .small {
+        font-size: 0.7rem !important;
+        line-height: 1.2;
+    }
+    
+    .service-card .card-footer .btn {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* Mobile Header Optimizations - sama dengan Data RT */
+.mobile-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@media (min-width: 576px) {
+    .mobile-title {
+        font-size: 2.2rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-title {
+        font-size: 2.5rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.25rem;
     }
 }
 </style>

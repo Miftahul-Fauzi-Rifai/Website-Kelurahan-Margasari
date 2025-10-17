@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -22,10 +21,8 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        $services = Service::active()
-            ->ordered()
-            ->take(8)
-            ->get();
+        // Services disabled - no longer using services database
+        $services = collect(); // Empty collection
 
         return view('home', compact('latestNews', 'announcements', 'services'));
     }
@@ -37,7 +34,8 @@ class HomeController extends Controller
 
     public function services()
     {
-        $services = Service::active()->ordered()->get();
+        // Services disabled - no longer using services database
+        $services = collect(); // Empty collection
         return view('services', compact('services'));
     }
 

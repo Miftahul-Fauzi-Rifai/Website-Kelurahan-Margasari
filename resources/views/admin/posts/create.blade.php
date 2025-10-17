@@ -96,7 +96,6 @@
                                     <option value="">Pilih Tipe</option>
                                     <option value="berita" {{ old('type') == 'berita' ? 'selected' : '' }}>Berita</option>
                                     <option value="pengumuman" {{ old('type') == 'pengumuman' ? 'selected' : '' }}>Pengumuman</option>
-                                    <option value="agenda" {{ old('type') == 'agenda' ? 'selected' : '' }}>Agenda</option>
                                 </select>
                                 @error('type')
                                     <div class="invalid-feedback">{{ $message }}</div>

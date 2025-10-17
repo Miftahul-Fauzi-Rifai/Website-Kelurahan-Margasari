@@ -4,7 +4,7 @@
 @section('meta_description', 'Peta persebaran RT dan statistik per RT di Kelurahan Marga Sari, Kota Balikpapan.')
 
 @section('content')
-<section class="bg-primary text-white py-4 py-md-5">
+<section class="bg-primary text-white py-4 py-md-5 page-header-rt">
     <div class="container">
         <h1 class="display-5 display-md-4 fw-bold mobile-title">Data RT Kelurahan Marga Sari</h1>
         <p class="lead mb-0 mobile-subtitle">Persebaran lokasi RT dan statistik singkat</p>
@@ -718,6 +718,24 @@
     width: 45px !important;
     height: 32px !important;
     font-size: 10px !important;
+  }
+}
+
+/* Page Header Spacing untuk menghindari navbar */
+.page-header-rt {
+  padding-top: 90px !important; /* Reasonable space from fixed navbar */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page-header-rt {
+    padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+  }
+}
+
+@media (max-width: 576px) {
+  .page-header-rt {
+    padding-top: 70px !important; /* Minimal padding on small mobile */
   }
 }
 </style>

@@ -126,14 +126,57 @@
   };
 
   if (lat && lng) {
-    // Gunakan circle marker yang sama dengan halaman index
-    const marker = L.circleMarker([lat, lng], {
-      radius: getMarkerSize(rtData.num_population),
-      color: '#fff',
-      weight: 3,
-      fillColor: populationToColor(rtData.num_population),
-      fillOpacity: 0.9
-    }).addTo(map);
+    // Create custom HTML marker dengan nomor RT (sama seperti halaman index)
+    const markerHtml = `
+      <div class="rt-marker" style="
+        background-color: ${populationToColor(rtData.num_population)};
+        border: 2px solid #fff;
+        border-radius: 5px;
+        width: 50px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        font-weight: 900;
+        font-size: 12px;
+        color: black;
+        text-shadow: 
+          -1px -1px 0 #fff,
+          1px -1px 0 #fff,
+          -1px 1px 0 #fff,
+          1px 1px 0 #fff,
+          0 0 1px #fff;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+        position: relative;
+        line-height: 1;
+        letter-spacing: 0.5px;
+        text-align: center;
+      ">
+        ${rtData.rt_code}
+        <div style="
+          position: absolute;
+          bottom: -7px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-top: 8px solid ${populationToColor(rtData.num_population)};
+        "></div>
+      </div>
+    `;
+
+    const customIcon = L.divIcon({
+      html: markerHtml,
+      className: 'custom-rt-marker',
+      iconSize: [50, 42],
+      iconAnchor: [25, 42],
+      popupAnchor: [0, -42]
+    });
+
+    const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
 
     // Popup dengan informasi lengkap
     const popup = `
@@ -165,19 +208,25 @@
     `;
     marker.bindPopup(popup);
 
-    // Hover effect
+    // Hover effect untuk custom marker (sama seperti halaman index)
     marker.on('mouseover', function(e) {
-      this.setStyle({
-        weight: 4,
-        fillOpacity: 1
-      });
+      const markerElement = e.target.getElement();
+      const rtMarker = markerElement.querySelector('.rt-marker');
+      if (rtMarker) {
+        rtMarker.style.transform = 'scale(1.1)';
+        rtMarker.style.zIndex = '1000';
+        rtMarker.style.boxShadow = '0 4px 8px rgba(0,0,0,0.5)';
+      }
     });
 
     marker.on('mouseout', function(e) {
-      this.setStyle({
-        weight: 3,
-        fillOpacity: 0.9
-      });
+      const markerElement = e.target.getElement();
+      const rtMarker = markerElement.querySelector('.rt-marker');
+      if (rtMarker) {
+        rtMarker.style.transform = 'scale(1)';
+        rtMarker.style.zIndex = 'auto';
+        rtMarker.style.boxShadow = '0 3px 6px rgba(0,0,0,0.4)';
+      }
     });
 
     // Auto open popup untuk RT yang sedang dilihat
@@ -254,6 +303,26 @@
   .card-body .text-info:hover,
   .card-body .text-danger:hover {
     transform: scale(1.1);
+  }
+
+  /* Custom RT Marker CSS - sama dengan halaman index */
+  .custom-rt-marker {
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  .rt-marker {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-family: 'Arial', 'Helvetica', sans-serif !important;
+    font-weight: 900 !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .rt-marker:hover {
+    transform: scale(1.1) !important;
   }
 </style>
 @endpush

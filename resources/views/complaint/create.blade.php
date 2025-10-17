@@ -4,19 +4,10 @@
 @section('meta_description', 'Sampaikan pengaduan dan aspirasi Anda kepada Kelurahan Marga Sari melalui form pengaduan online.')
 
 @section('content')
-<section class="bg-primary text-white py-4 py-md-5">
+<section class="bg-primary text-white py-4 py-md-5 page-header-complaint">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 col-12">
-                <h1 class="display-6 fw-bold mb-2 mb-md-3">Form Pengaduan Warga</h1>
-                <p class="lead mb-3 mb-lg-0">Sampaikan aspirasi, keluhan, dan saran Anda untuk kemajuan bersama</p>
-            </div>
-            <div class="col-lg-4 col-12 text-lg-end text-center">
-                <a href="{{ route('complaint.track') }}" class="btn btn-outline-light btn-sm btn-md-regular">
-                    <i class="bi bi-search me-2"></i>Lacak Pengaduan
-                </a>
-            </div>
-        </div>
+        <h1 class="display-5 display-md-4 fw-bold mobile-title mb-2 mb-md-3">Form Pengaduan Warga</h1>
+        <p class="lead mobile-subtitle mb-3 mb-lg-0">Sampaikan aspirasi, keluhan, dan saran Anda untuk kemajuan bersama</p>
     </div>
 </section>
 
@@ -324,6 +315,56 @@
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile Header Optimizations - sama dengan Data RT */
+.mobile-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@media (min-width: 576px) {
+    .mobile-title {
+        font-size: 2.2rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-title {
+        font-size: 2.5rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+/* Page Header Spacing untuk menghindari navbar */
+.page-header-complaint {
+    padding-top: 90px !important; /* Reasonable space from fixed navbar */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-header-complaint {
+        padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-complaint {
+        padding-top: 70px !important; /* Minimal padding on small mobile */
+    }
 }
 </style>
 @endpush

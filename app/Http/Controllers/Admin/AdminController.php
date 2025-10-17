@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
-use App\Models\Service;
 use App\Models\Complaint;
 
 class AdminController extends Controller
@@ -17,8 +16,9 @@ class AdminController extends Controller
             'total_users' => User::count(),
             'total_posts' => Post::count(),
             'published_posts' => Post::published()->count(),
-            'total_services' => Service::count(),
-            'active_services' => Service::active()->count(),
+            // Services disabled - no longer using services database
+            'total_services' => 0,
+            'active_services' => 0,
             'total_complaints' => Complaint::count(),
             'new_complaints' => Complaint::where('status', 'baru')->count(),
             'processing_complaints' => Complaint::where('status', 'sedang_diproses')->count(),

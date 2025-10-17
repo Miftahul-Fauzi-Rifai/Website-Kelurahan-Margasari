@@ -40,7 +40,7 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'excerpt' => 'nullable|string|max:500',
             'content' => 'required|string',
-            'type' => 'required|in:berita,pengumuman,agenda',
+            'type' => 'required|in:berita,pengumuman',
             'status' => 'required|in:draft,published',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'published_at' => 'nullable|date'
@@ -99,7 +99,7 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'excerpt' => 'nullable|string|max:500',
             'content' => 'required|string',
-            'type' => 'required|in:berita,pengumuman,agenda',
+            'type' => 'required|in:berita,pengumuman',
             'status' => 'required|in:draft,published',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'published_at' => 'nullable|date'

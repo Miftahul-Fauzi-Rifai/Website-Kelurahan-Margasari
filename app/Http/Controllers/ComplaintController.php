@@ -77,18 +77,4 @@ class ComplaintController extends Controller
         return view('complaint.success');
     }
 
-    // Public method to check complaint status with tracking ID
-    public function track(Request $request)
-    {
-        if ($request->has('id')) {
-            $complaint = Complaint::find($request->id);
-            if ($complaint) {
-                return view('complaint.track', compact('complaint'));
-            } else {
-                return redirect()->route('complaint.track')->with('error', 'Pengaduan tidak ditemukan');
-            }
-        }
-        
-        return view('complaint.track');
-    }
 }

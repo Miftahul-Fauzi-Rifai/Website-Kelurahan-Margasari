@@ -4,20 +4,12 @@
 @section('meta_description', 'Berita terbaru dan informasi terkini dari Kelurahan Marga Sari, Kota Balikpapan.')
 
 @section('content')
-<section class="bg-primary text-white py-4 py-md-5">
+<section class="bg-primary text-white py-4 py-md-5 page-header-news">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
+        <div class="row">
+            <div class="col-12">
                 <h1 class="display-6 fw-bold">Berita Terbaru</h1>
                 <p class="lead mb-0">Informasi dan berita terkini dari Kelurahan Marga Sari</p>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-dark mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white-50">Beranda</a></li>
-                        <li class="breadcrumb-item active text-white" aria-current="page">Berita</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div>
@@ -165,17 +157,39 @@
     color: #0d6efd !important;
 }
 
-.breadcrumb-dark .breadcrumb-item + .breadcrumb-item::before {
-    color: rgba(255, 255, 255, 0.5);
+
+/* Page Header Spacing untuk menghindari navbar */
+.page-header-news {
+    padding-top: 90px !important; /* Reasonable space from fixed navbar */
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .page-header-news {
+        padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+    }
+    
     .display-6 {
         font-size: 2rem;
     }
     
     .card-body {
         padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-news {
+        padding-top: 70px !important; /* Minimal padding on small mobile */
+    }
+    
+    .page-header-news h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.3;
+    }
+    
+    .page-header-news .lead {
+        font-size: 1rem !important;
     }
 }
 </style>

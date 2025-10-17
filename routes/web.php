@@ -19,7 +19,6 @@ Route::get('/data-rt/{rt_code}', [RtController::class, 'show'])->name('rt.show')
 Route::get('/pengaduan', [ComplaintController::class, 'create'])->name('complaint.create');
 Route::post('/pengaduan', [ComplaintController::class, 'store'])->name('complaint.store');
 Route::get('/pengaduan/sukses', [ComplaintController::class, 'success'])->name('complaint.success');
-Route::get('/lacak-pengaduan', [ComplaintController::class, 'track'])->name('complaint.track');
 Route::get('/post/{slug}', [HomeController::class, 'showPost'])->name('post.show');
 
 // Authentication routes
