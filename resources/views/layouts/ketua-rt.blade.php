@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>@yield('title', 'Admin Dashboard') - Kelurahan Marga Sari</title>
+    <title>@yield('title', 'Dashboard Ketua RT') - Kelurahan Marga Sari</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -69,8 +69,8 @@
         <div class="bg-white sidebar" id="sidebar">
             <div class="sidebar-brand d-flex align-items-center justify-content-center py-4">
                 <div class="sidebar-brand-text mx-3">
-                    <div class="text-primary fw-bold">Admin Panel</div>
-                    <small class="text-muted">Kelurahan Marga Sari</small>
+                    <div class="text-success fw-bold">Dashboard Ketua RT</div>
+                    <small class="text-muted">RT {{ Auth::user()->rt }}</small>
                 </div>
             </div>
             
@@ -78,45 +78,19 @@
             
             <nav class="nav flex-column">
                 <!-- Dashboard -->
-                <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" 
-                   href="{{ route('admin.dashboard') }}">
+                <a class="nav-link {{ request()->routeIs('ketua-rt.dashboard') ? 'active' : '' }}" 
+                   href="{{ route('ketua-rt.dashboard') }}">
                     <i class="bi bi-speedometer2 me-3"></i>
                     Dashboard
                 </a>
                 
-                <div class="sidebar-heading">Konten</div>
+                <div class="sidebar-heading">Laporan</div>
                 
-                <!-- Posts -->
-                <a class="nav-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}" 
-                   href="{{ route('admin.posts.index') }}">
-                    <i class="bi bi-newspaper me-3"></i>
-                    Artikel & Berita
-                </a>
-                
-                <!-- Complaints -->
-                <a class="nav-link {{ request()->routeIs('admin.complaints.*') ? 'active' : '' }}" href="{{ route('admin.complaints.index') }}">
-                    <i class="bi bi-megaphone me-3"></i>
-                    Pengaduan
-                    @if(\App\Models\Complaint::where('status', 'baru')->count() > 0)
-                        <span class="badge badge-warning ms-2">{{ \App\Models\Complaint::where('status', 'baru')->count() }}</span>
-                    @endif
-                </a>
-                
-                <!-- Reports -->
-                <a class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}" href="{{ route('admin.reports.index') }}">
+                <!-- Laporan Bulanan -->
+                <a class="nav-link {{ request()->routeIs('ketua-rt.reports.*') ? 'active' : '' }}" 
+                   href="{{ route('ketua-rt.reports.index') }}">
                     <i class="bi bi-file-earmark-text me-3"></i>
-                    Laporan RT
-                    @if(\App\Models\Report::where('status', 'submitted')->count() > 0)
-                        <span class="badge bg-info ms-2">{{ \App\Models\Report::where('status', 'submitted')->count() }}</span>
-                    @endif
-                </a>
-                
-                <div class="sidebar-heading">Manajemen</div>
-                
-                <!-- Users (Ketua RT) -->
-                <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
-                    <i class="bi bi-people-fill me-3"></i>
-                    Kelola Ketua RT
+                    Laporan Bulanan
                 </a>
             </nav>
             
@@ -141,34 +115,6 @@
                 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ms-auto">
-                    <!-- Nav Item - Alerts Dropdown -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" 
-                           data-bs-toggle="dropdown">
-                            <i class="bi bi-bell-fill"></i>
-                            <span class="badge bg-danger badge-counter">3+</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end shadow">
-                            <h6 class="dropdown-header">
-                                Notifikasi
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="me-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="bi bi-file-text text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">12 Desember 2023</div>
-                                    <span class="font-weight-bold">Artikel baru menunggu review</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">
-                                Lihat Semua Notifikasi
-                            </a>
-                        </div>
-                    </li>
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" 
@@ -176,19 +122,11 @@
                             <span class="me-2 d-none d-lg-inline text-gray-600 small">
                                 {{ Auth::user()->name }}
                             </span>
-                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                            <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end shadow">
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-person me-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-gear me-2 text-gray-400"></i>
-                                Settings
-                            </a>
                             <a class="dropdown-item" href="{{ route('home') }}" target="_blank">
                                 <i class="bi bi-globe me-2 text-gray-400"></i>
                                 Lihat Website
@@ -218,6 +156,13 @@
                 @if(session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <i class="bi bi-exclamation-triangle me-2"></i>{{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+                
+                @if(session('info'))
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>{{ session('info') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
@@ -256,3 +201,4 @@
     @stack('scripts')
 </body>
 </html>
+

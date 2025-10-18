@@ -4,22 +4,10 @@
 @section('meta_description', 'Pengumuman resmi dan informasi penting dari Kelurahan Marga Sari, Kota Balikpapan.')
 
 @section('content')
-<section class="bg-success text-white py-4 py-md-5">
+<section class="bg-primary text-white py-4 py-md-5 page-header-announcement">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <h1 class="display-6 fw-bold">Pengumuman Resmi</h1>
-                <p class="lead mb-0">Informasi penting dan pengumuman resmi dari Kelurahan Marga Sari</p>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-dark mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white-50">Beranda</a></li>
-                        <li class="breadcrumb-item active text-white" aria-current="page">Pengumuman</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+        <h1 class="display-6 display-md-5 fw-bold mobile-title">Pengumuman Resmi</h1>
+        <p class="lead mb-0 mobile-subtitle">Informasi penting dan pengumuman resmi dari Kelurahan Marga Sari</p>
     </div>
 </section>
 
@@ -45,7 +33,7 @@
                                 @endif
                                     <div class="d-flex justify-content-between align-items-start mb-2">
                                         <div>
-                                            <span class="badge bg-success mb-2">Pengumuman</span>
+                                            <span class="badge bg-primary mb-2">Pengumuman</span>
                                             @if($announcement->priority ?? false)
                                                 <span class="badge bg-danger ms-1">PENTING</span>
                                             @endif
@@ -75,7 +63,7 @@
                                     
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="{{ route('post.show', $announcement->slug) }}" 
-                                           class="btn btn-success">
+                                           class="btn btn-primary">
                                             Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                         </a>
                                         
@@ -122,7 +110,7 @@
                         <p class="text-muted mb-4">
                             Saat ini belum ada pengumuman yang dipublikasikan. Silakan kembali lagi nanti untuk mendapatkan informasi terbaru.
                         </p>
-                        <a href="{{ route('home') }}" class="btn btn-success">
+                        <a href="{{ route('home') }}" class="btn btn-primary">
                             <i class="bi bi-house me-2"></i>Kembali ke Beranda
                         </a>
                     </div>
@@ -158,28 +146,6 @@
             </div>
         </div>
         
-        <div class="row mt-4">
-            <div class="col-md-6 mb-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <i class="bi bi-newspaper text-primary mb-3" style="font-size: 2.5rem;"></i>
-                        <h5 class="card-title">Berita Terbaru</h5>
-                        <p class="card-text text-muted">Baca berita terbaru dan update dari kelurahan</p>
-                        <a href="{{ route('news') }}" class="btn btn-primary">Lihat Berita</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <i class="bi bi-megaphone text-success mb-3" style="font-size: 2.5rem;"></i>
-                        <h5 class="card-title">Buat Pengaduan</h5>
-                        <p class="card-text text-muted">Sampaikan aspirasi dan keluhan Anda kepada kami</p>
-                        <a href="{{ route('complaint.create') }}" class="btn btn-success">Buat Pengaduan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 @endsection
@@ -196,20 +162,57 @@
 }
 
 .card-title a:hover {
-    color: #198754 !important;
-}
-
-.breadcrumb-dark .breadcrumb-item + .breadcrumb-item::before {
-    color: rgba(255, 255, 255, 0.5);
+    color: #0d6efd !important;
 }
 
 .alert {
     border-radius: 1rem;
 }
 
-@media (max-width: 768px) {
-    .display-6 {
-        font-size: 2rem;
+/* Page Header Spacing untuk menghindari navbar */
+.page-header-announcement {
+    padding-top: 90px !important;
+}
+
+/* Mobile Title & Subtitle */
+.mobile-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@media (min-width: 576px) {
+    .mobile-title {
+        font-size: 2.2rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-title {
+        font-size: 2.5rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .page-header-announcement {
+        padding-top: 80px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-announcement {
+        padding-top: 70px !important;
     }
     
     .card-body {

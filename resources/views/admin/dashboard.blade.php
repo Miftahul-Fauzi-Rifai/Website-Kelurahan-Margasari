@@ -59,36 +59,6 @@
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Layanan Aktif
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        {{ $stats['active_services'] }}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar"
-                                             style="width: {{ $stats['total_services'] > 0 ? ($stats['active_services'] / $stats['total_services']) * 100 : 0 }}%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="bi bi-card-list text-info" style="font-size: 2rem;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -221,59 +191,6 @@
                             <p class="text-muted mt-2">Belum ada pengguna terdaftar</p>
                         </div>
                     @endif
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="bi bi-lightning me-2"></i>Aksi Cepat
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="row text-center">
-                        <div class="col-lg-2 col-md-4 col-6 mb-3">
-                            <a href="{{ route('admin.posts.create') }}" class="btn btn-outline-primary btn-block py-3">
-                                <i class="bi bi-plus-circle d-block mb-2" style="font-size: 2rem;"></i>
-                                <small>Buat Artikel</small>
-                            </a>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6 mb-3">
-                            <a href="{{ route('admin.posts.index') }}" class="btn btn-outline-success btn-block py-3">
-                                <i class="bi bi-newspaper d-block mb-2" style="font-size: 2rem;"></i>
-                                <small>Kelola Artikel</small>
-                            </a>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6 mb-3">
-                            <a href="#" class="btn btn-outline-info btn-block py-3">
-                                <i class="bi bi-card-list d-block mb-2" style="font-size: 2rem;"></i>
-                                <small>Kelola Layanan</small>
-                            </a>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6 mb-3">
-                            <a href="{{ route('admin.complaints.index') }}" class="btn btn-outline-warning btn-block py-3">
-                                <i class="bi bi-megaphone d-block mb-2" style="font-size: 2rem;"></i>
-                                <small>Kelola Pengaduan</small>
-                            </a>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6 mb-3">
-                            <a href="#" class="btn btn-outline-secondary btn-block py-3">
-                                <i class="bi bi-people d-block mb-2" style="font-size: 2rem;"></i>
-                                <small>Kelola Pengguna</small>
-                            </a>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6 mb-3">
-                            <a href="#" class="btn btn-outline-dark btn-block py-3">
-                                <i class="bi bi-gear d-block mb-2" style="font-size: 2rem;"></i>
-                                <small>Pengaturan</small>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

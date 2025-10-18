@@ -43,40 +43,6 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    public function showRegisterForm()
-    {
-        return view('auth.register');
-    }
-
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'required|string',
-            'rt' => 'required|string|max:3',
-            'rw' => 'required|string|max:3'
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'rt' => $request->rt,
-            'rw' => $request->rw,
-            'role_id' => 1, // default to masyarakat
-            'is_active' => true
-        ]);
-
-        Auth::login($user);
-
-        return redirect('/');
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();

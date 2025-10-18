@@ -179,11 +179,6 @@
                                     <i class="bi bi-box-arrow-in-right me-1"></i>Masuk
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">
-                                    <i class="bi bi-person-plus me-1"></i>Daftar
-                                </a>
-                            </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">

@@ -1,378 +1,247 @@
-@extends('layouts.app')
+@extends('layouts.ketua-rt')
 
 @section('title', 'Dashboard Ketua RT')
 
 @section('content')
-<div class="container py-4">
-    <!-- Welcome Section -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card bg-primary text-white">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h2 class="fw-bold mb-2">Selamat Datang, {{ Auth::user()->name }}</h2>
-                            <p class="mb-0 opacity-75">
-                                Dashboard Ketua RT {{ Auth::user()->rt }}/RW {{ Auth::user()->rw }} - Kelurahan Marga Sari
-                            </p>
-                        </div>
-                        <div class="col-md-4 text-end">
-                            <i class="bi bi-person-badge display-4"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard Ketua RT {{ Auth::user()->rt }}</h1>
+            <p class="text-muted">Selamat datang, {{ Auth::user()->name }}</p>
+        </div>
+        <div class="text-muted">
+            <i class="bi bi-calendar3 me-1"></i>
+            {{ now()->format('l, d F Y') }}
         </div>
     </div>
 
     <!-- Statistics Cards -->
     <div class="row mb-4">
-        <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <div class="text-primary mb-2">
-                        <i class="bi bi-people" style="font-size: 2.5rem;"></i>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total Laporan
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ $stats['total_reports'] }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-files text-primary" style="font-size: 2rem;"></i>
+                        </div>
                     </div>
-                    <h4 class="fw-bold">150</h4>
-                    <p class="text-muted mb-0">Total Warga RT {{ Auth::user()->rt }}</p>
                 </div>
             </div>
         </div>
-        
-        <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <div class="text-success mb-2">
-                        <i class="bi bi-house-door" style="font-size: 2.5rem;"></i>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Draft
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ $stats['draft_reports'] }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-file-earmark text-warning" style="font-size: 2rem;"></i>
+                        </div>
                     </div>
-                    <h4 class="fw-bold">45</h4>
-                    <p class="text-muted mb-0">Jumlah KK</p>
                 </div>
             </div>
         </div>
-        
-        <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <div class="text-warning mb-2">
-                        <i class="bi bi-clipboard-check" style="font-size: 2.5rem;"></i>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Terkirim
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ $stats['submitted_reports'] }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-send text-info" style="font-size: 2rem;"></i>
+                        </div>
                     </div>
-                    <h4 class="fw-bold">12</h4>
-                    <p class="text-muted mb-0">Surat Pengantar Bulan Ini</p>
                 </div>
             </div>
         </div>
-        
-        <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <div class="text-info mb-2">
-                        <i class="bi bi-calendar-event" style="font-size: 2.5rem;"></i>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Disetujui
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ $stats['approved_reports'] }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-check-circle text-success" style="font-size: 2rem;"></i>
+                        </div>
                     </div>
-                    <h4 class="fw-bold">3</h4>
-                    <p class="text-muted mb-0">Kegiatan Mendatang</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">
-                        <i class="bi bi-lightning me-2"></i>Aksi Cepat
-                    </h5>
+    <!-- Alert Laporan Bulan Ini -->
+    @if(!$this_month_report)
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <strong>Perhatian!</strong> Anda belum membuat laporan untuk bulan ini.
+        <a href="{{ route('ketua-rt.reports.create') }}" class="alert-link">Buat sekarang</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @elseif($this_month_report->status == 'draft')
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <i class="bi bi-info-circle-fill me-2"></i>
+        <strong>Info:</strong> Laporan bulan ini masih berstatus draft.
+        <a href="{{ route('ketua-rt.reports.edit', $this_month_report) }}" class="alert-link">Edit laporan</a> atau 
+        <a href="#" onclick="event.preventDefault(); document.getElementById('submit-{{ $this_month_report->id }}').submit();" class="alert-link">Kirim sekarang</a>
+        <form id="submit-{{ $this_month_report->id }}" action="{{ route('ketua-rt.reports.submit', $this_month_report) }}" method="POST" class="d-none">
+            @csrf
+        </form>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @elseif($this_month_report->status == 'submitted')
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <strong>Sukses!</strong> Laporan bulan ini sudah terkirim dan menunggu review dari admin.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Laporan Terbaru -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-success">
+                        <i class="bi bi-file-earmark-text me-2"></i>Laporan Terbaru
+                    </h6>
+                    <a href="{{ route('ketua-rt.reports.index') }}" class="btn btn-sm btn-success">
+                        Lihat Semua
+                    </a>
                 </div>
                 <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <button class="btn btn-outline-primary w-100 py-3" data-bs-toggle="modal" data-bs-target="#suratPengantarModal">
-                                <i class="bi bi-file-text d-block mb-2" style="font-size: 1.5rem;"></i>
-                                <small>Buat Surat Pengantar</small>
-                            </button>
+                    @if($recent_reports->count() > 0)
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Bulan</th>
+                                        <th>Judul</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recent_reports as $report)
+                                    <tr>
+                                        <td>{{ $report->formatted_month }}</td>
+                                        <td>{{ Str::limit($report->title, 40) }}</td>
+                                        <td>{!! $report->status_badge !!}</td>
+                                        <td>
+                                            <a href="{{ route('ketua-rt.reports.show', $report) }}" class="btn btn-sm btn-info">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <button class="btn btn-outline-success w-100 py-3" data-bs-toggle="modal" data-bs-target="#dataWargaModal">
-                                <i class="bi bi-people d-block mb-2" style="font-size: 1.5rem;"></i>
-                                <small>Data Warga</small>
-                            </button>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <button class="btn btn-outline-info w-100 py-3" data-bs-toggle="modal" data-bs-target="#kegiatanModal">
-                                <i class="bi bi-calendar-plus d-block mb-2" style="font-size: 1.5rem;"></i>
-                                <small>Kegiatan RT</small>
-                            </button>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <button class="btn btn-outline-warning w-100 py-3" data-bs-toggle="modal" data-bs-target="#laporanModal">
-                                <i class="bi bi-bar-chart d-block mb-2" style="font-size: 1.5rem;"></i>
-                                <small>Laporan</small>
-                            </button>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <button class="btn btn-outline-danger w-100 py-3" data-bs-toggle="modal" data-bs-target="#pengaduanModal">
-                                <i class="bi bi-exclamation-triangle d-block mb-2" style="font-size: 1.5rem;"></i>
-                                <small>Pengaduan</small>
-                            </button>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <a href="{{ route('complaint.create') }}" class="btn btn-outline-secondary w-100 py-3">
-                                <i class="bi bi-telephone d-block mb-2" style="font-size: 1.5rem;"></i>
-                                <small>Kontak Kelurahan</small>
+                    @else
+                        <div class="text-center py-4">
+                            <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+                            <p class="text-muted mt-2">Belum ada laporan</p>
+                            <a href="{{ route('ketua-rt.reports.create') }}" class="btn btn-success">
+                                <i class="bi bi-plus-circle me-1"></i>Buat Laporan Pertama
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Recent Activities & Announcements -->
-    <div class="row">
-        <!-- Recent Activities -->
-        <div class="col-lg-8 mb-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0">
-                        <i class="bi bi-activity me-2"></i>Aktivitas Terbaru
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-marker bg-primary"></div>
-                            <div class="timeline-content">
-                                <h6 class="mb-1">Surat Pengantar untuk Bapak Ahmad</h6>
-                                <p class="text-muted mb-1">Surat pengantar untuk keperluan pembuatan KTP</p>
-                                <small class="text-muted">2 jam yang lalu</small>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-marker bg-success"></div>
-                            <div class="timeline-content">
-                                <h6 class="mb-1">Kegiatan Gotong Royong</h6>
-                                <p class="text-muted mb-1">Pembersihan lingkungan RT 01 telah selesai dilaksanakan</p>
-                                <small class="text-muted">1 hari yang lalu</small>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-marker bg-info"></div>
-                            <div class="timeline-content">
-                                <h6 class="mb-1">Rapat Koordinasi</h6>
-                                <p class="text-muted mb-1">Rapat koordinasi dengan pengurus RT lainnya</p>
-                                <small class="text-muted">3 hari yang lalu</small>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
 
-        <!-- Announcements & Info -->
+        <!-- Quick Actions -->
         <div class="col-lg-4 mb-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="mb-0">
-                        <i class="bi bi-megaphone me-2"></i>Pengumuman
-                    </h5>
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-success">
+                        <i class="bi bi-lightning me-2"></i>Aksi Cepat
+                    </h6>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3 pb-3 border-bottom">
-                        <h6 class="mb-2">Rapat Koordinasi RT/RW</h6>
-                        <p class="small text-muted mb-1">Akan diadakan rapat koordinasi untuk membahas program kerja bulan depan.</p>
-                        <small class="text-muted">Besok, 19:30 WITA</small>
-                    </div>
-                    
-                    <div class="mb-3 pb-3 border-bottom">
-                        <h6 class="mb-2">Bantuan Sosial</h6>
-                        <p class="small text-muted mb-1">Pendaftaran bantuan sosial untuk warga kurang mampu dibuka hingga akhir bulan.</p>
-                        <small class="text-muted">Deadline: 30 Des 2024</small>
-                    </div>
-                    
-                    <div>
-                        <h6 class="mb-2">Kegiatan Posyandu</h6>
-                        <p class="small text-muted mb-1">Posyandu rutin bulan ini akan diadakan di rumah Ibu RT.</p>
-                        <small class="text-muted">Minggu depan</small>
-                    </div>
+                    <a href="{{ route('ketua-rt.reports.create') }}" class="btn btn-success w-100 mb-3">
+                        <i class="bi bi-plus-circle me-2"></i>Buat Laporan Baru
+                    </a>
+                    <a href="{{ route('ketua-rt.reports.index') }}" class="btn btn-outline-success w-100 mb-3">
+                        <i class="bi bi-list-ul me-2"></i>Lihat Semua Laporan
+                    </a>
+                    <a href="{{ route('home') }}" target="_blank" class="btn btn-outline-secondary w-100">
+                        <i class="bi bi-globe me-2"></i>Lihat Website
+                    </a>
                 </div>
             </div>
-            
-            <!-- Contact Info -->
-            <div class="card border-0 shadow-sm mt-3">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">
-                        <i class="bi bi-telephone me-2"></i>Kontak Penting
-                    </h5>
+
+            <!-- Info RT -->
+            <div class="card shadow mt-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-success">Informasi RT</h6>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <h6>Kelurahan Marga Sari</h6>
-                        <p class="mb-1 small">
-                            <i class="bi bi-telephone me-2"></i>(0542) 123-456
-                        </p>
-                        <p class="mb-0 small">
-                            <i class="bi bi-whatsapp me-2"></i>0812-3456-7890
-                        </p>
+                    <div class="mb-2">
+                        <strong>RT/RW:</strong><br>
+                        RT {{ Auth::user()->rt }} / RW {{ Auth::user()->rw }}
                     </div>
-                    
-                    <div class="mb-3">
-                        <h6>Keamanan</h6>
-                        <p class="mb-0 small">
-                            <i class="bi bi-telephone me-2"></i>(0542) 789-012
-                        </p>
+                    <div class="mb-2">
+                        <strong>Ketua RT:</strong><br>
+                        {{ Auth::user()->name }}
                     </div>
-                    
-                    <div>
-                        <h6>Puskesmas</h6>
-                        <p class="mb-0 small">
-                            <i class="bi bi-telephone me-2"></i>(0542) 345-678
-                        </p>
+                    <div class="mb-2">
+                        <strong>Kontak:</strong><br>
+                        {{ Auth::user()->phone ?? '-' }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Modals -->
-<!-- Surat Pengantar Modal -->
-<div class="modal fade" id="suratPengantarModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Buat Surat Pengantar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Nama Pemohon</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">NIK</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Keperluan</label>
-                        <select class="form-select" required>
-                            <option value="">Pilih Keperluan</option>
-                            <option value="ktp">Pembuatan KTP</option>
-                            <option value="kk">Pembuatan KK</option>
-                            <option value="domisili">Surat Domisili</option>
-                            <option value="usaha">Izin Usaha</option>
-                            <option value="lainnya">Lainnya</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Keterangan Tambahan</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Buat Surat</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Data Warga Modal -->
-<div class="modal fade" id="dataWargaModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Data Warga RT {{ Auth::user()->rt }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-info">
-                    <i class="bi bi-info-circle me-2"></i>
-                    Fitur ini dalam tahap pengembangan. Untuk saat ini, silakan hubungi kelurahan untuk data lengkap warga.
-                </div>
-                
-                <div class="row text-center">
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="text-primary">150</h4>
-                                <p class="mb-0">Total Warga</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="text-success">45</h4>
-                                <p class="mb-0">Kepala Keluarga</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="text-warning">25</h4>
-                                <p class="mb-0">Anak-anak</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <a href="{{ route('complaint.create') }}" class="btn btn-primary">Sampaikan Pengaduan</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Other modals would be similar... -->
-
-@endsection
 
 @push('styles')
 <style>
-.timeline {
-    position: relative;
-    padding-left: 3rem;
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
 }
-
-.timeline-item {
-    position: relative;
-    padding-bottom: 2rem;
+.border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
 }
-
-.timeline-item:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    left: -2.25rem;
-    top: 1.5rem;
-    width: 2px;
-    height: calc(100% - 0.5rem);
-    background-color: #dee2e6;
+.border-left-info {
+    border-left: 0.25rem solid #36b9cc !important;
 }
-
-.timeline-marker {
-    position: absolute;
-    left: -2.75rem;
-    top: 0.25rem;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 3px #dee2e6;
+.border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
 }
-
-.timeline-content {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border-left: 3px solid #0d6efd;
+.text-xs {
+    font-size: 0.7rem;
 }
 </style>
 @endpush
+@endsection

@@ -63,6 +63,15 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function rt_relation()
+    {
+        return $this->belongsTo(Rt::class, 'rt', 'rt_code');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 
     public function hasRole($role)
     {

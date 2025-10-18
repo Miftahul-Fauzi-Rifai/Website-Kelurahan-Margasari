@@ -3,13 +3,13 @@
 @section('title', 'Masuk - Kelurahan Marga Sari')
 
 @section('content')
-<div class="container py-5">
+<div class="container" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
             <div class="card shadow-lg border-0">
                 <div class="card-header bg-primary text-white text-center py-4">
                     <h4 class="mb-0">
-                        <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Masuk Ke Dashboard 
                     </h4>
                     <p class="mb-0 mt-2 opacity-75">Masuk ke akun Anda</p>
                 </div>
@@ -74,15 +74,6 @@
                             <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
                         </button>
                     </form>
-                </div>
-                
-                <div class="card-footer text-center py-3 bg-light">
-                    <p class="mb-0">
-                        Belum punya akun? 
-                        <a href="{{ route('register') }}" class="text-primary text-decoration-none fw-bold">
-                            Daftar di sini
-                        </a>
-                    </p>
                 </div>
             </div>
         </div>
