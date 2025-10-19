@@ -168,53 +168,146 @@ Sekarang jawab pertanyaan user dengan mengikuti panduan di atas.`;
   }
 
   try {
-    // Gunakan model dari .env atau default ke gemini-2.0-flash (lebih stabil)
-    const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+    // ============================================
+    // SMART FALLBACK SYSTEM - 3 LAYER PROTECTION
+    // ============================================
+    // Layer 1: Gemini 2.0 Flash (Gratis unlimited - experimental)
+    // Layer 2: Gemini 1.5 Flash (Gratis 1,500/hari - stable)
+    // Layer 3: Local RAG (Data lokal - gratis selamanya)
     
-    // Gunakan endpoint v1beta untuk compatibility
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-
-    const fullPrompt = systemPrompt + "\n\n" + grounding + "\n\n---\nPertanyaan user: " + message;
-    
-    const contents = [
-      ...(history || []), // Sertakan history percakapan
-      {
-        role: "user",
-        parts: [{ text: fullPrompt }] 
-      }
+    const models = [
+      process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp', // Primary
+      'gemini-1.5-flash' // Fallback
     ];
+    
+    let lastError = null;
+    
+    // Try each model in sequence
+    for (const model of models) {
+      try {
+        console.log(`🤖 Trying model: ${model}`);
+        
+        // Gunakan endpoint v1beta untuk compatibility
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-    const response = await axios.post(url, {
-      contents: contents, 
-      generationConfig: {
-        maxOutputTokens: 350,  // Batasi panjang jawaban (lebih ringkas)
-        temperature: 0.7,      // Kreativitas sedang
-        topP: 0.9,
-        topK: 40
+        const fullPrompt = systemPrompt + "\n\n" + grounding + "\n\n---\nPertanyaan user: " + message;
+        
+        const contents = [
+          ...(history || []), // Sertakan history percakapan
+          {
+            role: "user",
+            parts: [{ text: fullPrompt }] 
+          }
+        ];
+
+        const response = await axios.post(url, {
+          contents: contents, 
+          generationConfig: {
+            maxOutputTokens: 350,  // Batasi panjang jawaban (lebih ringkas)
+            temperature: 0.7,      // Kreativitas sedang
+            topP: 0.9,
+            topK: 40
+          }
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          timeout: parseInt(process.env.API_TIMEOUT || '30000') // 30 detik timeout
+        });
+
+        const out = response.data || {};
+        if (!out.candidates || !out.candidates[0].content) {
+          throw new Error("Respon API v1beta tidak valid: " + JSON.stringify(out));
+        }
+
+        // SUCCESS! Return response
+        console.log(`✅ Success with model: ${model}`);
+        return res.json({ ok:true, model, output: out });
+        
+      } catch (modelError) {
+        lastError = modelError;
+        const errorMsg = modelError.response?.data?.error?.message || modelError.message;
+        console.warn(`⚠️ Model ${model} failed: ${errorMsg}`);
+        
+        // Check if it's a quota/rate limit error
+        if (errorMsg.includes('quota') || errorMsg.includes('limit') || 
+            errorMsg.includes('429') || errorMsg.includes('RESOURCE_EXHAUSTED')) {
+          console.log(`💡 Quota exhausted for ${model}, trying next model...`);
+          continue; // Try next model
+        }
+        
+        // For other errors, try next model too
+        continue;
       }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      timeout: parseInt(process.env.API_TIMEOUT || '30000') // 30 detik timeout
+    }
+    
+    // ============================================
+    // LAYER 3: LOCAL FALLBACK (JIKA SEMUA GEMINI GAGAL)
+    // ============================================
+    console.warn('⚠️ All Gemini models failed, using local RAG fallback...');
+    
+    // Search local training data
+    const trainData = readTrainData();
+    const lowerMessage = message.toLowerCase();
+    
+    // Simple keyword matching
+    const matches = trainData.filter(item => {
+      const lowerText = item.text.toLowerCase();
+      const lowerAnswer = item.answer.toLowerCase();
+      
+      // Check if message contains keywords from training data
+      const words = lowerMessage.split(/\s+/);
+      return words.some(word => 
+        word.length > 3 && (lowerText.includes(word) || lowerAnswer.includes(word))
+      );
+    });
+    
+    if (matches.length > 0) {
+      // Return best match
+      const bestMatch = matches[0];
+      console.log(`✅ Local RAG match found: "${bestMatch.text}"`);
+      
+      return res.json({ 
+        ok: true, 
+        model: 'local-rag',
+        output: {
+          candidates: [{
+            content: {
+              parts: [{ 
+                text: `${bestMatch.answer}\n\n📌 *Catatan: Informasi ini diambil dari database lokal karena layanan AI sedang sibuk.*` 
+              }]
+            }
+          }]
+        }
+      });
+    }
+    
+    // No local match found - return generic response
+    return res.json({ 
+      ok: true, 
+      model: 'local-fallback',
+      output: {
+        candidates: [{
+          content: {
+            parts: [{ 
+              text: `Maaf, saat ini sistem AI sedang sibuk dan saya tidak menemukan informasi yang tepat di database lokal.\n\nSilakan hubungi kantor kelurahan langsung di jam kerja (Senin-Jumat, 08:00-16:00 WITA) atau coba lagi beberapa saat lagi.\n\n📞 Atau Anda bisa menghubungi staff kelurahan untuk informasi lebih lanjut.` 
+            }]
+          }
+        }]
+      }
     });
 
-    const out = response.data || {};
-    if (!out.candidates || !out.candidates[0].content) {
-      throw new Error("Respon API v1beta tidak valid: " + JSON.stringify(out));
-    }
-
-    // Kembalikan seluruh objek 'out' agar app.js bisa parse
-    return res.json({ ok:true, model, output: out });
-
   } catch (err) {
-    const errorMsg = err.response && err.response.data && err.response.data.error 
-      ? err.response.data.error.message 
-      : err.message;
-    console.error('Gemini error', errorMsg);
+    // Final catch-all error handler
+    const errorMsg = err.response?.data?.error?.message || err.message;
+    console.error('❌ Fatal error:', errorMsg);
     
-    const errorDetail = err.response && err.response.data ? err.response.data : { message: err.message };
-    return res.status(500).json({ ok:false, error: 'Error saat memanggil Gemini API', detail: errorDetail });
+    const errorDetail = err.response?.data || { message: err.message };
+    return res.status(500).json({ 
+      ok: false, 
+      error: 'Sistem chatbot sedang mengalami gangguan. Silakan coba lagi atau hubungi kantor kelurahan langsung.', 
+      detail: errorDetail 
+    });
   }
 });
 
