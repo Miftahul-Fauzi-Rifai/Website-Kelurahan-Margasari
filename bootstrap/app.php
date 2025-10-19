@@ -14,6 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
+        
+        // Exclude chatbot API routes from CSRF verification
+        $middleware->validateCsrfTokens(except: [
+            'api/chatbot/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

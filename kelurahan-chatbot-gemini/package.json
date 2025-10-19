@@ -1,0 +1,15 @@
+{
+  "name": "chatbot-kelurahan-gemini",
+  "version": "1.0.0",
+  "description": "Chatbot Kelurahan sederhana (Node + Express) - contoh integrasi Gemini API (free tier compatible)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2",
+    "multer": "^2.0.2"
+  }
+}

@@ -127,6 +127,18 @@
         }
     </style>
     
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="{{ asset('css/chatbot.css') }}">
+    
+    <!-- Chatbot Configuration -->
+    <script>
+        window.CHATBOT_CONFIG = {
+            apiUrl: '{{ config('chatbot.api_url') }}',
+            enabled: {{ config('chatbot.enabled') ? 'true' : 'false' }},
+            timeout: {{ config('chatbot.timeout') }}
+        };
+    </script>
+    
     @stack('styles')
 </head>
 <body>
@@ -220,6 +232,9 @@
     <main>
         @yield('content')
     </main>
+
+    <!-- Chatbot Widget (Non-intrusive Integration) -->
+    @include('components.chatbot-widget')
 
     <!-- Footer -->
     <footer class="bg-dark text-white mt-5">
@@ -356,6 +371,9 @@
             });
         });
     </script>
+    
+    <!-- Chatbot JS -->
+    <script src="{{ asset('js/chatbot.js') }}"></script>
     
     @stack('scripts')
 </body>

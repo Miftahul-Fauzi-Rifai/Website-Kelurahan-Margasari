@@ -10,6 +10,39 @@ use App\Http\Controllers\Admin\ReportReviewController;
 use App\Http\Controllers\RtController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\KetuaRt\ReportController;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
+
+// Chatbot API Proxy - Forward requests ke Node.js server internal
+// Ini memungkinkan Laravel dan Node.js berbagi 1 hosting/domain yang sama
+Route::any('/api/chatbot/{path}', function (Request $request, $path) {
+    try {
+        // Internal Node.js chatbot URL (localhost di server yang sama)
+        $chatbotUrl = config('chatbot.api_url') . '/api/' . $path;
+        
+        // Forward request ke Node.js dengan timeout 35 detik
+        $response = Http::timeout(35)
+            ->withHeaders($request->headers->all())
+            ->{strtolower($request->method())}($chatbotUrl, $request->all());
+        
+        // Return response dari Node.js ke client
+        return response($response->body(), $response->status())
+            ->withHeaders($response->headers());
+            
+    } catch (\Illuminate\Http\Client\ConnectionException $e) {
+        return response()->json([
+            'ok' => false,
+            'error' => 'Chatbot service tidak dapat dihubungi. Pastikan Node.js server berjalan.',
+            'detail' => config('app.debug') ? $e->getMessage() : null
+        ], 503);
+    } catch (\Exception $e) {
+        return response()->json([
+            'ok' => false,
+            'error' => 'Terjadi kesalahan pada layanan chatbot',
+            'detail' => config('app.debug') ? $e->getMessage() : null
+        ], 500);
+    }
+})->where('path', '.*');
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
