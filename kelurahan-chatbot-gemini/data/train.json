@@ -2,371 +2,582 @@
   {
     "id": "1",
     "text": "Bagaimana cara mengurus KTP baru?",
-    "answer": "Silakan datang ke kantor kelurahan dengan membawa fotokopi KK dan surat pengantar RT/RW, kemudian akan diarahkan ke Disdukcapil Balikpapan atau Sentra Pelayanan di Kecamatan untuk perekaman biometrik."
+    "answer": "Silakan datang ke kantor kelurahan dengan membawa fotokopi KK dan surat pengantar RT/RW, kemudian akan diarahkan ke Disdukcapil Balikpapan atau Sentra Pelayanan di Kecamatan untuk perekaman biometrik.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KTP", "urus", "buat", "baru", "prosedur", "syarat"]
   },
   {
     "id": "2",
     "text": "Apa saja syarat membuat e-KTP?",
-    "answer": "Syarat pembuatan e-KTP adalah membawa fotokopi KK, surat pengantar RT/RW, dan hadir langsung untuk perekaman sidik jari dan foto."
+    "answer": "Syarat pembuatan e-KTP adalah membawa fotokopi KK, surat pengantar RT/RW, dan hadir langsung untuk perekaman sidik jari dan foto.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["e-KTP", "syarat", "KTP", "persyaratan"]
   },
   {
     "id": "3",
     "text": "Berapa lama proses pembuatan KTP elektronik?",
-    "answer": "Proses e-KTP biasanya 7 sampai 14 hari kerja, tergantung ketersediaan blanko di Disdukcapil."
+    "answer": "Proses e-KTP biasanya 7 sampai 14 hari kerja, tergantung ketersediaan blanko di Disdukcapil.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["lama", "proses", "KTP", "durasi", "e-KTP"]
   },
   {
     "id": "4",
     "text": "Dimana lokasi Disdukcapil Balikpapan?",
-    "answer": "Kantor Disdukcapil Balikpapan beralamat di Jl. MT Haryono No.187, Damai, Balikpapan Kota."
+    "answer": "Kantor Disdukcapil Balikpapan beralamat di Jl. MT Haryono No.187, Damai, Balikpapan Kota.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["alamat", "lokasi", "Disdukcapil", "kantor"]
   },
   {
     "id": "5",
     "text": "Jam kerja kelurahan hari Senin?",
-    "answer": "Jam kerja kelurahan Senin–Kamis pukul 08.00–16.00 WITA, dan Jumat pukul 08.00–11.30 WITA."
+    "answer": "Jam kerja kelurahan Senin–Kamis pukul 08.00–16.00 WITA, dan Jumat pukul 08.00–11.30 WITA.",
+    "kategori_utama": "Jam Kerja",
+    "tags": ["jam", "kerja", "Senin", "operasional", "buka"]
   },
   {
     "id": "6",
     "text": "Apakah kantor kelurahan buka hari Sabtu?",
-    "answer": "Tidak, kantor kelurahan hanya buka Senin sampai Jumat. Sabtu, Minggu, dan hari libur nasional tutup."
+    "answer": "Tidak, kantor kelurahan hanya buka Senin sampai Jumat. Sabtu, Minggu, dan hari libur nasional tutup.",
+    "kategori_utama": "Jam Kerja",
+    "tags": ["Sabtu", "Minggu", "buka", "tutup", "libur"]
   },
   {
     "id": "7",
     "text": "Bagaimana cara membuat KK baru?",
-    "answer": "Datang ke kelurahan dengan membawa surat nikah, KTP, dan surat keterangan pindah jika berasal dari luar daerah. Pengajuan akan diproses ke Disdukcapil."
+    "answer": "Datang ke kelurahan dengan membawa surat nikah, KTP, dan surat keterangan pindah jika berasal dari luar daerah. Pengajuan akan diproses ke Disdukcapil.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KK", "buat", "baru", "prosedur", "syarat"]
   },
   {
     "id": "8",
     "text": "Apa syarat membuat Akta Kelahiran?",
-    "answer": "Syaratnya adalah fotokopi KK, KTP orang tua, surat keterangan lahir dari bidan/rumah sakit, dan surat nikah orang tua."
+    "answer": "Syaratnya adalah fotokopi KK, KTP orang tua, surat keterangan lahir dari bidan/rumah sakit, dan surat nikah orang tua.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["Akta Kelahiran", "syarat", "persyaratan", "lahir"]
   },
   {
     "id": "9",
     "text": "Dimana saya bisa perpanjang SIM di Balikpapan?",
-    "answer": "Perpanjangan SIM dapat dilakukan di Satpas Polres Balikpapan atau layanan SIM Keliling sesuai jadwal."
+    "answer": "Perpanjangan SIM dapat dilakukan di Satpas Polres Balikpapan atau layanan SIM Keliling sesuai jadwal.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SIM", "perpanjang", "Satpas", "Polres", "SIM Keliling"]
   },
   {
     "id": "10",
     "text": "Apa saja syarat perpanjangan SIM?",
-    "answer": "Syarat perpanjangan SIM adalah membawa fotokopi KTP, SIM lama, surat keterangan sehat, serta membayar biaya administrasi di Satpas atau mobil SIM Keliling."
+    "answer": "Syarat perpanjangan SIM adalah membawa fotokopi KTP, SIM lama, surat keterangan sehat, serta membayar biaya administrasi di Satpas atau mobil SIM Keliling.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SIM", "syarat", "perpanjang"]
   },
   {
     "id": "11",
     "text": "Apakah perpanjangan SIM bisa dilakukan secara online?",
-    "answer": "Ya, Anda bisa menggunakan aplikasi Digital Korlantas Polri (layanan SINAR) untuk perpanjangan SIM online."
+    "answer": "Ya, Anda bisa menggunakan aplikasi Digital Korlantas Polri (layanan SINAR) untuk perpanjangan SIM online.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SIM", "online", "SINAR", "aplikasi"]
   },
   {
     "id": "12",
     "text": "Berapa biaya perpanjangan SIM C?",
-    "answer": "Biaya perpanjangan SIM C adalah Rp75.000 sesuai PP No. 60 Tahun 2016 tentang PNBP Polri (belum termasuk biaya tes kesehatan dan psikologi)."
+    "answer": "Biaya perpanjangan SIM C adalah Rp75.000 sesuai PP No. 60 Tahun 2016 tentang PNBP Polri (belum termasuk biaya tes kesehatan dan psikologi).",
+    "kategori_utama": "Perizinan",
+    "tags": ["SIM C", "biaya", "harga", "perpanjang"]
   },
   {
     "id": "13",
     "text": "Bagaimana cara membuat surat domisili?",
-    "answer": "Datang ke kelurahan dengan membawa fotokopi KTP dan KK, kemudian mengisi formulir permohonan surat keterangan domisili."
+    "answer": "Untuk membuat surat domisili:\n\n📋 PERSYARATAN:\n• Fotokopi KTP dan KK\n• Surat Pengantar RT\n\n💡 CARA PENGAJUAN:\n\n1. 🌐 ONLINE (Lebih Cepat):\n   Ajukan melalui menu LAYANAN di website kelurahan, upload dokumen, dan tunggu konfirmasi!\n\n2. 🏢 Datang Langsung:\n   Bawa dokumen ke kelurahan (Senin-Jumat, 08.00-16.00 WITA)\n\nLayanan online hemat waktu dan tidak perlu antre!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat domisili", "buat", "syarat", "prosedur"]
   },
   {
     "id": "14",
     "text": "Untuk apa surat domisili digunakan?",
-    "answer": "Surat domisili biasanya digunakan untuk melengkapi persyaratan sekolah, pekerjaan, atau administrasi kependudukan."
+    "answer": "Surat domisili biasanya digunakan untuk melengkapi persyaratan:\n\n📌 KEPERLUAN:\n• Pendaftaran sekolah/kuliah\n• Melamar pekerjaan\n• Administrasi kependudukan\n• Syarat kredit/pinjaman\n• Pembuatan rekening bank\n• Pendaftaran BPJS\n• Dan keperluan administrasi lainnya\n\n💡 TIP:\nAjukan surat domisili secara online melalui menu LAYANAN di website kelurahan untuk proses yang lebih cepat!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat domisili", "fungsi", "kegunaan"]
   },
   {
     "id": "15",
     "text": "Dimana saya bisa membuat SKCK di Balikpapan?",
-    "answer": "SKCK bisa dibuat di Polres Balikpapan dengan membawa KTP, KK, pasfoto, dan sidik jari."
+    "answer": "SKCK bisa dibuat di Polres Balikpapan dengan membawa KTP, KK, pasfoto, dan sidik jari.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SKCK", "buat", "lokasi", "Polres"]
   },
   {
     "id": "16",
     "text": "Apa syarat membuat SKCK?",
-    "answer": "Syarat membuat SKCK adalah membawa fotokopi KTP, KK, akta kelahiran, pasfoto 4x6, dan formulir permohonan."
+    "answer": "Syarat membuat SKCK adalah membawa fotokopi KTP, KK, akta kelahiran, pasfoto 4x6, dan formulir permohonan.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SKCK", "syarat", "persyaratan"]
   },
   {
     "id": "17",
     "text": "Bagaimana cara mengurus pindah alamat KTP?",
-    "answer": "Minta surat pengantar dari RT/RW, kemudian dari kelurahan, lalu ajukan ke Disdukcapil Balikpapan dengan membawa KTP lama dan KK."
+    "answer": "Minta surat pengantar dari RT/RW, kemudian dari kelurahan, lalu ajukan ke Disdukcapil Balikpapan dengan membawa KTP lama dan KK.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["pindah", "alamat", "KTP", "urus"]
   },
   {
     "id": "18",
     "text": "Berapa lama proses pindah alamat KTP?",
-    "answer": "Proses pindah alamat KTP biasanya 7 hari kerja setelah berkas lengkap diterima."
+    "answer": "Proses pindah alamat KTP biasanya 7 hari kerja setelah berkas lengkap diterima.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["lama", "proses", "pindah KTP", "durasi"]
   },
   {
     "id": "19",
     "text": "Apa saja layanan di kantor kelurahan?",
-    "answer": "Layanan di kelurahan meliputi pengantar KTP, KK, surat domisili, surat keterangan usaha, dan surat pengantar nikah."
+    "answer": "Layanan di kelurahan meliputi pengantar KTP, KK, surat domisili, surat keterangan usaha, dan surat pengantar nikah.",
+    "kategori_utama": "Administrasi",
+    "tags": ["layanan", "kelurahan", "surat", "pengantar"]
   },
   {
     "id": "20",
     "text": "Apakah ada layanan online Disdukcapil Balikpapan?",
-    "answer": "Ya, Disdukcapil Balikpapan memiliki layanan online melalui website resmi dan aplikasi layanan administrasi kependudukan."
+    "answer": "Ya, Disdukcapil Balikpapan memiliki layanan online melalui website resmi dan aplikasi layanan administrasi kependudukan.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["online", "Disdukcapil", "aplikasi"]
   },
   {
     "id": "21",
     "text": "Bagaimana cara membuat surat keterangan usaha?",
-    "answer": "Datang ke kelurahan dengan membawa fotokopi KTP, KK, dan surat pengantar RT/RW. Surat keterangan usaha akan ditandatangani lurah."
+    "answer": "Datang ke kelurahan dengan membawa fotokopi KTP, KK, dan surat pengantar RT/RW. Surat keterangan usaha akan ditandatangani lurah.",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat usaha", "buat", "syarat", "Keterangan Usaha"]
   },
   {
     "id": "22",
     "text": "Dimana saya bisa mengurus akta kematian?",
-    "answer": "Akta kematian diurus di Disdukcapil Balikpapan dengan membawa surat keterangan kematian dari rumah sakit atau kelurahan."
+    "answer": "Akta kematian diurus di Disdukcapil Balikpapan dengan membawa surat keterangan kematian dari rumah sakit atau kelurahan.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["akta kematian", "urus", "Disdukcapil"]
   },
   {
     "id": "23",
     "text": "Apa syarat membuat akta kematian?",
-    "answer": "Syaratnya antara lain fotokopi KK, KTP almarhum, surat keterangan kematian, dan formulir permohonan dari keluarga."
+    "answer": "Syaratnya antara lain fotokopi KK, KTP almarhum, surat keterangan kematian, dan formulir permohonan dari keluarga.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["akta kematian", "syarat", "persyaratan"]
   },
   {
     "id": "24",
     "text": "Apakah kelurahan bisa cetak KTP?",
-    "answer": "Tidak, pencetakan KTP dilakukan oleh Disdukcapil. Kelurahan hanya memberikan pengantar dan verifikasi berkas. Namun, beberapa kecamatan mungkin memiliki sentra layanan Disdukcapil."
+    "answer": "Tidak, pencetakan KTP dilakukan oleh Disdukcapil. Kelurahan hanya memberikan pengantar dan verifikasi berkas. Namun, beberapa kecamatan mungkin memiliki sentra layanan Disdukcapil.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["cetak", "KTP", "kelurahan", "Disdukcapil"]
   },
   {
     "id": "25",
     "text": "Bagaimana cara mengurus kartu keluarga hilang?",
-    "answer": "Lapor kehilangan ke kepolisian untuk mendapatkan surat keterangan kehilangan, lalu bawa surat tersebut ke kelurahan untuk mendapat pengantar, dan ajukan ke Disdukcapil untuk cetak KK baru."
+    "answer": "Lapor kehilangan ke kepolisian untuk mendapatkan surat keterangan kehilangan, lalu bawa surat tersebut ke kelurahan untuk mendapat pengantar, dan ajukan ke Disdukcapil untuk cetak KK baru.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KK hilang", "urus", "prosedur", "kehilangan"]
   },
   {
     "id": "26",
     "text": "Dimana lokasi Satpas SIM Balikpapan?",
-    "answer": "Satpas SIM Polres Balikpapan berlokasi di Jl. Jenderal Sudirman No.1, Balikpapan (di dalam kompleks Polres Balikpapan)."
+    "answer": "Satpas SIM Polres Balikpapan berlokasi di Jl. Jenderal Sudirman No.1, Balikpapan (di dalam kompleks Polres Balikpapan).",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["Satpas", "SIM", "lokasi", "Polres"]
   },
   {
     "id": "27",
     "text": "Apakah ada jadwal SIM Keliling di Balikpapan?",
-    "answer": "Ya, layanan SIM Keliling tersedia di beberapa titik Balikpapan sesuai jadwal mingguan yang diumumkan Polres."
+    "answer": "Ya, layanan SIM Keliling tersedia di beberapa titik Balikpapan sesuai jadwal mingguan yang diumumkan Polres.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SIM Keliling", "jadwal", "layanan"]
   },
   {
     "id": "28",
     "text": "Apakah bisa mengurus surat nikah di kelurahan?",
-    "answer": "Untuk surat nikah sipil (non-Muslim), pengurusan dilakukan di Disdukcapil. Kelurahan bisa memberikan surat pengantar (N1, N2, N4) untuk pengajuan ke KUA (bagi Muslim) atau Disdukcapil."
+    "answer": "Untuk surat nikah sipil (non-Muslim), pengurusan dilakukan di Disdukcapil. Kelurahan bisa memberikan surat pengantar (N1, N2, N4) untuk pengajuan ke KUA (bagi Muslim) atau Disdukcapil.",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat nikah", "urus", "KUA", "Disdukcapil"]
   },
   {
     "id": "29",
     "text": "Bagaimana cara membuat kartu identitas anak (KIA)?",
-    "answer": "Datang ke Disdukcapil dengan membawa fotokopi KK, akta kelahiran, dan pasfoto anak. Untuk anak di bawah 5 tahun cukup akta kelahiran."
+    "answer": "Datang ke Disdukcapil dengan membawa fotokopi KK, akta kelahiran, dan pasfoto anak. Untuk anak di bawah 5 tahun cukup akta kelahiran.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KIA", "buat", "syarat", "anak"]
   },
   {
     "id": "30",
     "text": "Apakah layanan Disdukcapil Balikpapan gratis?",
-    "answer": "Ya, seluruh layanan administrasi kependudukan di Disdukcapil tidak dipungut biaya alias gratis."
+    "answer": "Ya, seluruh layanan administrasi kependudukan di Disdukcapil tidak dipungut biaya alias gratis.",
+    "kategori_utama": "Informasi Umum",
+    "tags": ["gratis", "biaya", "Disdukcapil"]
   },
   {
     "id": "31",
     "text": "Bagaimana cara memperbaiki data salah pada KTP?",
-    "answer": "Jika ada kesalahan data pada KTP, silakan ajukan perbaikan di Disdukcapil dengan membawa KTP lama, KK, dan dokumen pendukung seperti ijazah atau akta kelahiran."
+    "answer": "Jika ada kesalahan data pada KTP, silakan ajukan perbaikan di Disdukcapil dengan membawa KTP lama, KK, dan dokumen pendukung seperti ijazah atau akta kelahiran.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KTP salah", "perbaiki", "data", "dokumen"]
   },
   {
     "id": "32",
     "text": "Apakah KTP elektronik berlaku seumur hidup?",
-    "answer": "Ya, e-KTP berlaku seumur hidup dan tidak perlu diperpanjang, kecuali ada perubahan data."
+    "answer": "Ya, e-KTP berlaku seumur hidup dan tidak perlu diperpanjang, kecuali ada perubahan data.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KTP", "seumur hidup", "e-KTP", "perpanjang"]
   },
   {
     "id": "33",
     "text": "Bagaimana cara mengurus kartu BPJS Kesehatan di Balikpapan?",
-    "answer": "Pendaftaran BPJS Kesehatan dapat dilakukan di Kantor BPJS Kesehatan Balikpapan atau secara online melalui aplikasi Mobile JKN."
+    "answer": "Pendaftaran BPJS Kesehatan dapat dilakukan di Kantor BPJS Kesehatan Balikpapan atau secara online melalui aplikasi Mobile JKN.",
+    "kategori_utama": "Sosial",
+    "tags": ["BPJS", "urus", "buat", "Kesehatan", "Mobile JKN"]
   },
   {
     "id": "34",
     "text": "Dimana saya bisa membayar pajak kendaraan di Balikpapan?",
-    "answer": "Pembayaran pajak kendaraan dilakukan di Kantor Samsat Balikpapan atau melalui layanan Samsat Online dan Samsat Drive Thru."
+    "answer": "Pembayaran pajak kendaraan dilakukan di Kantor Samsat Balikpapan atau melalui layanan Samsat Online dan Samsat Drive Thru.",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["pajak", "bayar", "kendaraan", "Samsat"]
   },
   {
     "id": "35",
     "text": "Apa saja syarat bayar pajak kendaraan tahunan?",
-    "answer": "Syaratnya membawa STNK asli, KTP sesuai nama di STNK, dan sejumlah uang untuk membayar pajak."
+    "answer": "Syaratnya membawa STNK asli, KTP sesuai nama di STNK, dan sejumlah uang untuk membayar pajak.",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["pajak", "syarat", "tahunan", "STNK"]
   },
   {
     "id": "36",
     "text": "Bagaimana cara balik nama kendaraan bermotor?",
-    "answer": "Untuk balik nama kendaraan, siapkan KTP, BPKB, STNK, kuitansi jual beli, dan lakukan proses di Samsat Balikpapan."
+    "answer": "Untuk balik nama kendaraan, siapkan KTP, BPKB, STNK, kuitansi jual beli, dan lakukan proses di Samsat Balikpapan.",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["balik nama", "kendaraan", "BPKB", "Samsat"]
   },
   {
     "id": "37",
     "text": "Berapa biaya balik nama kendaraan bermotor?",
-    "answer": "Biaya balik nama kendaraan bervariasi tergantung jenis kendaraan dan ditentukan oleh peraturan pajak daerah (Bea Balik Nama Kendaraan Bermotor/BBNKB)."
+    "answer": "Biaya balik nama kendaraan bervariasi tergantung jenis kendaraan dan ditentukan oleh peraturan pajak daerah (Bea Balik Nama Kendaraan Bermotor/BBNKB).",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["biaya", "balik nama", "BBNKB"]
   },
   {
     "id": "38",
     "text": "Bagaimana cara membuat paspor di Balikpapan?",
-    "answer": "Pembuatan paspor dilakukan di Kantor Imigrasi Kelas I Balikpapan dengan mendaftar online via aplikasi M-Paspor, lalu datang untuk wawancara dan biometrik membawa KTP, KK, dan akta lahir/ijazah."
+    "answer": "Pembuatan paspor dilakukan di Kantor Imigrasi Kelas I Balikpapan dengan mendaftar online via aplikasi M-Paspor, lalu datang untuk wawancara dan biometrik membawa KTP, KK, dan akta lahir/ijazah.",
+    "kategori_utama": "Perizinan",
+    "tags": ["paspor", "buat", "syarat", "Imigrasi", "M-Paspor"]
   },
   {
     "id": "39",
     "text": "Apakah bisa daftar paspor online?",
-    "answer": "Ya, pendaftaran antrean paspor wajib dilakukan melalui aplikasi M-Paspor sebelum datang ke Kantor Imigrasi."
+    "answer": "Ya, pendaftaran antrean paspor wajib dilakukan melalui aplikasi M-Paspor sebelum datang ke Kantor Imigrasi.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["paspor", "online", "M-Paspor", "daftar"]
   },
   {
     "id": "40",
     "text": "Bagaimana cara mengurus surat pindah ke luar Balikpapan?",
-    "answer": "Minta surat pengantar dari RT/RW dan kelurahan, lalu ajukan surat pindah (SKPWNI) di Disdukcapil Balikpapan."
+    "answer": "Minta surat pengantar dari RT/RW dan kelurahan, lalu ajukan surat pindah (SKPWNI) di Disdukcapil Balikpapan.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["pindah", "luar daerah", "urus", "SKPWNI"]
   },
   {
     "id": "41",
     "text": "Bagaimana cara mengurus NPWP di Balikpapan?",
-    "answer": "Pembuatan NPWP dapat dilakukan di Kantor Pajak Pratama Balikpapan atau secara online melalui website Ditjen Pajak (ereg.pajak.go.id)."
+    "answer": "Pembuatan NPWP dapat dilakukan di Kantor Pajak Pratama Balikpapan atau secara online melalui website Ditjen Pajak (ereg.pajak.go.id).",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["NPWP", "urus", "buat", "online", "Pajak"]
   },
   {
     "id": "42",
     "text": "Dimana lokasi Kantor Imigrasi Balikpapan?",
-    "answer": "Kantor Imigrasi Kelas I TPI Balikpapan beralamat di Jl. Jenderal Sudirman No.2, Balikpapan."
+    "answer": "Kantor Imigrasi Kelas I TPI Balikpapan beralamat di Jl. Jenderal Sudirman No.2, Balikpapan.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["lokasi", "alamat", "Imigrasi"]
   },
   {
     "id": "43",
     "text": "Bagaimana cara membuat surat keterangan catatan kepolisian untuk bekerja?",
-    "answer": "Anda bisa mengurus SKCK di Polres Balikpapan dengan membawa KTP, KK, pasfoto, dan melakukan sidik jari."
+    "answer": "Anda bisa mengurus SKCK di Polres Balikpapan dengan membawa KTP, KK, pasfoto, dan melakukan sidik jari.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SKCK", "buat", "syarat", "bekerja"]
   },
   {
     "id": "44",
     "text": "Apakah layanan SKCK bisa online?",
-    "answer": "Ya, pendaftaran SKCK dapat dilakukan melalui website resmi Polri (skck.polri.go.id), namun tetap harus datang ke Polres untuk verifikasi dan pengambilan sidik jari."
+    "answer": "Ya, pendaftaran SKCK dapat dilakukan melalui website resmi Polri (skck.polri.go.id), namun tetap harus datang ke Polres untuk verifikasi dan pengambilan sidik jari.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["SKCK", "online", "pendaftaran"]
   },
   {
     "id": "45",
     "text": "Bagaimana cara memperpanjang STNK?",
-    "answer": "Perpanjangan STNK (pajak tahunan) bisa dilakukan di Samsat Balikpapan dengan membawa STNK lama, BPKB asli (seringkali hanya ditunjukkan), dan KTP asli sesuai STNK."
+    "answer": "Perpanjangan STNK (pajak tahunan) bisa dilakukan di Samsat Balikpapan dengan membawa STNK lama, BPKB asli (seringkali hanya ditunjukkan), dan KTP asli sesuai STNK.",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["STNK", "perpanjang", "syarat", "Samsat"]
   },
   {
     "id": "46",
     "text": "Berapa lama proses perpanjangan STNK?",
-    "answer": "Proses perpanjangan STNK (pembayaran pajak tahunan) biasanya selesai dalam 1 hari, bahkan bisa dalam 1-2 jam jika berkas lengkap dan tidak antre."
+    "answer": "Proses perpanjangan STNK (pembayaran pajak tahunan) biasanya selesai dalam 1 hari, bahkan bisa dalam 1-2 jam jika berkas lengkap dan tidak antre.",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["lama", "proses", "STNK", "durasi"]
   },
   {
     "id": "47",
     "text": "Bagaimana cara mengurus surat kehilangan KTP?",
-    "answer": "Laporkan kehilangan ke kantor polisi untuk mendapatkan surat keterangan kehilangan, lalu ajukan ke Disdukcapil untuk cetak KTP baru."
+    "answer": "Laporkan kehilangan ke kantor polisi untuk mendapatkan surat keterangan kehilangan, lalu ajukan ke Disdukcapil untuk cetak KTP baru.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KTP hilang", "urus", "kehilangan"]
   },
   {
     "id": "48",
     "text": "Apakah bisa cetak akta kelahiran secara online?",
-    "answer": "Ya, Disdukcapil Balikpapan menyediakan layanan permohonan akta kelahiran online melalui website resminya, dan dokumennya bisa dicetak mandiri (DCM) pada kertas HVS A4 80 gram."
+    "answer": "Ya, Disdukcapil Balikpapan menyediakan layanan permohonan akta kelahiran online melalui website resminya, dan dokumennya bisa dicetak mandiri (DCM) pada kertas HVS A4 80 gram.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["akta kelahiran", "online", "cetak", "DCM"]
   },
   {
     "id": "49",
     "text": "Dimana saya bisa mendapatkan kartu kuning atau AK1?",
-    "answer": "Kartu kuning (AK1) bisa didapatkan di Dinas Tenaga Kerja (Disnaker) Balikpapan (beralamat di Jl. Jenderal Sudirman No. 2, Gedung Gabungan Dinas Lt. 3) dengan membawa KTP, KK, ijazah, dan pasfoto."
+    "answer": "Kartu kuning (AK1) bisa didapatkan di Dinas Tenaga Kerja (Disnaker) Balikpapan (beralamat di Jl. Jenderal Sudirman No. 2, Gedung Gabungan Dinas Lt. 3) dengan membawa KTP, KK, ijazah, dan pasfoto.",
+    "kategori_utama": "Ketenagakerjaan",
+    "tags": ["kartu kuning", "AK1", "Dinsaker", "lokasi"]
   },
   {
     "id": "50",
     "text": "Apa fungsi kartu kuning AK1?",
-    "answer": "Kartu kuning atau AK1 digunakan sebagai salah satu syarat melamar pekerjaan dan terdaftar sebagai pencari kerja."
+    "answer": "Kartu kuning atau AK1 digunakan sebagai salah satu syarat melamar pekerjaan dan terdaftar sebagai pencari kerja.",
+    "kategori_utama": "Ketenagakerjaan",
+    "tags": ["kartu kuning", "AK1", "fungsi", "syarat kerja"]
   },
   {
     "id": "51",
     "text": "Dimana alamat Disdukcapil Balikpapan?",
-    "answer": "Kantor Disdukcapil Balikpapan berada di Jl. MT Haryono No.187, Damai, Balikpapan Kota, Kalimantan Timur."
+    "answer": "Kantor Disdukcapil Balikpapan berada di Jl. MT Haryono No.187, Damai, Balikpapan Kota, Kalimantan Timur.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["alamat", "lokasi", "Disdukcapil"]
   },
   {
     "id": "52",
     "text": "Apa jam pelayanan Disdukcapil Balikpapan?",
-    "answer": "Jam pelayanan Disdukcapil Balikpapan: Senin–Kamis pukul 08:00–15:00 WITA (Waktu Istirahat pukul 12:00–13:00 WITA), Jumat pukul 08:00–11:00 WITA."
+    "answer": "Jam pelayanan Disdukcapil Balikpapan: Senin–Kamis pukul 08:00–15:00 WITA (Waktu Istirahat pukul 12:00–13:00 WITA), Jumat pukul 08:00–11:00 WITA.",
+    "kategori_utama": "Jam Kerja",
+    "tags": ["jam", "pelayanan", "Disdukcapil", "operasional"]
   },
   {
     "id": "53",
     "text": "Apakah saya bisa urus KTP di kantor kecamatan?",
-    "answer": "Ya, Disdukcapil Balikpapan telah mendistribusikan layanan perekaman dan pencetakan KTP ke kantor kecamatan agar warga tidak harus datang ke kantor pusat."
+    "answer": "Ya, Disdukcapil Balikpapan telah mendistribusikan layanan perekaman dan pencetakan KTP ke kantor kecamatan agar warga tidak harus datang ke kantor pusat.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KTP", "urus", "kecamatan", "layanan"]
   },
   {
     "id": "54",
     "text": "Dimana lokasi Kantor BPJS Kesehatan Balikpapan?",
-    "answer": "Kantor BPJS Kesehatan Balikpapan beralamat di Jl. Jenderal Sudirman No. 2A, Klandasan Ilir, Balikpapan Kota."
+    "answer": "Kantor BPJS Kesehatan Balikpapan beralamat di Jl. Jenderal Sudirman No. 2A, Klandasan Ilir, Balikpapan Kota.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["lokasi", "alamat", "BPJS Kesehatan"]
   },
   {
     "id": "55",
     "text": "Bagaimana cara mengurus SIM di Balikpapan?",
-    "answer": "Pengurusan SIM baru dilakukan di Satpas SIM Polres Balikpapan dengan membawa KTP, surat keterangan sehat jasmani dan rohani (psikologi), dan mengikuti ujian teori serta praktik."
+    "answer": "Pengurusan SIM baru dilakukan di Satpas SIM Polres Balikpapan dengan membawa KTP, surat keterangan sehat jasmani dan rohani (psikologi), dan mengikuti ujian teori serta praktik.",
+    "kategori_utama": "Perizinan",
+    "tags": ["SIM", "urus", "buat", "baru", "prosedur"]
   },
   {
     "id": "56",
     "text": "Dimana lokasi Polres Balikpapan?",
-    "answer": "Polres Balikpapan berlokasi di Jl. Jenderal Sudirman No.1, Klandasan Ilir, Balikpapan Kota."
+    "answer": "Polres Balikpapan berlokasi di Jl. Jenderal Sudirman No.1, Klandasan Ilir, Balikpapan Kota.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["Polres", "lokasi", "alamat"]
   },
   {
     "id": "57",
     "text": "Apakah bisa perpanjang SIM secara online?",
-    "answer": "Ya, perpanjangan SIM bisa dilakukan melalui aplikasi Digital Korlantas Polri (layanan SINAR), kemudian SIM dicetak di Satpas terdekat atau dikirim ke alamat Anda."
+    "answer": "Ya, perpanjangan SIM bisa dilakukan melalui aplikasi Digital Korlantas Polri (layanan SINAR), kemudian SIM dicetak di Satpas terdekat atau dikirim ke alamat Anda.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["SIM", "perpanjang", "online", "SINAR"]
   },
   {
     "id": "58",
     "text": "Dimana saya bisa mengurus kartu KIS di Balikpapan?",
-    "answer": "Kartu Indonesia Sehat (KIS) dapat diurus di Kantor BPJS Kesehatan Balikpapan atau melalui aplikasi Mobile JKN. KIS PBI (Penerima Bantuan Iuran) diurus melalui Dinas Sosial."
+    "answer": "Kartu Indonesia Sehat (KIS) dapat diurus di Kantor BPJS Kesehatan Balikpapan atau melalui aplikasi Mobile JKN. KIS PBI (Penerima Bantuan Iuran) diurus melalui Dinas Sosial.",
+    "kategori_utama": "Sosial",
+    "tags": ["KIS", "BPJS", "urus", "Kesehatan"]
   },
   {
     "id": "59",
     "text": "Bagaimana cara mengurus kartu keluarga hilang?",
-    "answer": "Laporkan kehilangan ke kepolisian (opsional, seringkali cukup surat pernyataan di Disdukcapil), lalu bawa pengantar dari kelurahan, dan ajukan cetak ulang KK di Disdukcapil Balikpapan."
+    "answer": "Laporkan kehilangan ke kepolisian (opsional, seringkali cukup surat pernyataan di Disdukcapil), lalu bawa pengantar dari kelurahan, dan ajukan cetak ulang KK di Disdukcapil Balikpapan.",
+    "kategori_utama": "Kependudukan",
+    "tags": ["KK hilang", "urus", "prosedur", "kehilangan"]
   },
   {
     "id": "60",
     "text": "Dimana lokasi Samsat Balikpapan?",
-    "answer": "Kantor Bersama Samsat Balikpapan beralamat di Jl. MT Haryono No.52, Damai, Balikpapan Kota, Kalimantan Timur."
+    "answer": "Kantor Bersama Samsat Balikpapan beralamat di Jl. MT Haryono No.52, Damai, Balikpapan Kota, Kalimantan Timur.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["Samsat", "lokasi", "alamat", "pajak"]
   },
   {
     "id": "61",
     "text": "Bagaimana cara membayar PBB di Balikpapan?",
-    "answer": "Pembayaran PBB (Pajak Bumi dan Bangunan) dapat dilakukan di loket Bank Kaltimtara, Kantor Pos, atau secara online melalui e-commerce (Tokopedia, GoPay) dan mobile banking yang bekerja sama dengan BPPDRD Balikpapan."
+    "answer": "Pembayaran PBB (Pajak Bumi dan Bangunan) dapat dilakukan di loket Bank Kaltimtara, Kantor Pos, atau secara online melalui e-commerce (Tokopedia, GoPay) dan mobile banking yang bekerja sama dengan BPPDRD Balikpapan.",
+    "kategori_utama": "Pajak & Retribusi",
+    "tags": ["PBB", "bayar", "online", "BPPDRD"]
   },
   {
     "id": "62",
     "text": "Dimana lokasi kantor pajak daerah (BPPDRD) Balikpapan?",
-    "answer": "Kantor BPPDRD (Badan Pengelola Pajak Daerah dan Retribusi Daerah) Balikpapan beralamat di Jl. Jenderal Sudirman No. 2, Gedung Gabungan Dinas."
+    "answer": "Kantor BPPDRD (Badan Pengelola Pajak Daerah dan Retribusi Daerah) Balikpapan beralamat di Jl. Jenderal Sudirman No. 2, Gedung Gabungan Dinas.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["BPPDRD", "lokasi", "alamat", "pajak daerah"]
   },
   {
     "id": "63",
     "text": "Bagaimana cara pasang baru PDAM di Balikpapan?",
-    "answer": "Silakan datang ke kantor PDAM Balikpapan dengan membawa fotokopi KTP, KK, dan rekening listrik/bukti kepemilikan. Pendaftaran juga bisa melalui layanan online di website resmi PDAM Balikpapan."
+    "answer": "Silakan datang ke kantor PDAM Balikpapan dengan membawa fotokopi KTP, KK, dan rekening listrik/bukti kepemilikan. Pendaftaran juga bisa melalui layanan online di website resmi PDAM Balikpapan.",
+    "kategori_utama": "Utilitas",
+    "tags": ["PDAM", "pasang baru", "syarat", "air"]
   },
   {
     "id": "64",
     "text": "Dimana lokasi kantor PDAM Balikpapan?",
-    "answer": "Kantor Pusat PDAM Balikpapan berlokasi di Jl. Ruhui Rahayu I No. 1, Sepinggan, Balikpapan Selatan."
+    "answer": "Kantor Pusat PDAM Balikpapan berlokasi di Jl. Ruhui Rahayu I No. 1, Sepinggan, Balikpapan Selatan.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["PDAM", "lokasi", "alamat", "kantor pusat"]
   },
   {
     "id": "65",
     "text": "Bagaimana cara membuat Izin Usaha (NIB)?",
-    "answer": "Pembuatan NIB (Nomor Induk Berusaha) kini terpusat dan dilakukan secara online melalui sistem OSS (Online Single Submission) yang dikelola oleh Kementerian Investasi/BKPM."
+    "answer": "Pembuatan NIB (Nomor Induk Berusaha) kini terpusat dan dilakukan secara online melalui sistem OSS (Online Single Submission) yang dikelola oleh Kementerian Investasi/BKPM.",
+    "kategori_utama": "Perizinan",
+    "tags": ["NIB", "Izin Usaha", "buat", "OSS", "online"]
   },
   {
     "id": "66",
     "text": "Bagaimana cara mengurus IMB atau PBG di Balikpapan?",
-    "answer": "Izin Mendirikan Bangunan (IMB) telah diganti menjadi PBG (Persetujuan Bangunan Gedung). Pengajuan dilakukan secara online melalui sistem SIMBG yang terintegrasi dengan DPMPT."
+    "answer": "Izin Mendirikan Bangunan (IMB) telah diganti menjadi PBG (Persetujuan Bangunan Gedung). Pengajuan dilakukan secara online melalui sistem SIMBG yang terintegrasi dengan DPMPT.",
+    "kategori_utama": "Perizinan",
+    "tags": ["IMB", "PBG", "urus", "gedung", "SIMBG"]
   },
   {
     "id": "67",
     "text": "Dimana lokasi DPMPT Balikpapan?",
-    "answer": "Kantor DPMPT (Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu) Balikpapan beralamat di Jl. Jenderal Sudirman No. 2 (Gedung Gabungan Dinas)."
+    "answer": "Kantor DPMPT (Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu) Balikpapan beralamat di Jl. Jenderal Sudirman No. 2 (Gedung Gabungan Dinas).",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["DPMPT", "lokasi", "alamat", "perizinan"]
   },
   {
     "id": "68",
     "text": "Bagaimana cara mengurus sertifikat tanah di Balikpapan?",
-    "answer": "Pengurusan sertifikat tanah (misalnya pendaftaran pertama kali, balik nama, atau roya) dilakukan di Kantor Badan Pertanahan Nasional (BPN) Balikpapan."
+    "answer": "Pengurusan sertifikat tanah (misalnya pendaftaran pertama kali, balik nama, atau roya) dilakukan di Kantor Badan Pertanahan Nasional (BPN) Balikpapan.",
+    "kategori_utama": "Perizinan",
+    "tags": ["sertifikat tanah", "urus", "BPN"]
   },
   {
     "id": "69",
     "text": "Dimana lokasi Kantor BPN Balikpapan?",
-    "answer": "Kantor Pertanahan (BPN) Kota Balikpapan beralamat di Jl. Ruhui Rahayu I No. 1, Sepinggan, Balikpapan Selatan (bersebelahan dengan kantor PDAM)."
+    "answer": "Kantor Pertanahan (BPN) Kota Balikpapan beralamat di Jl. Ruhui Rahayu I No. 1, Sepinggan, Balikpapan Selatan (bersebelahan dengan kantor PDAM).",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["BPN", "lokasi", "alamat", "tanah"]
   },
   {
     "id": "70",
     "text": "Dimana saya mendaftarkan pernikahan (Muslim)?",
-    "answer": "Pendaftaran nikah bagi umat Muslim dilakukan di Kantor Urusan Agama (KUA) di kecamatan sesuai domisili calon pengantin wanita, setelah mendapatkan surat pengantar dari kelurahan."
+    "answer": "Pendaftaran nikah bagi umat Muslim dilakukan di Kantor Urusan Agama (KUA) di kecamatan sesuai domisili calon pengantin wanita, setelah mendapatkan surat pengantar dari kelurahan.",
+    "kategori_utama": "Administrasi",
+    "tags": ["nikah", "daftar", "KUA", "surat nikah"]
   },
   {
     "id": "71",
     "text": "Berapa nomor layanan darurat Balikpapan?",
-    "answer": "Layanan darurat terpadu Balikpapan (Ambulans, Pemadam Kebakaran, Polisi, dll) dapat dihubungi melalui Call Center 112."
+    "answer": "Layanan darurat terpadu Balikpapan (Ambulans, Pemadam Kebakaran, Polisi, dll) dapat dihubungi melalui Call Center 112.",
+    "kategori_utama": "Darurat",
+    "tags": ["darurat", "nomor", "telepon", "112"]
   },
   {
     "id": "72",
     "text": "Bagaimana cara pasang listrik baru PLN di Balikpapan?",
-    "answer": "Pemasangan baru listrik PLN dilakukan secara online melalui aplikasi PLN Mobile atau website resmi PLN."
+    "answer": "Pemasangan baru listrik PLN dilakukan secara online melalui aplikasi PLN Mobile atau website resmi PLN.",
+    "kategori_utama": "Utilitas",
+    "tags": ["PLN", "listrik", "pasang baru", "online"]
   },
   {
     "id": "73",
     "text": "Dimana lokasi kantor PLN Balikpapan?",
-    "answer": "Kantor PLN UP3 Balikpapan (Unit Pelaksana Pelayanan Pelanggan) beralamat di Jl. Jenderal Sudirman No. 40, Klandasan Ulu."
+    "answer": "Kantor PLN UP3 Balikpapan (Unit Pelaksana Pelayanan Pelanggan) beralamat di Jl. Jenderal Sudirman No. 40, Klandasan Ulu.",
+    "kategori_utama": "Lokasi Instansi",
+    "tags": ["PLN", "lokasi", "alamat", "kantor"]
   },
   {
     "id": "74",
     "text": "Bagaimana cara melakukan pengaduan layanan publik di Balikpapan?",
-    "answer": "Anda dapat melakukan pengaduan melalui layanan LAPOR! (Layanan Aspirasi dan Pengaduan Online Rakyat) atau melalui Call Center 112 Balikpapan."
+    "answer": "Anda dapat melakukan pengaduan melalui layanan LAPOR! (Layanan Aspirasi dan Pengaduan Online Rakyat) atau melalui Call Center 112 Balikpapan.",
+    "kategori_utama": "Pengaduan",
+    "tags": ["pengaduan", "lapor", "LAPOR", "Call Center 112"]
+  },
+  {
+    "id": "75",
+    "text": "Apa syarat mengurus Surat Keterangan Belum Pernah Menikah?",
+    "answer": "Untuk membuat Surat Keterangan Belum Pernah Menikah, persyaratannya:\n\n📋 PERSYARATAN:\n• Surat Pengantar RT\n• Fotokopi KTP dan KK pemohon\n• Surat Pernyataan Belum Pernah Menikah bermaterai Rp10.000,00\n• Fotokopi KTP 2 (dua) orang saksi\n\n💡 CARA PENGAJUAN:\n\n1. 🌐 ONLINE (Direkomendasikan):\n   Ajukan melalui menu LAYANAN di website kelurahan, isi formulir online dengan melampirkan dokumen digital. Prosesnya lebih cepat!\n\n2. 🏢 Datang Langsung:\n   Bawa dokumen ke kantor kelurahan (Senin-Jumat, 08.00-16.00 WITA)\n\nLayanan online lebih praktis dan menghemat waktu Anda!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat keterangan", "belum menikah", "syarat nikah", "materai", "layanan online"]
+  },
+  {
+    "id": "76",
+    "text": "Apa syarat membuat Surat Keterangan Berpenghasilan Tidak Tetap?",
+    "answer": "Untuk membuat Surat Keterangan Berpenghasilan Tidak Tetap, persyaratannya:\n\n📋 PERSYARATAN:\n• Surat Pengantar RT\n• Fotokopi KTP dan KK pemohon\n• Surat Pernyataan Berpenghasilan Tidak Tetap bermaterai Rp10.000,00\n• Fotokopi KTP 2 (dua) orang saksi\n\n💡 CARA PENGAJUAN:\n\n1. 🌐 ONLINE (Direkomendasikan):\n   Gunakan menu LAYANAN di website kelurahan untuk mengajukan permohonan secara online. Upload dokumen dan tunggu konfirmasi!\n\n2. 🏢 Datang Langsung:\n   Serahkan dokumen ke kantor kelurahan (Senin-Jumat, 08.00-16.00 WITA)\n\nDengan layanan online, Anda tidak perlu antre!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat keterangan", "penghasilan", "tidak tetap", "syarat", "layanan online"]
+  },
+  {
+    "id": "77",
+    "text": "Apa syarat Surat Keterangan Bertempat Tinggal untuk warga KTP luar daerah?",
+    "answer": "Untuk Surat Keterangan Bertempat Tinggal (warga KTP luar daerah), persyaratannya:\n\n📋 PERSYARATAN:\n• Surat Pengantar RT\n• Fotokopi KTP dan KK pemohon\n• Surat keterangan kuliah/kerja/KK penjamin\n• Pas foto 3x4 sebanyak 2 lembar (latar merah)\n\n💡 CARA PENGAJUAN:\n\n1. 🌐 ONLINE (Direkomendasikan):\n   Akses menu LAYANAN di website, isi formulir dan upload dokumen persyaratan. Praktis tanpa harus datang!\n\n2. 🏢 Datang Langsung:\n   Bawa semua dokumen ke kantor kelurahan (Senin-Jumat, 08.00-16.00 WITA)\n\nLayanan online memudahkan Anda yang sibuk bekerja atau kuliah!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat keterangan", "bertempat tinggal", "luar daerah", "pindah", "syarat", "layanan online"]
+  },
+  {
+    "id": "78",
+    "text": "Apa syarat membuat Surat Keterangan Domisili untuk warga KTP setempat?",
+    "answer": "Untuk Surat Keterangan Domisili (warga KTP setempat), persyaratannya sangat sederhana:\n\n📋 PERSYARATAN:\n• Surat Pengantar RT\n• Fotokopi KTP dan KK pemohon\n\n💡 CARA PENGAJUAN:\n\n1. 🌐 ONLINE (Direkomendasikan):\n   Buka menu LAYANAN di website kelurahan, pilih jenis surat, isi data dan upload KTP/KK. Cepat dan mudah!\n\n2. 🏢 Datang Langsung:\n   Serahkan dokumen ke kantor kelurahan (Senin-Jumat, 08.00-16.00 WITA)\n\nProses online lebih cepat karena data KTP setempat sudah terverifikasi!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat keterangan", "domisili", "KTP setempat", "syarat", "layanan online"]
+  },
+  {
+    "id": "79",
+    "text": "Apa saja syarat mengurus Surat Keterangan Janda/Duda?",
+    "answer": "Untuk membuat Surat Keterangan Janda/Duda, persyaratannya:\n\n📋 PERSYARATAN:\n• Surat Pengantar RT\n• Fotokopi KTP dan KK pemohon\n• Fotokopi Akta Cerai atau Akta Kematian\n• Surat Pernyataan Janda/Duda bermaterai Rp10.000,00\n• Fotokopi KTP 2 (dua) orang saksi\n\n💡 CARA PENGAJUAN:\n\n1. 🌐 ONLINE (Direkomendasikan):\n   Ajukan melalui menu LAYANAN di website, upload semua dokumen persyaratan termasuk Akta Cerai/Kematian.\n\n2. 🏢 Datang Langsung:\n   Bawa dokumen lengkap ke kantor kelurahan (Senin-Jumat, 08.00-16.00 WITA)\n\nLayanan online memberikan privasi dan kenyamanan lebih!",
+    "kategori_utama": "Administrasi",
+    "tags": ["surat keterangan", "janda", "duda", "cerai", "kematian", "syarat", "layanan online"]
+  },
+  {
+    "id": "80",
+    "text": "Bagaimana cara mengajukan surat keterangan secara online?",
+    "answer": "Cara mengajukan surat keterangan secara online di website Kelurahan Marga Sari:\n\n📱 LANGKAH-LANGKAH:\n\n1. Buka website kelurahan\n2. Klik menu LAYANAN di navigasi atas\n3. Pilih jenis surat yang dibutuhkan\n4. Isi formulir pengajuan dengan lengkap\n5. Upload dokumen persyaratan (scan/foto)\n6. Submit dan tunggu konfirmasi\n\n⏱️ WAKTU PROSES:\nBiasanya 1-3 hari kerja, Anda akan dihubungi untuk pengambilan surat\n\n✅ KEUNTUNGAN:\n• Tidak perlu antre\n• Bisa diajukan kapan saja\n• Lebih cepat dan praktis\n• Hemat waktu dan biaya transportasi",
+    "kategori_utama": "Layanan Online",
+    "tags": ["layanan online", "cara pengajuan", "surat keterangan", "digital"]
+  },
+  {
+    "id": "81",
+    "text": "Apa saja jenis surat yang bisa diajukan secara online?",
+    "answer": "Jenis surat yang dapat diajukan melalui layanan online Kelurahan Marga Sari:\n\n📄 SURAT KETERANGAN:\n• Surat Keterangan Belum Pernah Menikah\n• Surat Keterangan Berpenghasilan Tidak Tetap\n• Surat Keterangan Bertempat Tinggal\n• Surat Keterangan Domisili\n• Surat Keterangan Janda/Duda\n• Surat Keterangan Usaha\n• Dan jenis surat lainnya\n\n🌐 CARA AKSES:\nBuka website kelurahan → Menu LAYANAN → Pilih jenis surat\n\n💡 TIP:\nSiapkan scan/foto dokumen persyaratan dalam format digital (JPG/PDF) untuk mempercepat proses!",
+    "kategori_utama": "Layanan Online",
+    "tags": ["layanan online", "jenis surat", "daftar layanan", "digital"]
+  },
+  {
+    "id": "82",
+    "text": "Apakah layanan online kelurahan gratis?",
+    "answer": "Ya! Layanan online Kelurahan Marga Sari 100% GRATIS! ✅\n\n💰 TIDAK ADA BIAYA:\n• Tidak ada biaya pendaftaran\n• Tidak ada biaya pengajuan\n• Tidak ada biaya administrasi\n• Semua layanan administrasi kelurahan GRATIS\n\n⚠️ HATI-HATI PENIPUAN:\nJika ada yang meminta bayaran untuk layanan kelurahan, segera laporkan ke kantor kelurahan atau Call Center 112!\n\n🌐 AKSES:\nGunakan menu LAYANAN di website resmi kelurahan untuk pengajuan online yang aman dan terpercaya.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["layanan online", "gratis", "biaya", "transparansi"]
+  },
+  {
+    "id": "83",
+    "text": "Berapa lama proses layanan online kelurahan?",
+    "answer": "Waktu proses layanan online Kelurahan Marga Sari:\n\n⏱️ ESTIMASI WAKTU:\n• Surat Keterangan Sederhana: 1-2 hari kerja\n• Surat dengan Verifikasi Data: 2-3 hari kerja\n• Surat dengan Validasi Dokumen: 3-5 hari kerja\n\n📞 NOTIFIKASI:\nAnda akan dihubungi via telepon/email/WhatsApp setelah surat selesai diproses untuk:\n• Konfirmasi data (jika diperlukan)\n• Pemberitahuan surat siap diambil\n• Jadwal pengambilan\n\n💡 TIPS AGAR LEBIH CEPAT:\n• Upload dokumen dengan jelas\n• Lengkapi semua data yang diminta\n• Pastikan nomor HP/email aktif\n\n🌐 Cek status di menu LAYANAN website atau hubungi kantor kelurahan.",
+    "kategori_utama": "Layanan Online",
+    "tags": ["layanan online", "waktu proses", "estimasi", "status"]
   }
 ]

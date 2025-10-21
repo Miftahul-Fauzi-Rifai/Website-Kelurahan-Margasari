@@ -439,6 +439,32 @@
     background: #555;
 }
 
+/* Desktop Responsive - Ukuran lebih besar untuk layar desktop */
+@media (min-width: 1024px) {
+    #chatbot-popup {
+        width: 480px;
+        height: 650px;
+        max-height: calc(100vh - 120px);
+    }
+    
+    .chatbot-header h3 {
+        font-size: 20px;
+    }
+    
+    .chatbot-message-content {
+        font-size: 15px;
+        padding: 12px 16px;
+    }
+}
+
+/* Tablet Responsive */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #chatbot-popup {
+        width: 420px;
+        height: 600px;
+    }
+}
+
 /* Mobile Responsive */
 @media (max-width: 480px) {
     #chatbot-popup {

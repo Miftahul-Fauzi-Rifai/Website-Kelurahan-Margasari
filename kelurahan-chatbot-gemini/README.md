@@ -1,11 +1,35 @@
-# Chatbot Kelurahan - Gemini API 
+# Chatbot Kelurahan - Gemini API + Voice Assistant
 
 Proyek sederhana ini menunjukkan:
 - Frontend HTML untuk chat & upload data training
+- **Voice Assistant** dengan Speech Recognition & Text-to-Speech
+- **Auto Voice Correction** untuk mengenali istilah khusus (SKCK, KTP, dll)
 - Backend Node.js + Express yang:
   - Menyimpan data training di `data/train.json`
   - Endpoint `/api/train` untuk menambah data training (unggah file JSON atau kirim `items` JSON)
   - Endpoint `/api/chat` untuk mengirim prompt ke Gemini API (atau mensimulasikan jawaban jika GEMINI_API_KEY tidak di-set)
+
+## ✨ Fitur Voice Correction
+Sistem ini secara otomatis mengoreksi hasil speech recognition untuk istilah-istilah khusus seperti:
+- **Akronim**: SKCK, KTP, e-KTP, KK, SIM, STNK, BPKB, NPWP, PBB, dll
+- **Nama Instansi**: Disdukcapil, Satpas, BPN, KUA, Disnaker, DPMPT
+- **Istilah Teknis**: NIB, OSS, DCM, SIMBG, IMB, PBG, SKPWNI, dll
+
+### Cara Kerja:
+1. User berbicara: "saya mau buat es ce ka ce ka"
+2. Speech Recognition menangkap: "saya mau buat es ce ka ce ka"
+3. **Auto Correction** mengubah menjadi: "Saya mau buat SKCK"
+4. Chatbot memproses dengan istilah yang benar ✅
+
+### Menambah Kata Baru:
+Edit file `public/js/chatbot.js`, cari bagian `voiceCorrections` dan tambahkan:
+```javascript
+const voiceCorrections = {
+    'kata yang salah': 'Kata Yang Benar',
+    // contoh:
+    'es ka a en': 'SKAN',
+}
+```
 
 ## Cara pakai (lokal)
 1. Pasang Node.js (v16+)

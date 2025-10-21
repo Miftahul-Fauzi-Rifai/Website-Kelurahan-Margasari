@@ -1,0 +1,177 @@
+[
+  {
+    "id": "A1",
+    "text": "Apa kepanjangan KTP?",
+    "answer": "KTP adalah Kartu Tanda Penduduk, identitas resmi penduduk Indonesia.",
+    "kategori_utama": "Istilah Kependudukan",
+    "tags": ["KTP", "arti", "kepanjangan", "identitas"]
+  },
+  {
+    "id": "A2",
+    "text": "Apa kepanjangan KK?",
+    "answer": "KK adalah Kartu Keluarga, kartu identitas yang memuat data susunan keluarga dan hubungan anggota keluarga.",
+    "kategori_utama": "Istilah Kependudukan",
+    "tags": ["KK", "arti", "kepanjangan", "keluarga"]
+  },
+  {
+    "id": "A3",
+    "text": "Apa itu e-KTP?",
+    "answer": "e-KTP adalah Kartu Tanda Penduduk Elektronik, yaitu KTP berbasis chip yang berlaku seumur hidup.",
+    "kategori_utama": "Istilah Kependudukan",
+    "tags": ["e-KTP", "arti", "elektronik"]
+  },
+  {
+    "id": "A4",
+    "text": "Apa kepanjangan Disdukcapil?",
+    "answer": "Disdukcapil adalah Dinas Kependudukan dan Pencatatan Sipil, instansi yang mengurus dokumen kependudukan (KTP, KK, Akta).",
+    "kategori_utama": "Istilah Instansi",
+    "tags": ["Disdukcapil", "arti", "dinas"]
+  },
+  {
+    "id": "A5",
+    "text": "Apa kepanjangan SIM?",
+    "answer": "SIM adalah Surat Izin Mengemudi, bukti registrasi dari Polri kepada pengemudi.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["SIM", "arti", "mengemudi"]
+  },
+  {
+    "id": "A6",
+    "text": "Apa itu Satpas?",
+    "answer": "Satpas adalah Satuan Penyelenggara Administrasi SIM, tempat pelayanan utama untuk urusan SIM di kantor Polisi.",
+    "kategori_utama": "Istilah Instansi",
+    "tags": ["Satpas", "SIM", "polisi"]
+  },
+  {
+    "id": "A7",
+    "text": "Apa itu SKCK?",
+    "answer": "SKCK adalah Surat Keterangan Catatan Kepolisian, surat resmi dari Polri yang menerangkan catatan kriminal seseorang.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["SKCK", "arti", "kepolisian"]
+  },
+  {
+    "id": "A8",
+    "text": "Apa itu STNK?",
+    "answer": "STNK adalah Surat Tanda Nomor Kendaraan, bukti sah kepemilikan dan registrasi kendaraan bermotor.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["STNK", "kendaraan", "pajak"]
+  },
+  {
+    "id": "A9",
+    "text": "Apa itu BPKB?",
+    "answer": "BPKB adalah Buku Pemilik Kendaraan Bermotor, buku yang berisi identitas dan riwayat kepemilikan kendaraan.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["BPKB", "kendaraan", "buku"]
+  },
+  {
+    "id": "A10",
+    "text": "Apa kepanjangan NPWP?",
+    "answer": "NPWP adalah Nomor Pokok Wajib Pajak, nomor identitas yang diberikan Ditjen Pajak kepada wajib pajak.",
+    "kategori_utama": "Istilah Pajak",
+    "tags": ["NPWP", "arti", "pajak"]
+  },
+  {
+    "id": "A11",
+    "text": "Apa itu PBB?",
+    "answer": "PBB adalah Pajak Bumi dan Bangunan, pajak atas bumi dan/atau bangunan yang dimiliki.",
+    "kategori_utama": "Istilah Pajak",
+    "tags": ["PBB", "arti", "bangunan"]
+  },
+  {
+    "id": "A12",
+    "text": "Apa itu BPPDRD?",
+    "answer": "BPPDRD adalah Badan Pengelola Pajak Daerah dan Retribusi Daerah, instansi yang mengurus pajak daerah (PBB, pajak kendaraan).",
+    "kategori_utama": "Istilah Instansi",
+    "tags": ["BPPDRD", "pajak", "daerah"]
+  },
+  {
+    "id": "A13",
+    "text": "Apa kepanjangan PDAM?",
+    "answer": "PDAM adalah Perusahaan Daerah Air Minum, perusahaan penyedia layanan air bersih daerah.",
+    "kategori_utama": "Istilah Utilitas",
+    "tags": ["PDAM", "air", "perusahaan"]
+  },
+  {
+    "id": "A14",
+    "text": "Apa kepanjangan BPN?",
+    "answer": "BPN adalah Badan Pertanahan Nasional, instansi yang mengurus sertifikat dan dokumen pertanahan.",
+    "kategori_utama": "Istilah Instansi",
+    "tags": ["BPN", "tanah", "sertifikat"]
+  },
+  {
+    "id": "A15",
+    "text": "Apa itu KUA?",
+    "answer": "KUA adalah Kantor Urusan Agama, instansi yang mencatat pernikahan, talak, dan rujuk bagi umat Muslim.",
+    "kategori_utama": "Istilah Administrasi",
+    "tags": ["KUA", "nikah", "agama"]
+  },
+  {
+    "id": "A16",
+    "text": "Apa kepanjangan KIA?",
+    "answer": "KIA adalah Kartu Identitas Anak, kartu identitas resmi untuk anak di bawah 17 tahun.",
+    "kategori_utama": "Istilah Kependudukan",
+    "tags": ["KIA", "anak", "identitas"]
+  },
+  {
+    "id": "A17",
+    "text": "Apa itu DCM?",
+    "answer": "DCM adalah Dicetak Mandiri, istilah Disdukcapil untuk dokumen yang bisa dicetak sendiri oleh warga (misal: Akta Kelahiran).",
+    "kategori_utama": "Istilah Kependudukan",
+    "tags": ["DCM", "cetak", "online"]
+  },
+  {
+    "id": "A18",
+    "text": "Apa itu SIMBG?",
+    "answer": "SIMBG adalah Sistem Informasi Manajemen Bangunan Gedung, aplikasi untuk mengurus Persetujuan Bangunan Gedung (PBG).",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["SIMBG", "PBG", "IMB"]
+  },
+  {
+    "id": "A19",
+    "text": "Apa itu NIB?",
+    "answer": "NIB adalah Nomor Induk Berusaha, identitas pelaku usaha yang diterbitkan melalui sistem OSS.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["NIB", "usaha", "OSS"]
+  },
+  {
+    "id": "A20",
+    "text": "Apa itu OSS?",
+    "answer": "OSS adalah Online Single Submission, sistem perizinan berusaha terintegrasi secara elektronik dari pemerintah Indonesia.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["OSS", "online", "perizinan"]
+  },
+  {
+    "id": "A21",
+    "text": "Apa itu AK1?",
+    "answer": "AK1 adalah Kartu Antar Kerja (dikenal juga Kartu Kuning), bukti terdaftar sebagai pencari kerja di Disnaker.",
+    "kategori_utama": "Istilah Ketenagakerjaan",
+    "tags": ["AK1", "Kartu Kuning", "Disnaker"]
+  },
+  {
+    "id": "A22",
+    "text": "Apa itu Disnaker?",
+    "answer": "Disnaker adalah Dinas Tenaga Kerja, instansi yang mengurus ketenagakerjaan dan mencari kerja.",
+    "kategori_utama": "Istilah Instansi",
+    "tags": ["Disnaker", "kerja"]
+  },
+  {
+    "id": "A23",
+    "text": "Apa itu SKPWNI?",
+    "answer": "SKPWNI adalah Surat Keterangan Pindah Warga Negara Indonesia, surat resmi dari Disdukcapil untuk pindah domisili antar daerah/provinsi.",
+    "kategori_utama": "Istilah Kependudukan",
+    "tags": ["SKPWNI", "pindah"]
+  },
+  {
+    "id": "A24",
+    "text": "Apa itu SINAR?",
+    "answer": "SINAR adalah SIM Nasional Presisi, layanan online resmi Polri untuk perpanjangan SIM.",
+    "kategori_utama": "Istilah Perizinan",
+    "tags": ["SINAR", "SIM", "online"]
+  },
+  {
+    "id": "A25",
+    "text": "Apa itu LAPOR!?",
+    "answer": "LAPOR! adalah Layanan Aspirasi dan Pengaduan Online Rakyat, platform pengaduan online resmi dari pemerintah Indonesia.",
+    "kategori_utama": "Istilah Pengaduan",
+    "tags": ["LAPOR", "pengaduan"]
+  }
+]

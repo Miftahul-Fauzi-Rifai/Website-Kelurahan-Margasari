@@ -15,6 +15,15 @@ let chatHistory = [];
 let isOpen = false;
 let isProcessing = false;
 
+// ========== LOCALSTORAGE KEYS ==========
+// NOTE: Using sessionStorage for chat history (cleared on browser close)
+// Using localStorage only for persistent preferences
+const STORAGE_KEYS = {
+    CHAT_HISTORY: 'chatbot_history',      // sessionStorage - cleared on close
+    CHAT_MESSAGES: 'chatbot_messages',    // sessionStorage - cleared on close
+    LAST_UPDATED: 'chatbot_last_updated'  // sessionStorage - cleared on close
+};
+
 // Voice Assistant State
 let recognition = null;
 let synthesis = window.speechSynthesis;
@@ -22,6 +31,112 @@ let isListening = false;
 let isSpeaking = false;
 let voiceSupported = false;
 let lastInputMethod = 'text'; // 'text' or 'voice'
+
+// ========== VOICE CORRECTION DICTIONARY ==========
+// Mapping kata yang sering salah dikenali oleh Speech Recognition
+const voiceCorrections = {
+    // Akronim dan istilah khusus
+    'es ka ce ka': 'SKCK',
+    'eskck': 'SKCK',
+    'esekck': 'SKCK',
+    'skck': 'SKCK',
+    'surat keterangan catatan kepolisian': 'SKCK',
+    'es ka ka': 'SKK',
+    'ka te pe': 'KTP',
+    'e ktp': 'e-KTP',
+    'ektp': 'e-KTP',
+    'ktp elektronik': 'e-KTP',
+    'ka ka': 'KK',
+    'kartu keluarga': 'KK',
+    'es te en ka': 'STNK',
+    'stnk': 'STNK',
+    'es im': 'SIM',
+    'sim': 'SIM',
+    'surat izin mengemudi': 'SIM',
+    'be pe ka be': 'BPKB',
+    'bpkb': 'BPKB',
+    'en pe we pe': 'NPWP',
+    'n p w p': 'NPWP',
+    'en pe double u pe': 'NPWP',
+    'en pe dabel yu pe': 'NPWP',
+    'enpewp': 'NPWP',
+    'npwp': 'NPWP',
+    'nomor pokok wajib pajak': 'NPWP',
+    'pe be be': 'PBB',
+    'pbb': 'PBB',
+    'pajak bumi dan bangunan': 'PBB',
+    'disdukcapil': 'Disdukcapil',
+    'dinas kependudukan': 'Disdukcapil',
+    'pe de a em': 'PDAM',
+    'pdam': 'PDAM',
+    'be pe en': 'BPN',
+    'bpn': 'BPN',
+    'badan pertanahan': 'BPN',
+    'ka u a': 'KUA',
+    'kua': 'KUA',
+    'kantor urusan agama': 'KUA',
+    'ka i a': 'KIA',
+    'kia': 'KIA',
+    'kartu identitas anak': 'KIA',
+    'satpas': 'Satpas',
+    'sat pas': 'Satpas',
+    'a ka satu': 'AK1',
+    'ak1': 'AK1',
+    'kartu kuning': 'AK1',
+    'disnaker': 'Disnaker',
+    'dinas tenaga kerja': 'Disnaker',
+    'en i be': 'NIB',
+    'nib': 'NIB',
+    'nomor induk berusaha': 'NIB',
+    'o es es': 'OSS',
+    'oss': 'OSS',
+    'de ce em': 'DCM',
+    'dcm': 'DCM',
+    'dicetak mandiri': 'DCM',
+    'sim be ge': 'SIMBG',
+    'simbg': 'SIMBG',
+    'i em be': 'IMB',
+    'imb': 'IMB',
+    'izin mendirikan bangunan': 'IMB',
+    'pe be ge': 'PBG',
+    'pbg': 'PBG',
+    'persetujuan bangunan gedung': 'PBG',
+    'de pe em pe te': 'DPMPT',
+    'dpmpt': 'DPMPT',
+    'be pe pe de er de': 'BPPDRD',
+    'bppdrd': 'BPPDRD',
+    'es ka pe we en i': 'SKPWNI',
+    'skpwni': 'SKPWNI',
+    'surat keterangan pindah': 'SKPWNI',
+    'sinar': 'SINAR',
+    'sim nasional': 'SINAR',
+    'lapor': 'LAPOR!',
+    'layanan pengaduan': 'LAPOR!',
+    
+    // Nama tempat di Balikpapan
+    'balikpapan': 'Balikpapan',
+    'marga sari': 'Marga Sari',
+    'margasari': 'Marga Sari',
+    'kelurahan': 'kelurahan',
+    'kecamatan': 'kecamatan',
+    
+    // Istilah umum yang sering salah
+    'akta kelahiran': 'akta kelahiran',
+    'akta kematian': 'akta kematian',
+    'surat domisili': 'surat domisili',
+    'surat keterangan usaha': 'surat keterangan usaha',
+    'surat nikah': 'surat nikah',
+    'surat pengantar': 'surat pengantar',
+    
+    // Jalan-jalan
+    'jalan mt haryono': 'Jl. MT Haryono',
+    'jalan jenderal sudirman': 'Jl. Jenderal Sudirman',
+    'jalan sudirman': 'Jl. Sudirman',
+    
+    // Waktu
+    'wita': 'WITA',
+    'jam kerja': 'jam kerja'
+};
 
 // ========== DOM ELEMENTS ==========
 const elements = {
@@ -36,6 +151,100 @@ const elements = {
     voiceStatus: null,
     voiceTranscription: null
 };
+
+/**
+ * Save chat history to sessionStorage (only persists during browser session)
+ * Chat will be cleared when user closes browser/tab
+ */
+function saveChatToStorage() {
+    try {
+        // Use sessionStorage instead of localStorage
+        // sessionStorage is cleared when browser/tab is closed
+        sessionStorage.setItem(STORAGE_KEYS.CHAT_HISTORY, JSON.stringify(chatHistory));
+        sessionStorage.setItem(STORAGE_KEYS.LAST_UPDATED, Date.now().toString());
+        
+        // Save visual messages (HTML content)
+        const messages = [];
+        const messageElements = elements.chatBody?.querySelectorAll('.chatbot-message');
+        
+        if (messageElements) {
+            messageElements.forEach(msg => {
+                const isUser = msg.classList.contains('user');
+                const content = msg.querySelector('.chatbot-message-content')?.innerHTML || '';
+                messages.push({ isUser, content });
+            });
+        }
+        
+        sessionStorage.setItem(STORAGE_KEYS.CHAT_MESSAGES, JSON.stringify(messages));
+        console.log('💾 Chat saved to sessionStorage (will clear on browser close)');
+    } catch (error) {
+        console.error('Failed to save chat:', error);
+    }
+}
+
+/**
+ * Load chat history from sessionStorage
+ * Only loads if still in same browser session
+ */
+function loadChatFromStorage() {
+    try {
+        // Load from sessionStorage (only persists during browser session)
+        const savedHistory = sessionStorage.getItem(STORAGE_KEYS.CHAT_HISTORY);
+        if (savedHistory) {
+            chatHistory = JSON.parse(savedHistory);
+            console.log('📂 Loaded', chatHistory.length, 'history items from sessionStorage');
+        }
+        
+        // Load visual messages
+        const savedMessages = sessionStorage.getItem(STORAGE_KEYS.CHAT_MESSAGES);
+        if (savedMessages && elements.chatBody) {
+            const messages = JSON.parse(savedMessages);
+            
+            // Clear existing messages (except welcome message)
+            elements.chatBody.innerHTML = '';
+            
+            // Restore messages
+            messages.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = msg.isUser ? 'chatbot-message user' : 'chatbot-message bot';
+                messageDiv.innerHTML = `<div class="chatbot-message-content">${msg.content}</div>`;
+                elements.chatBody.appendChild(messageDiv);
+            });
+            
+            scrollToBottom();
+            console.log('📂 Loaded', messages.length, 'visual messages from sessionStorage');
+        }
+        
+        // Check last updated time (auto-clear after 24 hours even within same session)
+        const lastUpdated = sessionStorage.getItem(STORAGE_KEYS.LAST_UPDATED);
+        if (lastUpdated) {
+            const hoursSinceUpdate = (Date.now() - parseInt(lastUpdated)) / (1000 * 60 * 60);
+            console.log('🕐 Chat last updated:', hoursSinceUpdate.toFixed(1), 'hours ago');
+            
+            // Auto-clear if older than 24 hours
+            if (hoursSinceUpdate > 24) {
+                console.log('🧹 Chat too old (>24h), clearing...');
+                clearChatStorage();
+            }
+        }
+    } catch (error) {
+        console.error('Failed to load chat:', error);
+    }
+}
+
+/**
+ * Clear chat from sessionStorage
+ */
+function clearChatStorage() {
+    try {
+        sessionStorage.removeItem(STORAGE_KEYS.CHAT_HISTORY);
+        sessionStorage.removeItem(STORAGE_KEYS.CHAT_MESSAGES);
+        sessionStorage.removeItem(STORAGE_KEYS.LAST_UPDATED);
+        console.log('🧹 Chat storage cleared from sessionStorage');
+    } catch (error) {
+        console.error('Failed to clear chat storage:', error);
+    }
+}
 
 /**
  * Initialize chatbot when DOM is ready
@@ -69,6 +278,9 @@ function initializeChatbot() {
         return;
     }
     
+    // Load chat history from localStorage
+    loadChatFromStorage();
+    
     // Initialize Voice Assistant
     initializeVoiceAssistant();
     
@@ -92,11 +304,14 @@ function initializeChatbot() {
         }
     });
     
-    // Add welcome message
-    addBotMessage('Halo! Saya adalah asisten virtual Kelurahan Marga Sari. Ada yang bisa saya bantu? 🎙️ Anda bisa mengetik atau menggunakan tombol mikrofon untuk berbicara.', null, false, true);
+    // Add welcome message only if no chat history
+    if (chatHistory.length === 0) {
+        addBotMessage('Halo! Saya adalah asisten virtual Kelurahan Marga Sari. Ada yang bisa saya bantu? 🎙️ Anda bisa mengetik atau menggunakan tombol mikrofon untuk berbicara.', null, false, true);
+    }
     
     console.log('Chatbot initialized successfully');
     console.log('Voice Assistant:', voiceSupported ? 'Supported ✅' : 'Not Supported ❌');
+    console.log('Chat History:', chatHistory.length, 'messages');
 }
 
 /**
@@ -229,6 +444,9 @@ function addUserMessage(text) {
     
     elements.chatBody?.appendChild(messageDiv);
     scrollToBottom();
+    
+    // Save to localStorage
+    saveChatToStorage();
 }
 
 /**
@@ -253,6 +471,11 @@ function addBotMessage(text, id = null, isThinking = false, isWelcome = false) {
     elements.chatBody?.appendChild(messageDiv);
     scrollToBottom();
     
+    // Save to localStorage (skip for thinking indicators)
+    if (!isThinking) {
+        saveChatToStorage();
+    }
+    
     // Auto-play TTS ONLY if:
     // 1. Not welcome message
     // 2. Not thinking indicator
@@ -261,6 +484,70 @@ function addBotMessage(text, id = null, isThinking = false, isWelcome = false) {
     if (!isWelcome && !isThinking && text && voiceSupported && lastInputMethod === 'voice') {
         speakText(text);
     }
+}
+
+/**
+ * Correct voice transcript using dictionary and fuzzy matching
+ */
+function correctVoiceTranscript(transcript) {
+    if (!transcript) return transcript;
+    
+    let corrected = transcript.toLowerCase();
+    
+    // Apply corrections from dictionary
+    for (const [wrong, correct] of Object.entries(voiceCorrections)) {
+        // Use word boundary to avoid partial matches
+        const regex = new RegExp('\\b' + wrong.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+        corrected = corrected.replace(regex, correct);
+    }
+    
+    // Additional fuzzy matching for common patterns
+    corrected = corrected
+        // Fix spacing in acronyms (e.g., "s k c k" -> "SKCK")
+        .replace(/\b([a-z])\s+([a-z])\s+([a-z])\s+([a-z])\s*\b/gi, function(match, p1, p2, p3, p4) {
+            const acronym = (p1 + p2 + p3 + p4).toUpperCase();
+            // Check if this acronym exists in our corrections
+            if (voiceCorrections[acronym.toLowerCase()] || 
+                acronym === 'SKCK' || acronym === 'STNK' || acronym === 'NPWP' || 
+                acronym === 'PDAM' || acronym === 'BPKB') {
+                return voiceCorrections[acronym.toLowerCase()] || acronym;
+            }
+            return match;
+        })
+        // Fix 2-letter acronyms (e.g., "k k" -> "KK")
+        .replace(/\b([a-z])\s+([a-z])\s*\b/gi, function(match, p1, p2) {
+            const acronym = (p1 + p2).toUpperCase();
+            if (acronym === 'KK' || acronym === 'KA' || acronym === 'RT' || acronym === 'RW') {
+                return voiceCorrections[acronym.toLowerCase()] || acronym;
+            }
+            return match;
+        })
+        // Fix 3-letter acronyms (e.g., "k t p" -> "KTP")
+        .replace(/\b([a-z])\s+([a-z])\s+([a-z])\s*\b/gi, function(match, p1, p2, p3) {
+            const acronym = (p1 + p2 + p3).toUpperCase();
+            if (acronym === 'KTP' || acronym === 'SIM' || acronym === 'BPN' || 
+                acronym === 'KUA' || acronym === 'KIA' || acronym === 'PBB' ||
+                acronym === 'NIB' || acronym === 'OSS' || acronym === 'DCM' ||
+                acronym === 'IMB' || acronym === 'PBG') {
+                return voiceCorrections[acronym.toLowerCase()] || acronym;
+            }
+            return match;
+        })
+        // Fix 4-letter acronyms (e.g., "n p w p" -> "NPWP")
+        .replace(/\b([a-z])\s+([a-z])\s+([a-z])\s+([a-z])\s*\b/gi, function(match, p1, p2, p3, p4) {
+            const acronym = (p1 + p2 + p3 + p4).toUpperCase();
+            if (acronym === 'NPWP' || acronym === 'STNK' || acronym === 'BPKB' || 
+                acronym === 'PDAM' || acronym === 'SKCK') {
+                return voiceCorrections[acronym.toLowerCase()] || acronym;
+            }
+            return match;
+        });
+    
+    // Capitalize first letter
+    corrected = corrected.charAt(0).toUpperCase() + corrected.slice(1);
+    
+    console.log('🔧 Voice correction:', transcript, '->', corrected);
+    return corrected;
 }
 
 // ========================================
@@ -309,7 +596,12 @@ function initializeVoiceAssistant() {
         // Show real-time transcription
         updateTranscription(transcript, isFinal);
         
-        console.log('📝 Transcript:', transcript, '| Final:', isFinal);
+        console.log('📝 Raw Transcript:', transcript, '| Final:', isFinal);
+        
+        // Debug: Show if NPWP-related words are detected
+        if (isFinal && /npwp|en pe|n p w p|wajib pajak/i.test(transcript)) {
+            console.log('🔍 NPWP-related words detected in transcript!');
+        }
     };
     
     // Event: Speech Recognition End
@@ -322,10 +614,30 @@ function initializeVoiceAssistant() {
         const finalTranscript = elements.voiceTranscription?.textContent;
         
         if (finalTranscript && finalTranscript.trim()) {
+            // Apply voice correction to fix common misrecognitions
+            const correctedTranscript = correctVoiceTranscript(finalTranscript.trim());
+            
             // Set input value and send message
-            elements.inputField.value = finalTranscript.trim();
+            elements.inputField.value = correctedTranscript;
             hideTranscription();
             lastInputMethod = 'voice'; // Mark as voice input
+            
+            // Show correction notification if text was corrected
+            if (correctedTranscript !== finalTranscript.trim()) {
+                console.log('✨ Transcript auto-corrected');
+                // Optionally show a subtle notification
+                const correctionNote = document.createElement('div');
+                correctionNote.className = 'correction-note';
+                correctionNote.textContent = '✨ Teks dikoreksi otomatis';
+                correctionNote.style.cssText = 'position: absolute; top: 10px; right: 10px; background: #667eea; color: white; padding: 8px 12px; border-radius: 8px; font-size: 12px; opacity: 0; transition: opacity 0.3s;';
+                elements.popup.appendChild(correctionNote);
+                setTimeout(() => correctionNote.style.opacity = '1', 10);
+                setTimeout(() => {
+                    correctionNote.style.opacity = '0';
+                    setTimeout(() => correctionNote.remove(), 300);
+                }, 2000);
+            }
+            
             sendMessage();
         } else {
             hideTranscription();
@@ -422,7 +734,10 @@ function hideVoiceStatus() {
 function updateTranscription(text, isFinal) {
     if (!elements.voiceTranscription) return;
     
-    elements.voiceTranscription.textContent = text;
+    // Apply correction for better display
+    const displayText = correctVoiceTranscript(text);
+    
+    elements.voiceTranscription.textContent = displayText;
     elements.voiceTranscription.style.display = 'block';
     
     if (isFinal) {
@@ -438,6 +753,36 @@ function hideTranscription() {
         elements.voiceTranscription.style.display = 'none';
         elements.voiceTranscription.textContent = '';
     }
+}
+
+/**
+ * Remove emojis from text for TTS
+ */
+function removeEmojis(text) {
+    // Remove all emojis using regex
+    return text
+        // Remove emoji characters (Unicode ranges)
+        .replace(/[\u{1F600}-\u{1F64F}]/gu, '') // Emoticons
+        .replace(/[\u{1F300}-\u{1F5FF}]/gu, '') // Misc Symbols and Pictographs
+        .replace(/[\u{1F680}-\u{1F6FF}]/gu, '') // Transport and Map
+        .replace(/[\u{1F1E0}-\u{1F1FF}]/gu, '') // Flags
+        .replace(/[\u{2600}-\u{26FF}]/gu, '')   // Misc symbols
+        .replace(/[\u{2700}-\u{27BF}]/gu, '')   // Dingbats
+        .replace(/[\u{1F900}-\u{1F9FF}]/gu, '') // Supplemental Symbols and Pictographs
+        .replace(/[\u{1FA00}-\u{1FA6F}]/gu, '') // Chess Symbols
+        .replace(/[\u{1FA70}-\u{1FAFF}]/gu, '') // Symbols and Pictographs Extended-A
+        .replace(/[\u{2300}-\u{23FF}]/gu, '')   // Miscellaneous Technical
+        // Remove bullet points and special characters often used with emojis
+        .replace(/•/g, '-')                      // Replace bullet with dash
+        .replace(/→/g, 'ke')                     // Replace arrow
+        .replace(/✅/g, '')                       // Checkmarks
+        .replace(/❌/g, '')                       // Cross marks
+        .replace(/⚠️/g, 'Perhatian:')           // Warning
+        .replace(/📌/g, '')                       // Pin
+        .replace(/💡/g, '')                       // Light bulb
+        // Clean up multiple spaces and trim
+        .replace(/\s+/g, ' ')
+        .trim();
 }
 
 /**
@@ -464,10 +809,15 @@ function speakText(text) {
         .replace(/\n/g, ', ') // Replace single newlines with comma
         .trim();
     
-    if (!cleanText) return;
+    // Remove emojis for cleaner speech
+    const textWithoutEmojis = removeEmojis(cleanText);
+    
+    if (!textWithoutEmojis) return;
+    
+    console.log('🔊 Speaking (without emojis):', textWithoutEmojis.substring(0, 50) + '...');
     
     // Create speech utterance
-    const utterance = new SpeechSynthesisUtterance(cleanText);
+    const utterance = new SpeechSynthesisUtterance(textWithoutEmojis);
     utterance.lang = 'id-ID'; // Indonesian voice
     utterance.rate = 0.9; // Slightly slower for clarity
     utterance.pitch = 1.0;
@@ -556,6 +906,9 @@ function clearChat() {
     
     chatHistory = [];
     elements.chatBody.innerHTML = '';
+    
+    // Clear localStorage
+    clearChatStorage();
     
     // Add welcome message again
     addBotMessage('Riwayat percakapan telah dihapus. Ada yang bisa saya bantu? 🎙️', null, false, true);

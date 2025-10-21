@@ -5,7 +5,7 @@ const axios = require('axios');
 
 // ------------------------------------------------------------------
 // --- PASTE API KEY ANDA DI SINI ---
-const API_KEY = "AIzaSyACOcup-YUg0VtIQQ4dHRq1ATv5YcE9knA";
+const API_KEY = "AIzaSyAcpR2yI9uUKpouInHeKFUlKvQOw4QASKQ";
 // ------------------------------------------------------------------
 
 
