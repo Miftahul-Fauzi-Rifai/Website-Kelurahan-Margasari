@@ -4,29 +4,26 @@
 @section('meta_description', 'Website resmi Kelurahan Marga Sari, Kota Balikpapan. Informasi layanan, berita, dan pengumuman terbaru.')
 
 @section('content')
+
 <!-- Hero Section -->
-<section class="hero-section hero-with-bg text-white py-5">
-    <div class="container">
-        <div class="row align-items-center min-vh-50">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">
-                    Selamat Datang di<br>
-                    <span class="text-warning">Kelurahan Marga Sari</span>
-                </h1>
-                <p class="lead mb-4">
-                    Melayani masyarakat dengan sepenuh hati untuk menciptakan lingkungan yang aman, nyaman, dan sejahtera bagi seluruh warga Marga Sari.
-                </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="{{ route('services') }}" class="btn btn-warning btn-lg px-4">
-                        <i class="bi bi-card-list me-2"></i>Layanan Kami
-                    </a>
-                    <a href="{{ route('complaint.create') }}" class="btn btn-outline-light btn-lg px-4">
-                        <i class="bi bi-chat-dots me-2"></i>Sampaikan Aspirasi
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center mt-4 mt-lg-0">
-                <img src="{{ asset('images/hero-illustration.svg') }}" alt="" class="img-fluid" style="max-height: 400px;">
+<section id="hero" class="hero-section text-white py-5">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative py-5">
+        <div class="hero-content text-start">
+            <h1 class="fw-bold display-5">
+                Selamat Datang di <span class="text-warning">Kelurahan Marga Sari</span>
+            </h1>
+            <p class="lead my-3">
+                Melayani masyarakat dengan sepenuh hati untuk menciptakan lingkungan
+                yang aman, nyaman, dan sejahtera bagi seluruh warga Marga Sari.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="#layanan" class="btn btn-warning text-dark fw-semibold">
+                    <i class="bi bi-grid"></i> Layanan Kami
+                </a>
+                <a href="#aspirasi" class="btn btn-outline-light fw-semibold">
+                    <i class="bi bi-chat-dots"></i> Sampaikan Aspirasi
+                </a>
             </div>
         </div>
     </div>
@@ -195,6 +192,96 @@
 
 @push('styles')
 <style>
+
+/* ==== HERO SECTION SLIDESHOW ==== */
+.hero-section {
+    position: relative;
+    min-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+}
+
+/* Dua layer background untuk animasi slide */
+.hero-bg, .hero-bg-next {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 1.5s ease-in-out;
+    z-index: 0;
+}
+
+/* Layer berikutnya muncul dari kanan */
+.hero-bg-next {
+    transform: translateX(100%);
+}
+
+/* Saat slide berganti */
+.hero-section.slide .hero-bg {
+    transform: translateX(-100%);
+}
+.hero-section.slide .hero-bg-next {
+    transform: translateX(0);
+}
+
+/* Overlay gelap agar teks tetap terbaca */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+/* Isi hero di atas semua layer */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+}
+
+/* Responsif: teks & tombol */
+@media (max-width: 992px) {
+    .hero-content {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 60vh;
+        background-position: center;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+        text-align: left;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .hero-content .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-content .btn {
+        width: auto;
+    }
+}
+
 /* Prevent horizontal overflow on mobile */
 body {
     overflow-x: hidden;
@@ -303,42 +390,6 @@ body {
         font-size: 0.9rem !important;
         padding: 0.6rem 1.25rem !important;
     }
-}
-
-.hero-with-bg {
-    background: url('{{ asset('storage/dokumentasikel/Kantor_Kelurahan_Margasari,_Balikpapan.jpg') }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-
-.hero-with-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-}
-
-.hero-with-bg .container {
-    position: relative;
-    z-index: 2;
-}
-
-.min-vh-50 {
-    min-height: 50vh;
-}
-
-.card {
-    transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 /* Disable hover effects on touch devices and mobile screens */
@@ -648,4 +699,81 @@ body {
     opacity: 1;
 }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+window.addEventListener("load", function () {
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        hero.style.backgroundImage = "url('{{ asset('images/Kantor_Kelurahan_Margasari.png') }}')";
+        hero.style.backgroundPosition = "15% center";
+        hero.style.backgroundSize = "cover";
+        return;
+    }
+
+    // Tambahkan dua layer background untuk efek fade
+    hero.insertAdjacentHTML("beforeend", `
+        <div class="hero-bg hero-bg-1"></div>
+        <div class="hero-bg hero-bg-2"></div>
+    `);
+
+    const bg1 = hero.querySelector(".hero-bg-1");
+    const bg2 = hero.querySelector(".hero-bg-2");
+
+    const slides = [
+        { image: "{{ asset('images/Kantor_Kelurahan_Margasari.png') }}", position: "center 33%" },
+        { image: "{{ asset('images/Opening_Insos.jpg') }}", position: "center 15%" },
+        { image: "{{ asset('images/poto.kebun_sayur.jpg') }}", position: "center 20%" }
+    ];
+
+    let current = 0;
+    let showingBg1 = true;
+
+    // Set style awal
+    [bg1, bg2].forEach(bg => {
+        Object.assign(bg.style, {
+            position: "absolute",
+            inset: "0",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            opacity: "0",
+            transition: "opacity 0.8s ease-in-out",
+            zIndex: 0
+        });
+    });
+
+    // Gambar pertama langsung tampil
+    bg1.style.backgroundImage = `url('${slides[0].image}')`;
+    bg1.style.backgroundPosition = slides[0].position;
+    bg1.style.opacity = "1";
+
+    function changeSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        const nextSlide = slides[nextIndex];
+
+        if (showingBg1) {
+            bg2.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg2.style.backgroundPosition = nextSlide.position;
+            bg2.style.opacity = "1"; // Fade-in layer baru
+            bg1.style.opacity = "0"; // Fade-out layer lama
+        } else {
+            bg1.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg1.style.backgroundPosition = nextSlide.position;
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
+        }
+
+        showingBg1 = !showingBg1;
+        current = nextIndex;
+    }
+
+    // Jalankan pertama kali dan setiap 6 detik
+    setInterval(changeSlide, 6000);
+});
+</script>
 @endpush
