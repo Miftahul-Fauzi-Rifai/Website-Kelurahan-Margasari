@@ -249,10 +249,10 @@
                         <a href="#" class="btn btn-outline-light btn-sm">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="#" class="btn btn-outline-light btn-sm">
+                        <a href="https://www.instagram.com/kel.margasari.bpn/" class="btn btn-outline-light btn-sm">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="#" class="btn btn-outline-light btn-sm">
+                        <a href="https://www.youtube.com/@margasaribarat2791" class="btn btn-outline-light btn-sm">
                             <i class="bi bi-youtube"></i>
                         </a>
                     </div>
@@ -263,15 +263,15 @@
                     <div class="text-light">
                         <p class="mb-2">
                             <i class="bi bi-geo-alt me-2"></i>
-                            Jl. Marga Sari No. 123, Balikpapan Utara
+                            Jalan Semoi No.46 RT.14 Kel. Margasari, Kec. Balikpapan Barat, Kota Balikpapan, Kalimantan Timur.
                         </p>
                         <p class="mb-2">
                             <i class="bi bi-telephone me-2"></i>
-                            (0542) 123-456
+                            0853-9330-6350
                         </p>
                         <p class="mb-2">
                             <i class="bi bi-envelope me-2"></i>
-                            admin@margasari.id
+                            margasari33@gmail.com
                         </p>
                     </div>
                 </div>
