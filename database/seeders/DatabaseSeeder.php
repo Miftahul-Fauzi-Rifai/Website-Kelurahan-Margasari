@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'ketuart01@margasari.id',
             'role_id' => 2, // ketua_rt role
             'rt' => '01',
-            'rw' => '01',
             'is_active' => true
         ]);
 

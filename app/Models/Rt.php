@@ -8,7 +8,6 @@ class Rt extends Model
 {
     protected $fillable = [
         'rt_code',
-        'rw_code',
         'name',
         'ketua_rt_name',
         'ketua_rt_phone',
@@ -29,6 +28,14 @@ class Rt extends Model
 
     public function getDisplayNameAttribute(): string
     {
-        return 'RT ' . $this->rt_code . ' / RW ' . $this->rw_code;
+        return 'RT ' . $this->rt_code;
+    }
+
+    /**
+     * Get the users (Ketua RT) associated with this RT.
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class, 'rt', 'rt_code');
     }
 }

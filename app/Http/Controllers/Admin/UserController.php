@@ -56,7 +56,6 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'rt' => $rt->rt_code,
-            'rw' => $rt->rw_code,
             'role_id' => $ketuaRtRole->id,
             'is_active' => true
         ]);
@@ -94,7 +93,6 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'rt' => $rt->rt_code,
-            'rw' => $rt->rw_code,
             'is_active' => $request->has('is_active'),
         ];
 

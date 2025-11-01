@@ -179,8 +179,8 @@
                             <div class="dropdown-header bg-light">
                                 <div class="fw-bold">{{ Auth::user()->name }}</div>
                                 <div class="small text-muted">{{ Auth::user()->email }}</div>
-                                @if(Auth::user()->rt && Auth::user()->rw)
-                                <div class="small text-success fw-semibold mt-1">RT {{ Auth::user()->rt }} / RW {{ Auth::user()->rw }}</div>
+                                @if(Auth::user()->rt)
+                                <div class="small text-success fw-semibold mt-1">RT {{ Auth::user()->rt }}</div>
                                 @endif
                             </div>
                             <div class="dropdown-divider"></div>

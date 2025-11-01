@@ -191,6 +191,12 @@
                 
                 <div class="sidebar-heading">Manajemen</div>
                 
+                <!-- Data RT -->
+                <a class="nav-link {{ request()->routeIs('admin.rts.*') ? 'active' : '' }}" href="{{ route('admin.rts.index') }}">
+                    <i class="bi bi-house-fill me-3"></i>
+                    Data RT
+                </a>
+                
                 <!-- Users (Ketua RT) -->
                 <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                     <i class="bi bi-people-fill me-3"></i>

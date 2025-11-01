@@ -81,7 +81,7 @@
                                 <option value="">Pilih RT</option>
                                 @foreach($rts as $rt)
                                     <option value="{{ $rt->rt_code }}" {{ old('rt_code', $user->rt) == $rt->rt_code ? 'selected' : '' }}>
-                                        RT {{ $rt->rt_code }} / RW {{ $rt->rw_code }} - {{ $rt->name }}
+                                        RT {{ $rt->rt_code }} - {{ $rt->ketua_rt_name }}
                                     </option>
                                 @endforeach
                             </select>
