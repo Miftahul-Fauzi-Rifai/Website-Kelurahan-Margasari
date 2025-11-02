@@ -46,6 +46,7 @@
                                     <option value="{{ $rt->rt_code }}" 
                                             data-name="{{ $rt->ketua_rt_name }}"
                                             data-phone="{{ $rt->ketua_rt_phone }}"
+                                            data-address="{{ $rt->address ?? '' }}"
                                             {{ old('rt_code') == $rt->rt_code ? 'selected' : '' }}>
                                         RT {{ $rt->rt_code }} - {{ $rt->ketua_rt_name }}
                                     </option>
@@ -54,7 +55,7 @@
                             @error('rt_code')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <small class="text-muted">Pilih RT terlebih dahulu, nama dan telepon akan otomatis terisi</small>
+                            <small class="text-muted">Pilih RT terlebih dahulu, data akan otomatis terisi</small>
                         </div>
 
                         <div class="mb-3">
@@ -113,11 +114,12 @@
 
                         <div class="mb-3">
                             <label for="address" class="form-label">Alamat <span class="text-danger">*</span></label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" 
-                                      id="address" name="address" rows="3" required>{{ old('address') }}</textarea>
+                            <textarea class="form-control @error('address') is-invalid @enderror bg-light" 
+                                      id="address" name="address" rows="3" required readonly>{{ old('address') }}</textarea>
                             @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <small class="text-muted">Otomatis terisi dari data RT</small>
                         </div>
 
                         <div class="d-flex gap-2">
@@ -142,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const rtSelect = document.getElementById('rt_code');
     const nameInput = document.getElementById('name');
     const phoneInput = document.getElementById('phone');
+    const addressInput = document.getElementById('address');
 
     // Auto-fill saat RT dipilih
     rtSelect.addEventListener('change', function() {
@@ -150,12 +153,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedOption.value) {
             const name = selectedOption.getAttribute('data-name');
             const phone = selectedOption.getAttribute('data-phone');
+            const address = selectedOption.getAttribute('data-address');
             
             nameInput.value = name;
             phoneInput.value = phone;
+            addressInput.value = address || '';
         } else {
             nameInput.value = '';
             phoneInput.value = '';
+            addressInput.value = '';
         }
     });
 

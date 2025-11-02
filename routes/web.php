@@ -81,6 +81,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     
     // RT Management
     Route::resource('rts', \App\Http\Controllers\Admin\RtController::class);
+    Route::get('/rts/{rt}/detail', [\App\Http\Controllers\Admin\RtController::class, 'editDetail'])->name('rts.edit-detail');
+    Route::put('/rts/{rt}/detail', [\App\Http\Controllers\Admin\RtController::class, 'updateDetail'])->name('rts.update-detail');
     
     // Report Review
     Route::get('/reports', [ReportReviewController::class, 'index'])->name('reports.index');

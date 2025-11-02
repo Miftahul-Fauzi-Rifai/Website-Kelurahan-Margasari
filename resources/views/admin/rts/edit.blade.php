@@ -84,6 +84,19 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Alamat Rumah Ketua RT</label>
+                            <textarea class="form-control @error('address') is-invalid @enderror" 
+                                      id="address" 
+                                      name="address" 
+                                      rows="3"
+                                      placeholder="Masukkan alamat lengkap rumah Ketua RT">{{ old('address', $rt->address) }}</textarea>
+                            @error('address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="text-muted">Contoh: Jl. Margasari No. 12, RT 001</small>
+                        </div>
+
                         <hr>
 
                         <!-- Population Data -->

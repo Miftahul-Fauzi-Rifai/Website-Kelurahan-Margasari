@@ -141,8 +141,13 @@
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('admin.rts.edit', $rt) }}" 
                                            class="btn btn-sm btn-warning" 
-                                           title="Edit">
+                                           title="Edit Data Dasar">
                                             <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="{{ route('admin.rts.edit-detail', $rt) }}" 
+                                           class="btn btn-sm btn-info" 
+                                           title="Isi Detail Data">
+                                            <i class="bi bi-clipboard-data"></i>
                                         </a>
                                         <form action="{{ route('admin.rts.destroy', $rt) }}" 
                                               method="POST" 
