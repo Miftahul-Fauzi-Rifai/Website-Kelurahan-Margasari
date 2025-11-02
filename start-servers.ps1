@@ -3,7 +3,7 @@
 # =======================================================
 # Cara pakai: 
 #   1. Buka PowerShell
-#   2. cd "d:\Develop Web Laravel\Terbaru web kel\margasaaa"
+#   2. cd "C:\Users\MSI MODERN 14\Documents\KULIAH\SEMESTER 5\INOVASI SOSIAL\Margavision Rep-Poji\Website-Kelurahan-Margasari"
 #   3. .\start-servers.ps1
 # =======================================================
 

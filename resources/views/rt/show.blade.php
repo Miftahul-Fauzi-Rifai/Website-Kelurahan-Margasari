@@ -5,7 +5,7 @@
 @section('content')
 <section class="bg-primary text-white py-5">
   <div class="container">
-    <h1 class="display-6 fw-bold">Detail RT {{ $rt->rt_code }} / RW {{ $rt->rw_code }}</h1>
+    <h1 class="display-6 fw-bold">Detail RT {{ $rt->rt_code }}</h1>
     <p class="mb-0">Informasi ketua RT, statistik penduduk, dan lokasi</p>
   </div>
 </section>
@@ -22,7 +22,7 @@
             <div class="row align-items-center">
               <div class="col-md-8">
                 <h4 class="fw-bold mb-1">{{ $rt->ketua_rt_name ?? 'Belum diisi' }}</h4>
-                <div class="text-muted mb-2">Ketua RT {{ $rt->rt_code }} / RW {{ $rt->rw_code }}</div>
+                <div class="text-muted mb-2">Ketua RT {{ $rt->rt_code }}</div>
                 <div><i class="bi bi-telephone me-2"></i>{{ $rt->ketua_rt_phone ?? '-' }}</div>
               </div>
               <div class="col-md-4 text-md-end">
@@ -94,7 +94,6 @@
   const lng = {{ $rt->longitude ?? 'null' }};
   const rtData = {
     rt_code: '{{ $rt->rt_code }}',
-    rw_code: '{{ $rt->rw_code }}',
     name: '{{ $rt->name }}',
     ketua_rt_name: '{{ $rt->ketua_rt_name }}',
     ketua_rt_phone: '{{ $rt->ketua_rt_phone }}',

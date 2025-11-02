@@ -30,34 +30,24 @@ class RtSeeder extends Seeder
         $baseLatitude = -1.2379;
         $baseLongitude = 116.8289;
         
-        // Distribusi RT dalam 8 RW (4 RT per RW)
+        // Generate koordinat RT yang tersebar secara realistis
         $coordinates = [];
-        $rtIndex = 1;
+        $totalRT = 32; // Total RT di Kelurahan Margasari
         
-        // Generate koordinat yang tersebar secara realistis
-        for ($rw = 1; $rw <= 8; $rw++) {
-            for ($rt = 1; $rt <= 4; $rt++) {
-                // Offset per RW dalam grid 2x4
-                $rwRow = floor(($rw - 1) / 4);
-                $rwCol = ($rw - 1) % 4;
-                
-                // Offset per RT dalam setiap RW
-                $rtRow = floor(($rt - 1) / 2);
-                $rtCol = ($rt - 1) % 2;
-                
-                // Hitung koordinat final dengan variasi random
-                $lat = $baseLatitude + ($rwRow * 0.008) + ($rtRow * 0.004) + (rand(-20, 20) / 10000);
-                $lng = $baseLongitude + ($rwCol * 0.012) + ($rtCol * 0.006) + (rand(-20, 20) / 10000);
-                
-                $coordinates[] = [
-                    'rt' => $rtIndex,
-                    'rw' => sprintf('%03d', $rw),
-                    'lat' => round($lat, 6),
-                    'lng' => round($lng, 6)
-                ];
-                
-                $rtIndex++;
-            }
+        // Generate koordinat yang tersebar dalam grid
+        for ($rtIndex = 1; $rtIndex <= $totalRT; $rtIndex++) {
+            $row = floor(($rtIndex - 1) / 8);
+            $col = ($rtIndex - 1) % 8;
+            
+            // Hitung koordinat final dengan variasi random
+            $lat = $baseLatitude + ($row * 0.006) + (rand(-20, 20) / 10000);
+            $lng = $baseLongitude + ($col * 0.008) + (rand(-20, 20) / 10000);
+            
+            $coordinates[] = [
+                'rt' => $rtIndex,
+                'lat' => round($lat, 6),
+                'lng' => round($lng, 6)
+            ];
         }
 
         foreach ($coordinates as $index => $coord) {
@@ -74,8 +64,7 @@ class RtSeeder extends Seeder
             Rt::updateOrCreate(
                 ['rt_code' => sprintf('%03d', $coord['rt'])],
                 [
-                    'rw_code' => $coord['rw'],
-                    'name' => 'RT ' . sprintf('%03d', $coord['rt']) . ' / RW ' . $coord['rw'],
+                    'name' => 'RT ' . sprintf('%03d', $coord['rt']),
                     'ketua_rt_name' => $ketuaNames[$index],
                     'ketua_rt_phone' => $phoneNumber,
                     'num_households' => $households,

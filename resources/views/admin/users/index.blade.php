@@ -28,7 +28,7 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>RT/RW</th>
+                                <th>RT</th>
                                 <th>Telepon</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -42,7 +42,7 @@
                                 </td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <span class="badge bg-primary">RT {{ $user->rt }} / RW {{ $user->rw }}</span>
+                                    <span class="badge bg-primary">RT {{ $user->rt }}</span>
                                 </td>
                                 <td>{{ $user->phone ?? '-' }}</td>
                                 <td>

@@ -68,7 +68,6 @@
                       <div class="d-flex justify-content-between align-items-start">
                         <div>
                           <strong class="text-primary rt-title">RT {{ $rt->rt_code }}</strong>
-                          <span class="small text-muted ms-2 d-none d-sm-inline">RW {{ $rt->rw_code }}</span>
                           @if($rt->ketua_rt_name)
                             <div class="small text-success rt-ketua">{{ Str::limit($rt->ketua_rt_name, 20) }}</div>
                           @endif

@@ -79,6 +79,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('users', UserController::class);
     Route::patch('/users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
     
+    // RT Management
+    Route::resource('rts', \App\Http\Controllers\Admin\RtController::class);
+    
     // Report Review
     Route::get('/reports', [ReportReviewController::class, 'index'])->name('reports.index');
     Route::get('/reports/{report}', [ReportReviewController::class, 'show'])->name('reports.show');

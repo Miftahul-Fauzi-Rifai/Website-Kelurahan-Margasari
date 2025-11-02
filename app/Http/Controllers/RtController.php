@@ -15,7 +15,6 @@ class RtController extends Controller
         if ($search = $request->get('search')) {
             $query->where(function($q) use ($search) {
                 $q->where('rt_code', 'LIKE', "%{$search}%")
-                  ->orWhere('rw_code', 'LIKE', "%{$search}%")
                   ->orWhere('ketua_rt_name', 'LIKE', "%{$search}%")
                   ->orWhere('name', 'LIKE', "%{$search}%");
             });
@@ -35,7 +34,6 @@ class RtController extends Controller
             ->map(function ($rt) {
                 return [
                     'rt_code' => $rt->rt_code,
-                    'rw_code' => $rt->rw_code,
                     'name' => $rt->name ?? ('RT ' . $rt->rt_code),
                     'ketua_rt_name' => $rt->ketua_rt_name,
                     'ketua_rt_phone' => $rt->ketua_rt_phone,
