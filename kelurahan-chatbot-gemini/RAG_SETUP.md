@@ -46,13 +46,13 @@ npm run rag:test
 ### File 1: `rag_index.js` (One-time Setup)
 
 **Fungsi:**
-- Membaca data dari `data/klarifikasi_istilah.json` dan `data/train.json`
+- Membaca data dari `data/kosakata_jawa.json` dan `data/train.json`
 - Menggunakan model `text-embedding-004` untuk membuat vektor embedding
 - Menyimpan hasil ke `data/embedded_docs.json`
 
 **Kapan Dijalankan:**
 - Sekali saat setup awal
-- Setiap kali ada data baru ditambahkan ke `train.json` atau `klarifikasi_istilah.json`
+- Setiap kali ada data baru ditambahkan ke `train.json` atau `kosakata_jawa.json`
 
 ### File 2: `rag_handler.js` (Runtime Module)
 
@@ -222,7 +222,7 @@ const TOP_K = 3; // Jumlah dokumen yang diambil - naikkan untuk lebih banyak kon
 
 ## 🔄 Update Data
 
-Jika ada data baru di `train.json` atau `klarifikasi_istilah.json`:
+Jika ada data baru di `train.json` atau `kosakata_jawa.json`:
 
 ```bash
 # Re-index embeddings

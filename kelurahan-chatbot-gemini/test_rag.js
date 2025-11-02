@@ -23,7 +23,9 @@ async function testRAG() {
     'Bagaimana cara membuat KTP?',
     'Apa itu SKCK?',
     'Dimana lokasi Disdukcapil?',
-    'Cara perpanjang SIM online'
+    'Cara perpanjang SIM online',
+    'Opo kuwi SKCK',
+    'Nopo niku STNK?'
   ];
   
   for (const query of testQueries) {

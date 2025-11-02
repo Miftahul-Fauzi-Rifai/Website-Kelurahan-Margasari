@@ -17,7 +17,7 @@ npm run rag:index
 ```
 
 **Input:**
-- `data/klarifikasi_istilah.json` (25 items)
+- `data/kosakata_jawa.json` (25 items)
 - `data/train.json` (83 items)
 
 **Output:**
@@ -85,7 +85,7 @@ npm run rag:index
 ```
 🚀 Memulai proses indexing RAG...
 
-✅ Loaded 25 items from ./data/klarifikasi_istilah.json
+✅ Loaded 25 items from ./data/kosakata_jawa.json
 ✅ Loaded 83 items from ./data/train.json
 
 📊 Total data yang akan diproses: 108 items
@@ -290,7 +290,7 @@ const GENERATION_MODEL = 'gemini-2.0-flash-exp'; // Bisa ganti ke gemini-1.5-fla
 
 ## 🔄 UPDATE DATA
 
-Jika menambahkan data baru ke `train.json` atau `klarifikasi_istilah.json`:
+Jika menambahkan data baru ke `train.json` atau `kosakata_jawa.json`:
 
 ```bash
 # 1. Re-index embeddings

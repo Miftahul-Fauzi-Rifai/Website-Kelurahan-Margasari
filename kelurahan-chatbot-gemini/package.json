@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server.js",
     "rag:index": "node rag_index.js",
-    "rag:test": "node test_rag.js"
+    "rag:test": "node test_rag.js",
+    "test:local": "node test_local_rag.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",

@@ -12,7 +12,7 @@ dotenv.config();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const EMBEDDING_MODEL = 'text-embedding-004'; // Model embedding Google terbaru
 const DATA_FILES = [
-  './data/klarifikasi_istilah.json',
+  './data/kosakata_jawa.json',
   './data/train.json'
 ];
 const OUTPUT_FILE = './data/embedded_docs.json';
@@ -26,6 +26,28 @@ if (!GEMINI_API_KEY) {
 // ======== INISIALISASI GEMINI AI =========
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const embeddingModel = genAI.getGenerativeModel({ model: EMBEDDING_MODEL });
+
+// ======== FUNGSI HELPER: TRANSFORM KOSAKATA JAWA =========
+function transformKosakata(item) {
+  // Jika item memiliki format kosakata Jawa (indonesia, ngoko, madya, krama)
+  if (item.indonesia && (item.ngoko || item.madya || item.krama)) {
+    const parts = [];
+    if (item.ngoko) parts.push(`Ngoko: ${item.ngoko}`);
+    if (item.madya) parts.push(`Madya: ${item.madya}`);
+    if (item.krama) parts.push(`Krama: ${item.krama}`);
+    
+    return {
+      ...item,
+      text: `Apa bahasa Jawa dari '${item.indonesia}'?`,
+      answer: `Bahasa Jawa dari '${item.indonesia}':\n- ${parts.join('\n- ')}`,
+      tags: item.tags || ['kosakata', 'bahasa jawa', item.indonesia],
+      kategori_utama: item.kategori_utama || 'kosakata_jawa'
+    };
+  }
+  
+  // Jika sudah format standar, return as-is
+  return item;
+}
 
 // ======== FUNGSI HELPER: LOAD DATA =========
 function loadTrainingData() {
@@ -42,7 +64,9 @@ function loadTrainingData() {
       const jsonData = JSON.parse(rawData);
       
       if (Array.isArray(jsonData)) {
-        allData = allData.concat(jsonData);
+        // Transform kosakata jawa format jika diperlukan
+        const transformedData = jsonData.map(item => transformKosakata(item));
+        allData = allData.concat(transformedData);
         console.log(`✅ Loaded ${jsonData.length} items from ${file}`);
       } else {
         console.warn(`⚠️  ${file} bukan array, dilewati.`);

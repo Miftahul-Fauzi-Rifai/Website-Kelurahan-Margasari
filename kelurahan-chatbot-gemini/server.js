@@ -86,7 +86,7 @@ const rateLimit = {
 
 // ======== Penyimpanan data training lokal =========
 const TRAIN_FILE = process.env.TRAIN_DATA_FILE || './data/train.json';
-const KLARIFIKASI_FILE = './data/klarifikasi_istilah.json';
+const KLARIFIKASI_FILE = './data/kosakata_jawa.json';
 
 if (!fs.existsSync(TRAIN_FILE)) fs.writeFileSync(TRAIN_FILE, JSON.stringify([]));
 if (!fs.existsSync(KLARIFIKASI_FILE)) fs.writeFileSync(KLARIFIKASI_FILE, JSON.stringify([]));
