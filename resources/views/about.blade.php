@@ -437,9 +437,3 @@
 }
 
 </style>
-<<<<<<< HEAD
-@endpush
-=======
-@endpush
-
->>>>>>> 3ba0a540739b5fab64717471f6bcc28bbd776ccd
