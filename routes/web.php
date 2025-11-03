@@ -12,6 +12,10 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\KetuaRt\ReportController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\TentangController as AdminTentangController;
+use App\Http\Controllers\TentangController;
+use App\Http\Controllers\Admin\StrukturController;
+use App\Http\Controllers\Admin\SosialMediaController;
 
 // Chatbot API Proxy - Forward requests ke Node.js server internal
 // Ini memungkinkan Laravel dan Node.js berbagi 1 hosting/domain yang sama
@@ -107,3 +111,22 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
         return view('dashboard');
     })->name('index');
 });
+
+// Untuk Admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/tentang', [AdminTentangController::class, 'edit'])->name('tentang.edit');
+    Route::post('/tentang', [AdminTentangController::class, 'update'])->name('tentang.update');
+
+    // Struktur Organisasi
+    Route::post('/tentang/struktur', [AdminTentangController::class, 'storeStruktur'])->name('tentang.struktur.store');
+    Route::delete('/tentang/struktur/{id}', [AdminTentangController::class, 'destroyStruktur'])->name('tentang.struktur.destroy');
+    Route::put('/tentang/struktur/{id}', [AdminTentangController::class, 'updateStruktur'])->name('tentang.struktur.update');
+
+    // Sosial Media
+    Route::post('/tentang/sosial', [AdminTentangController::class, 'storeSosial'])->name('tentang.sosial.store');
+    Route::delete('/tentang/sosial/{id}', [AdminTentangController::class, 'destroySosial'])->name('tentang.sosial.destroy');
+    Route::put('/tentang/sosial/{id}', [AdminTentangController::class, 'updateSosial'])->name('tentang.sosial.update');
+});
+
+// Untuk Publik
+Route::get('/tentang', [App\Http\Controllers\TentangController::class, 'index'])->name('about');

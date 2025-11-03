@@ -164,6 +164,11 @@
                 
                 <div class="sidebar-heading">Konten</div>
                 
+                <!-- Tentang Kelurahan -->
+                <a class="nav-link {{ request()->routeIs('admin.tentang.*') ? 'active' : '' }}" href="{{ route('admin.tentang.edit', 1) }}">
+                    <i class="bi bi-info-circle me-3"></i>
+                    Tentang Kelurahan
+                </a>
                 <!-- Posts -->
                 <a class="nav-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}" 
                    href="{{ route('admin.posts.index') }}">
@@ -278,17 +283,17 @@
                         <a class="nav-link dropdown-toggle d-flex align-items-center" 
                            href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="me-2 d-none d-lg-inline text-gray-600 fw-semibold">
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->name ?? 'Admin' }}
                             </span>
-                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" 
-                                 style="width: 40px; height: 40px; font-size: 1.1rem;">
-                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold"
+                                 style="width: 40px; height: 40px; font-size: 1rem;">
+                                {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in" style="min-width: 200px;">
                             <div class="dropdown-header bg-light">
-                                <div class="fw-bold">{{ Auth::user()->name }}</div>
-                                <div class="small text-muted">{{ Auth::user()->email }}</div>
+                                <div class="fw-bold">{{ Auth::user()->name ?? 'Admin' }}</div>
+                                <div class="small text-muted">{{ Auth::user()->name ?? 'Admin' }}</div>
                             </div>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">
