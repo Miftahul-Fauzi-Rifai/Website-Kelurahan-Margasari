@@ -125,6 +125,32 @@
         .navbar-sticky .nav-link {
             transition: all 0.3s ease;
         }
+
+        .navbar-brand img {
+            height: 60px;             /* besarin logo */
+            width: auto;
+            transition: transform 0.3s ease;
+            margin-top: 0px;         /* geser sedikit biar pas tengah */
+        }
+
+        .navbar {
+            line-height: 1.2;         /* jaga agar navbar gak makin tinggi */
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        /* Efek hover biar elegan */
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsif di HP: kecilin dikit */
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 38px;
+                margin-top: -3px;
+            }
+        }
     </style>
     
     <!-- Chatbot CSS -->
@@ -147,11 +173,9 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand fw-bold text-dark" href="{{ route('home') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" width="40" height="40" class="me-2" onerror="this.style.display='none'">
-                    Kelurahan Marga Sari
-                </a>
-                
+                <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="{{ route('home') }}">
+                    <img src="{{ asset('images/logo-Balikpapan.png') }}" alt="Logo Kelurahan" width="38" height="38" class="me-2">
+                </a>            
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -246,13 +270,10 @@
                         Melayani masyarakat dengan sepenuh hati untuk kemajuan bersama.
                     </p>
                     <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-outline-light btn-sm">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://www.instagram.com/kel.margasari.bpn/" class="btn btn-outline-light btn-sm">
+                        <a href="https://www.instagram.com/kel.margasari.bpn/" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener noreferrer">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="https://www.youtube.com/@margasaribarat2791" class="btn btn-outline-light btn-sm">
+                        <a href="https://www.youtube.com/@margasaribarat2791" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener noreferrer">
                             <i class="bi bi-youtube"></i>
                         </a>
                     </div>
