@@ -91,9 +91,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Report Review
     Route::get('/reports', [ReportReviewController::class, 'index'])->name('reports.index');
     Route::get('/reports/{report}', [ReportReviewController::class, 'show'])->name('reports.show');
+    Route::get('/reports/{report}/print', [\App\Http\Controllers\KetuaRt\ReportController::class, 'print'])->name('reports.print');
     Route::patch('/reports/{report}/status', [ReportReviewController::class, 'updateStatus'])->name('reports.update-status');
     Route::delete('/reports/{report}', [ReportReviewController::class, 'destroy'])->name('reports.destroy');
     Route::get('/reports/export', [ReportReviewController::class, 'export'])->name('reports.export');
+    
+    // Settings
+    Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    
+    // Profile
+    Route::get('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
 });
 
 // Ketua RT routes
@@ -102,6 +111,7 @@ Route::middleware(['auth', 'role:ketua_rt'])->prefix('ketua-rt')->name('ketua-rt
     
     // Reports Management
     Route::resource('reports', ReportController::class);
+    Route::get('/reports/{report}/print', [ReportController::class, 'print'])->name('reports.print');
     Route::post('/reports/{report}/submit', [ReportController::class, 'submit'])->name('reports.submit');
 });
 

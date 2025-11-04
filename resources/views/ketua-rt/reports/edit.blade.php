@@ -63,38 +63,96 @@
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <small class="text-muted">Tuliskan ringkasan kondisi lingkungan dan warga pada bulan ini</small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="activities" class="form-label">Kegiatan yang Dilakukan</label>
-                            <textarea class="form-control @error('activities') is-invalid @enderror" 
-                                      id="activities" name="activities" rows="4">{{ old('activities', $report->activities) }}</textarea>
-                            @error('activities')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <label class="form-label">Kegiatan yang Dilakukan</label>
+                            <small class="text-muted d-block mb-3">Isi setiap kegiatan dengan detail tanggal, uraian tugas, keterangan, dan foto (opsional)</small>
+                            
+                            @php
+                                $activities = $report->activities ? json_decode($report->activities, true) : [];
+                                if (!is_array($activities)) {
+                                    // Fallback untuk format lama (string)
+                                    $activitiesText = explode("\n", trim($report->activities));
+                                    $activities = [];
+                                    foreach($activitiesText as $act) {
+                                        if(trim($act)) {
+                                            $activities[] = ['date' => '', 'task' => trim($act), 'note' => '', 'photo' => ''];
+                                        }
+                                    }
+                                }
+                                // Batasi maksimal 5 kegiatan
+                                $activities = array_slice($activities, 0, 5);
+                                // Pastikan minimal ada 5 slot
+                                while(count($activities) < 5) {
+                                    $activities[] = ['date' => '', 'task' => '', 'note' => '', 'photo' => ''];
+                                }
+                            @endphp
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="activities-table">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th width="5%">NO</th>
+                                            <th width="15%">TANGGAL</th>
+                                            <th width="35%">URAIAN TUGAS</th>
+                                            <th width="20%">KETERANGAN</th>
+                                            <th width="25%">FOTO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($activities as $index => $activity)
+                                            <tr class="activity-row">
+                                                <td class="text-center align-middle row-number">{{ $index + 1 }}</td>
+                                                <td>
+                                                    <input type="date" 
+                                                           class="form-control form-control-sm" 
+                                                           name="activities[{{ $index }}][date]" 
+                                                           value="{{ old('activities.'.$index.'.date', $activity['date'] ?? '') }}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" 
+                                                           class="form-control form-control-sm" 
+                                                           name="activities[{{ $index }}][task]" 
+                                                           value="{{ old('activities.'.$index.'.task', $activity['task'] ?? '') }}"
+                                                           placeholder="Contoh: Kerja bakti membersihkan lingkungan">
+                                                </td>
+                                                <td>
+                                                    <input type="text" 
+                                                           class="form-control form-control-sm" 
+                                                           name="activities[{{ $index }}][note]" 
+                                                           value="{{ old('activities.'.$index.'.note', $activity['note'] ?? '') }}"
+                                                           placeholder="Opsional">
+                                                </td>
+                                                <td>
+                                                    @if(!empty($activity['photo']))
+                                                        <div class="mb-1">
+                                                            <a href="{{ asset('storage/' . $activity['photo']) }}" target="_blank" class="text-primary">
+                                                                <i class="bi bi-image"></i> Lihat Foto
+                                                            </a>
+                                                        </div>
+                                                    @endif
+                                                    <input type="file" 
+                                                           class="form-control form-control-sm" 
+                                                           name="activities[{{ $index }}][photo]"
+                                                           accept="image/*">
+                                                    <small class="text-muted">Max 2MB</small>
+                                                    @if(!empty($activity['photo']))
+                                                        <input type="hidden" name="activities[{{ $index }}][photo_old]" value="{{ $activity['photo'] }}">
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <small class="text-muted d-block mt-2">Isi kegiatan yang ada saja, maksimal 5 kegiatan. Baris kosong akan diabaikan.</small>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="total_residents" class="form-label">Total Warga</label>
-                                <input type="number" class="form-control @error('total_residents') is-invalid @enderror" 
-                                       id="total_residents" name="total_residents" 
-                                       value="{{ old('total_residents', $report->total_residents) }}" min="0">
-                                @error('total_residents')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="total_households" class="form-label">Total KK</label>
-                                <input type="number" class="form-control @error('total_households') is-invalid @enderror" 
-                                       id="total_households" name="total_households" 
-                                       value="{{ old('total_households', $report->total_households) }}" min="0">
-                                @error('total_households')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                        <script>
+                            // Script removed - fixed 5 rows only
+                        </script>
 
                         <div class="mb-3">
                             <label for="issues" class="form-label">Permasalahan yang Ada</label>
@@ -110,23 +168,6 @@
                             <textarea class="form-control @error('suggestions') is-invalid @enderror" 
                                       id="suggestions" name="suggestions" rows="3">{{ old('suggestions', $report->suggestions) }}</textarea>
                             @error('suggestions')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="attachment" class="form-label">Lampiran (Opsional)</label>
-                            @if($report->attachment)
-                            <div class="mb-2">
-                                <small class="text-muted">Lampiran saat ini: 
-                                    <a href="{{ asset('storage/' . $report->attachment) }}" target="_blank">Lihat File</a>
-                                </small>
-                            </div>
-                            @endif
-                            <input type="file" class="form-control @error('attachment') is-invalid @enderror" 
-                                   id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png">
-                            <small class="text-muted">Format: PDF, JPG, PNG. Maksimal 5MB. Kosongkan jika tidak ingin mengubah.</small>
-                            @error('attachment')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

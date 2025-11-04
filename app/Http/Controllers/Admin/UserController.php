@@ -81,7 +81,6 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:20',
             'address' => 'required|string',
             'rt_code' => 'required|exists:rts,rt_code',
-            'is_active' => 'boolean',
         ]);
 
         // Get RT data
@@ -93,7 +92,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'rt' => $rt->rt_code,
-            'is_active' => $request->has('is_active'),
+            'is_active' => $request->input('is_active', 0) == 1,
         ];
 
         if ($request->filled('password')) {

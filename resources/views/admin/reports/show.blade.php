@@ -21,7 +21,12 @@
             <div class="card shadow">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">Informasi Laporan</h6>
-                    {!! $report->status_badge !!}
+                    <div>
+                        {!! $report->status_badge !!}
+                        <a href="{{ route('admin.reports.print', $report) }}" class="btn btn-sm btn-primary ms-2" target="_blank">
+                            <i class="bi bi-printer"></i> Cetak Laporan
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="mb-4">
@@ -41,32 +46,60 @@
                     @if($report->activities)
                     <div class="mb-3">
                         <h6 class="font-weight-bold">Kegiatan yang Dilakukan</h6>
-                        <p class="text-muted" style="white-space: pre-line;">{{ $report->activities }}</p>
+                        @php
+                            $activities = json_decode($report->activities, true);
+                            if (!is_array($activities)) {
+                                // Fallback untuk format lama
+                                $activities = [];
+                            }
+                        @endphp
+                        @if(count($activities) > 0)
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th width="5%">NO</th>
+                                            <th width="15%">TANGGAL</th>
+                                            <th width="35%">URAIAN TUGAS</th>
+                                            <th width="20%">KETERANGAN</th>
+                                            <th width="25%">FOTO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($activities as $index => $activity)
+                                            <tr>
+                                                <td class="text-center">{{ $index + 1 }}</td>
+                                                <td>
+                                                    @if(!empty($activity['date']))
+                                                        {{ \Carbon\Carbon::parse($activity['date'])->format('d/m/Y') }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>{{ $activity['task'] ?? '-' }}</td>
+                                                <td>{{ $activity['note'] ?? '-' }}</td>
+                                                <td>
+                                                    @if(!empty($activity['photo']))
+                                                        <a href="{{ asset('storage/' . $activity['photo']) }}" target="_blank">
+                                                            <img src="{{ asset('storage/' . $activity['photo']) }}" 
+                                                                 alt="Foto Kegiatan" 
+                                                                 class="img-thumbnail" 
+                                                                 style="max-width: 100px; max-height: 80px;">
+                                                        </a>
+                                                    @else
+                                                        <span class="text-muted">-</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <p class="text-muted">Tidak ada kegiatan</p>
+                        @endif
                     </div>
                     @endif
-
-                    <div class="row mb-3">
-                        @if($report->total_residents)
-                        <div class="col-md-6">
-                            <div class="card bg-light">
-                                <div class="card-body text-center">
-                                    <h3 class="text-primary">{{ $report->total_residents }}</h3>
-                                    <p class="mb-0 text-muted">Total Warga</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @if($report->total_households)
-                        <div class="col-md-6">
-                            <div class="card bg-light">
-                                <div class="card-body text-center">
-                                    <h3 class="text-success">{{ $report->total_households }}</h3>
-                                    <p class="mb-0 text-muted">Total KK</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
 
                     @if($report->issues)
                     <div class="mb-3">
@@ -79,15 +112,6 @@
                     <div class="mb-3">
                         <h6 class="font-weight-bold">Saran/Usulan</h6>
                         <p class="text-muted" style="white-space: pre-line;">{{ $report->suggestions }}</p>
-                    </div>
-                    @endif
-
-                    @if($report->attachment)
-                    <div class="mb-3">
-                        <h6 class="font-weight-bold">Lampiran</h6>
-                        <a href="{{ asset('storage/' . $report->attachment) }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-paperclip"></i> Lihat Lampiran
-                        </a>
                     </div>
                     @endif
 
@@ -125,10 +149,16 @@
                         <strong>Kontak:</strong><br>
                         {{ $report->user->phone ?? '-' }}
                     </div>
-                    <div>
+                    <div class="mb-3">
                         <strong>Email:</strong><br>
                         {{ $report->user->email }}
                     </div>
+                    
+                    <hr>
+                    
+                    <a href="{{ route('admin.reports.print', $report) }}" class="btn btn-success btn-sm w-100" target="_blank">
+                        <i class="bi bi-printer"></i> Cetak Laporan
+                    </a>
                 </div>
             </div>
 

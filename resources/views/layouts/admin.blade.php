@@ -207,6 +207,12 @@
                     <i class="bi bi-people-fill me-3"></i>
                     Kelola Ketua RT
                 </a>
+                
+                <!-- Settings -->
+                <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.index') }}">
+                    <i class="bi bi-gear-fill me-3"></i>
+                    Settings
+                </a>
             </nav>
         </div>
 
@@ -296,11 +302,11 @@
                                 <div class="small text-muted">{{ Auth::user()->name ?? 'Admin' }}</div>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('admin.profile.index') }}">
                                 <i class="bi bi-person me-2 text-primary"></i>
                                 Profile
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
                                 <i class="bi bi-gear me-2 text-primary"></i>
                                 Settings
                             </a>

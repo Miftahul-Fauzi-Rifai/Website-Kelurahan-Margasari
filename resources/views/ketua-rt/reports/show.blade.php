@@ -20,6 +20,9 @@
             <h6 class="m-0 font-weight-bold text-success">Informasi Laporan</h6>
             <div>
                 {!! $report->status_badge !!}
+                <a href="{{ route('ketua-rt.reports.print', $report) }}" class="btn btn-sm btn-primary ms-2" target="_blank">
+                    <i class="bi bi-printer"></i> Cetak Laporan
+                </a>
                 @if(!in_array($report->status, ['approved', 'rejected']))
                     <a href="{{ route('ketua-rt.reports.edit', $report) }}" class="btn btn-sm btn-warning ms-2">
                         <i class="bi bi-pencil"></i> Edit
@@ -45,31 +48,57 @@
             @if($report->activities)
             <div class="mb-3">
                 <h6 class="font-weight-bold">Kegiatan yang Dilakukan</h6>
-                <p class="text-muted" style="white-space: pre-line;">{{ $report->activities }}</p>
-            </div>
-            @endif
-
-            @if($report->total_residents || $report->total_households)
-            <div class="row mb-3">
-                @if($report->total_residents)
-                <div class="col-md-6">
-                    <div class="card bg-light">
-                        <div class="card-body text-center">
-                            <h3 class="text-success">{{ $report->total_residents }}</h3>
-                            <p class="mb-0 text-muted">Total Warga</p>
-                        </div>
+                @php
+                    $activities = json_decode($report->activities, true);
+                    if (!is_array($activities)) {
+                        // Fallback untuk format lama
+                        $activities = [];
+                    }
+                @endphp
+                @if(count($activities) > 0)
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th width="5%">NO</th>
+                                    <th width="15%">TANGGAL</th>
+                                    <th width="40%">URAIAN TUGAS</th>
+                                    <th width="20%">KETERANGAN</th>
+                                    <th width="20%">FOTO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($activities as $index => $activity)
+                                    <tr>
+                                        <td class="text-center">{{ $index + 1 }}</td>
+                                        <td>
+                                            @if(!empty($activity['date']))
+                                                {{ \Carbon\Carbon::parse($activity['date'])->format('d/m/Y') }}
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>{{ $activity['task'] ?? '-' }}</td>
+                                        <td>{{ $activity['note'] ?? '-' }}</td>
+                                        <td>
+                                            @if(!empty($activity['photo']))
+                                                <a href="{{ asset('storage/' . $activity['photo']) }}" target="_blank">
+                                                    <img src="{{ asset('storage/' . $activity['photo']) }}" 
+                                                         alt="Foto Kegiatan" 
+                                                         class="img-thumbnail" 
+                                                         style="max-width: 100px; max-height: 80px;">
+                                                </a>
+                                            @else
+                                                <span class="text-muted">-</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                @endif
-                @if($report->total_households)
-                <div class="col-md-6">
-                    <div class="card bg-light">
-                        <div class="card-body text-center">
-                            <h3 class="text-success">{{ $report->total_households }}</h3>
-                            <p class="mb-0 text-muted">Total KK</p>
-                        </div>
-                    </div>
-                </div>
+                @else
+                    <p class="text-muted">Tidak ada kegiatan</p>
                 @endif
             </div>
             @endif

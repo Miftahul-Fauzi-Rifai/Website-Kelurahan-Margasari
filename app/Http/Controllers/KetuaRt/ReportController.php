@@ -5,6 +5,7 @@ namespace App\Http\Controllers\KetuaRt;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -74,12 +75,15 @@ class ReportController extends Controller
             'month' => 'required|date_format:Y-m',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'activities' => 'nullable|string',
+            'activities' => 'nullable|array',
+            'activities.*.date' => 'nullable|date',
+            'activities.*.task' => 'nullable|string',
+            'activities.*.note' => 'nullable|string',
+            'activities.*.photo' => 'nullable|image|max:2048', // 2MB
             'total_residents' => 'nullable|integer|min:0',
             'total_households' => 'nullable|integer|min:0',
             'issues' => 'nullable|string',
             'suggestions' => 'nullable|string',
-            'attachment' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120', // 5MB
         ]);
 
         $user = Auth::user();
@@ -93,15 +97,33 @@ class ReportController extends Controller
             return back()->withErrors(['month' => 'Laporan untuk bulan ini sudah ada'])->withInput();
         }
 
-        $data = $request->except('attachment');
+        $data = $request->except(['activities']);
         $data['user_id'] = $user->id;
         $data['rt_code'] = $user->rt;
         $data['status'] = 'draft';
 
-        // Upload attachment
-        if ($request->hasFile('attachment')) {
-            $path = $request->file('attachment')->store('reports', 'public');
-            $data['attachment'] = $path;
+        // Process activities - filter empty rows and handle photo upload
+        if ($request->has('activities')) {
+            $processedActivities = [];
+            foreach ($request->activities as $activity) {
+                if (!empty($activity['task'])) {
+                    $activityData = [
+                        'date' => $activity['date'] ?? '',
+                        'task' => $activity['task'],
+                        'note' => $activity['note'] ?? '',
+                        'photo' => ''
+                    ];
+                    
+                    // Upload photo if exists
+                    if (isset($activity['photo']) && $activity['photo'] instanceof \Illuminate\Http\UploadedFile) {
+                        $path = $activity['photo']->store('reports/activities', 'public');
+                        $activityData['photo'] = $path;
+                    }
+                    
+                    $processedActivities[] = $activityData;
+                }
+            }
+            $data['activities'] = json_encode($processedActivities);
         }
 
         $report = Report::create($data);
@@ -155,25 +177,46 @@ class ReportController extends Controller
             'month' => 'required|date_format:Y-m',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'activities' => 'nullable|string',
+            'activities' => 'nullable|array',
+            'activities.*.date' => 'nullable|date',
+            'activities.*.task' => 'nullable|string',
+            'activities.*.note' => 'nullable|string',
+            'activities.*.photo' => 'nullable|image|max:2048', // 2MB
+            'activities.*.photo_old' => 'nullable|string',
             'total_residents' => 'nullable|integer|min:0',
             'total_households' => 'nullable|integer|min:0',
             'issues' => 'nullable|string',
             'suggestions' => 'nullable|string',
-            'attachment' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120',
         ]);
 
-        $data = $request->except('attachment');
+        $data = $request->except(['activities']);
 
-        // Upload attachment baru
-        if ($request->hasFile('attachment')) {
-            // Hapus file lama
-            if ($report->attachment) {
-                Storage::disk('public')->delete($report->attachment);
+        // Process activities - filter empty rows and handle photo upload
+        if ($request->has('activities')) {
+            $processedActivities = [];
+            foreach ($request->activities as $activity) {
+                if (!empty($activity['task'])) {
+                    $activityData = [
+                        'date' => $activity['date'] ?? '',
+                        'task' => $activity['task'],
+                        'note' => $activity['note'] ?? '',
+                        'photo' => $activity['photo_old'] ?? '' // Keep old photo by default
+                    ];
+                    
+                    // Upload new photo if exists
+                    if (isset($activity['photo']) && $activity['photo'] instanceof \Illuminate\Http\UploadedFile) {
+                        // Delete old photo
+                        if (!empty($activity['photo_old'])) {
+                            Storage::disk('public')->delete($activity['photo_old']);
+                        }
+                        $path = $activity['photo']->store('reports/activities', 'public');
+                        $activityData['photo'] = $path;
+                    }
+                    
+                    $processedActivities[] = $activityData;
+                }
             }
-            
-            $path = $request->file('attachment')->store('reports', 'public');
-            $data['attachment'] = $path;
+            $data['activities'] = json_encode($processedActivities);
         }
 
         $report->update($data);
@@ -225,5 +268,20 @@ class ReportController extends Controller
 
         return redirect()->route('ketua-rt.reports.index')
             ->with('success', 'Laporan berhasil dihapus');
+    }
+
+    // Download/Print laporan
+    public function print(Report $report)
+    {
+        // Admin bisa print semua, Ketua RT hanya bisa print laporan sendiri
+        if (!Auth::user()->hasRole('admin') && $report->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        // Get settings
+        $lurah_name = Setting::get('lurah_name', 'HENDRA JAYA PRAWIRA, S.ST');
+        $kelurahan_name = Setting::get('kelurahan_name', 'KELURAHAN MARGA SARI');
+
+        return view('ketua-rt.reports.print', compact('report', 'lurah_name', 'kelurahan_name'));
     }
 }
