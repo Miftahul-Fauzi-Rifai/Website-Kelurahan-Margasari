@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>@yield('title', 'Dashboard Ketua RT') - Kelurahan Marga Sari</title>
@@ -113,11 +113,132 @@
             transform: scale(1.05);
         }
         
-        @media (max-width: 768px) {
-            .sidebar {
-                min-height: auto;
+         /* === SIDEBAR RESPONSIVE UNIVERSAL === */
+        @media (max-width: 1200px) {
+            body {
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch; /* smooth scroll iOS */
+            }
+        
+            /* Sidebar default tertutup di layar kecil-menengah */
+            #sidebar {
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 260px;
+                background-color: #fff;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+                transform: translateX(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: transform 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
+                z-index: 1050;
+                will-change: transform, opacity;
+            }
+        
+            /* Saat aktif, sidebar muncul */
+            #sidebar.active {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        
+            /* Overlay di belakang sidebar */
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 1040;
+                display: none;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+                backdrop-filter: blur(2px); /* efek blur elegan */
+            }
+        
+            .sidebar-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+        
+            /* Pastikan konten tidak bergeser */
+            .content-wrapper {
+                margin-left: 0 !important;
+                transition: none !important;
+            }
+        
+            /* Tombol hamburger selalu muncul di semua layar kecil-menengah */
+            #sidebarToggleTop {
+                display: inline-flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background-color: transparent;
+                color: #198754;
+                font-size: 1.3rem;
+                transition: background-color 0.2s ease;
+            }
+        
+            #sidebarToggleTop:hover {
+                background-color: rgba(25, 135, 84, 0.1);
             }
         }
+
+
+        /* === Overlay Sidebar di Mobile (tidak menggeser konten) === */
+        @media (max-width: 992px) {
+           body {
+               overflow-x: hidden;
+           }
+       
+           #sidebar {
+               position: fixed !important;
+               top: 0;
+               left: 0;
+               height: 100vh;
+               width: 250px;
+               background-color: #fff;
+               box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+               transform: translateX(-100%);
+               opacity: 0;
+               transition: transform 0.3s ease, opacity 0.2s ease;
+               z-index: 1050;
+           }
+       
+           #sidebar.active {
+               transform: translateX(0);
+               opacity: 1;
+           }
+       
+           .sidebar-overlay {
+               position: fixed;
+               top: 0;
+               left: 0;
+               right: 0;
+               bottom: 0;
+               background: rgba(0, 0, 0, 0.4);
+               z-index: 1040;
+               display: none;
+               transition: opacity 0.2s ease;
+               opacity: 0;
+           }
+       
+           .sidebar-overlay.active {
+               display: block;
+               opacity: 1;
+           }
+       
+           .content-wrapper {
+               margin-left: 0 !important;
+               transition: none !important;
+           }
+        }       
+
     </style>
 </head>
 <body>
@@ -233,45 +354,88 @@
         </div>
     </div>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile sidebar toggle
-            const sidebarToggleTop = document.getElementById('sidebarToggleTop');
-            if (sidebarToggleTop) {
-                sidebarToggleTop.addEventListener('click', function() {
-                    const sidebar = document.getElementById('sidebar');
-                    sidebar.classList.toggle('d-none');
-                });
-            }
-            
-            // Auto-hide alerts after 5 seconds
-            setTimeout(function() {
-                const alerts = document.querySelectorAll('.alert');
-                alerts.forEach(function(alert) {
-                    const bsAlert = new bootstrap.Alert(alert);
-                    bsAlert.close();
-                });
-            }, 5000);
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                const dropdowns = document.querySelectorAll('.dropdown-menu.show');
-                dropdowns.forEach(function(dropdown) {
-                    if (!dropdown.parentElement.contains(e.target)) {
-                        const bsDropdown = bootstrap.Dropdown.getInstance(dropdown.previousElementSibling);
-                        if (bsDropdown) {
-                            bsDropdown.hide();
-                        }
-                    }
-                });
-            });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggleTop');
+
+    // --- Pastikan sidebar default tertutup di mobile ---
+    if (window.innerWidth <= 992) {
+        sidebar.classList.remove('active');
+        sidebar.style.transform = 'translateX(-100%)';
+        sidebar.style.opacity = '0';
+    }
+
+    // --- Buat overlay jika belum ada ---
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    // --- Fungsi toggle sidebar ---
+    const toggleSidebar = () => {
+        const isActive = sidebar.classList.toggle('active');
+        overlay.classList.toggle('active', isActive);
+
+        if (isActive) {
+            sidebar.style.transform = 'translateX(0)';
+            sidebar.style.opacity = '1';
+        } else {
+            sidebar.style.transform = 'translateX(-100%)';
+            sidebar.style.opacity = '0';
+        }
+    };
+
+    // --- Klik tombol hamburger ---
+    toggleBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleSidebar();
+    });
+
+    // --- Klik overlay menutup sidebar ---
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        sidebar.style.transform = 'translateX(-100%)';
+        sidebar.style.opacity = '0';
+    });
+
+    // --- Tutup otomatis saat resize ke layar besar ---
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            sidebar.style.transform = 'none';
+            sidebar.style.opacity = '1';
+        } else {
+            sidebar.style.transform = 'translateX(-100%)';
+            sidebar.style.opacity = '0';
+        }
+    });
+
+    // --- Auto-hide alert setelah 5 detik ---
+    setTimeout(() => {
+        document.querySelectorAll('.alert').forEach(alert => {
+            const bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
         });
-    </script>
-    
-    @stack('scripts')
+    }, 5000);
+
+    // --- Tutup dropdown kalau klik di luar ---
+    document.addEventListener('click', e => {
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            if (!menu.parentElement.contains(e.target)) {
+                const dropdown = bootstrap.Dropdown.getInstance(menu.previousElementSibling);
+                if (dropdown) dropdown.hide();
+            }
+        });
+    });
+});
+</script>
+@stack('scripts')
 </body>
 </html>
-

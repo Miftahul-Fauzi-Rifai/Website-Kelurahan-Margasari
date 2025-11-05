@@ -177,7 +177,7 @@
     <div class="container">
         <div class="text-center mb-3 mb-md-4" style="padding-top: -5rem;">
             <h2 class="fw-bold text-primary">
-                <i class="bi bi-laptop me-2 me-md-3"></i>KELURAHAN - LAYANAN ONLINE
+                LAYANAN ONLINE
             </h2>
             <p class="lead text-muted d-none d-md-block">Akses layanan administrasi secara online melalui formulir digital</p>
             <p class="text-muted d-md-none">Layanan administrasi online</p>

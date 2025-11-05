@@ -5,14 +5,14 @@
 @section('content')
 <div class="container-fluid">
     <!-- Page Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
         <div>
             <h1 class="h3 mb-0 text-gray-800">Dashboard Ketua RT {{ Auth::user()->rt }}</h1>
-            <p class="text-muted">Selamat datang, {{ Auth::user()->name }}</p>
-        </div>
-        <div class="text-muted">
-            <i class="bi bi-calendar3 me-1"></i>
-            {{ now()->format('l, d F Y') }}
+            <p class="text-muted mb-1">Selamat datang, {{ Auth::user()->name }}</p>
+            <p class="text-muted mb-0">
+                <i class="bi bi-calendar3 me-1"></i>
+                {{ now()->format('l, d F Y') }}
+            </p>
         </div>
     </div>
 
@@ -245,3 +245,14 @@
 </style>
 @endpush
 @endsection
+@push('styles')
+<style>
+.d-flex.justify-content-between.align-items-center.mb-4 p {
+    font-size: 0.95rem;
+    color: #6c757d;
+}
+.d-flex.justify-content-between.align-items-center.mb-4 .bi-calendar3 {
+    color: #198754;
+}
+</style>
+@endpush
