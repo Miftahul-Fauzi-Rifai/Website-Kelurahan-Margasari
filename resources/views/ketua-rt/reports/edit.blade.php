@@ -188,3 +188,323 @@
 </div>
 @endsection
 
+@push('styles')
+<style>
+/* ===== EDIT LAPORAN — RESPONSIF UNTUK SEMUA DEVICE ===== */
+
+/* --- Struktur umum --- */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* --- Card utama --- */
+.card {
+    border-radius: 0.75rem;
+    overflow: visible;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 100%;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e5e7eb;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    padding: 0.9rem 1.25rem;
+}
+
+.card-header h6 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #198754;
+    margin-bottom: 0;
+}
+
+/* --- Page header: Judul & tombol kembali --- */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.d-flex.justify-content-between.align-items-center.mb-4 h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.2rem;
+}
+
+.d-flex.justify-content-between.align-items-center.mb-4 p {
+    margin-bottom: 0;
+    color: #6c757d;
+}
+
+.d-flex.justify-content-between.align-items-center.mb-4 .btn {
+    flex-shrink: 0;
+}
+
+/* --- Form --- */
+form {
+    width: 100%;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control,
+textarea {
+    font-size: 0.95rem;
+    border-radius: 0.5rem;
+}
+
+/* --- Tabel kegiatan --- */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    padding: 0.25rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+}
+
+.table th,
+.table td {
+    vertical-align: middle !important;
+    white-space: nowrap;
+    padding: 0.6rem;
+    border-color: #ececec;
+    font-size: 0.9rem;
+}
+
+.table thead th {
+    background: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* --- Tombol Update & Batal --- */
+.d-flex.gap-2 {
+    flex-wrap: wrap;
+}
+
+.d-flex.gap-2 .btn {
+    font-weight: 500;
+    border-radius: 0.5rem;
+}
+
+/* Scrollbar tabel tampak di mobile */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #b5b5b5;
+    border-radius: 4px;
+}
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* --- Hover lembut --- */
+.table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Default (desktop) tetap seperti semula */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* --- Tampilan Mobile --- */
+@media (max-width: 576px) {
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 > div:first-child {
+        text-align: left;
+        flex: 1;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 h1 {
+        font-size: 1.1rem;
+        margin-bottom: 0.15rem;
+        line-height: 1.2;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 p {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+        color: #6c757d;
+    }
+
+    /* Tombol “Kembali” di kanan dan sejajar rapi */
+    .d-flex.justify-content-between.align-items-center.mb-4 .btn {
+        align-self: flex-start;
+        font-size: 0.8rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 0.45rem;
+        white-space: nowrap;
+    }
+}
+
+/* --- Tablet kecil (lebih lega dari HP tapi masih sempit) --- */
+@media (min-width: 577px) and (max-width: 768px) {
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 h1 {
+        font-size: 1.25rem;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 p {
+        font-size: 0.9rem;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 .btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+/* Tablet Landscape */
+@media (max-width: 992px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    .card-header h6 {
+        font-size: 1rem;
+    }
+    .table th, .table td {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 h1 {
+        font-size: 1.3rem;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .table th, .table td {
+        font-size: 0.85rem;
+        white-space: normal;
+    }
+}
+
+/* HP kecil */
+@media (max-width: 576px) {
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .container-fluid {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        overflow-x: hidden;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        margin-bottom: 1rem;
+    }
+
+    .card-header {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .card-header h6 {
+        font-size: 1rem;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .form-control, textarea {
+        font-size: 0.9rem;
+    }
+
+    .table-responsive {
+        max-width: 100vw;
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 700px; /* biar bisa digeser tanpa mengecilkan kolom */
+    }
+
+    .table th, .table td {
+        padding: 0.45rem 0.5rem;
+        font-size: 0.82rem;
+        white-space: nowrap;
+    }
+
+    /* Tombol */
+    .d-flex.gap-2 {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .d-flex.gap-2 .btn {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    /* Pesan alert */
+    .alert ul {
+        margin-left: 1rem;
+        padding-left: 0;
+    }
+}
+</style>
+@endpush
