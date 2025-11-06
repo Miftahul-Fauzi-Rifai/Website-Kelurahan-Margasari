@@ -22,17 +22,21 @@
             line-height: 1.3;
             color: #000;
             background: white;
+            position: relative;
+            height: 100%;
         }
 
         .container {
             width: 100%;
             margin: 0;
             padding: 0;
+            padding-bottom: 150px;
+            position: relative;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border-bottom: 3px solid #000;
             padding-bottom: 5px;
         }
@@ -57,7 +61,7 @@
         }
 
         .content {
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .section {
@@ -82,7 +86,7 @@
         }
 
         th, td {
-            padding: 6px 5px;
+            padding: 4px 5px;
             text-align: left;
             vertical-align: top;
             word-wrap: break-word;
@@ -95,7 +99,7 @@
             background-color: #f0f0f0;
             font-weight: bold;
             text-align: center;
-            padding: 8px 5px;
+            padding: 6px 5px;
             font-size: 10pt;
         }
         
@@ -111,21 +115,19 @@
             image-rendering: crisp-edges;
         }
 
-        .signature {
-            margin-top: 20px;
-            text-align: right;
+        /* Signature section styling - Tetap di posisi bawah fixed */
+        .signature-section {
+            position: fixed;
+            bottom: 1.5cm;
+            left: 2cm;
+            right: 2cm;
+            page-break-inside: avoid;
         }
 
-        .signature-box {
-            display: inline-block;
-            text-align: center;
-            min-width: 200px;
-        }
-
-        .signature-line {
-            margin-top: 70px;
-            border-top: 1px solid #000;
-            padding-top: 5px;
+        @media print {
+            .signature-section {
+                page-break-inside: avoid;
+            }
         }
 
         .text-center {
@@ -269,29 +271,28 @@
                 </tbody>
             </table>
 
-            <!-- Signature Section -->
-            <div class="signature" style="margin-top: 30px;">
-                <p style="text-align: right; margin-bottom: 15px;">Balikpapan, ....................................</p>
+            <!-- Signature Section - Tetap di Bawah -->
+            <div class="signature-section">
+                <p style="text-align: right; margin-bottom: 15px; margin-top: 0; font-size: 10pt;">Balikpapan, ....................................</p>
+                
+                <table style="border: none; width: 100%; margin-top: 0;">
+                    <tr style="border: none;">
+                        <td style="border: none; width: 50%; vertical-align: top; padding: 0;">
+                            <div style="text-align: left;">
+                                <p style="margin: 0 0 2px 0; font-size: 10pt;">Mengetahui/menyetujui</p>
+                                <p style="margin: 0 0 60px 0; font-size: 10pt;"><strong>LURAH {{ strtoupper($kelurahan_name) }}</strong></p>
+                                <p style="margin: 0; font-size: 10pt;"><strong>{{ strtoupper($lurah_name) }}</strong></p>
+                            </div>
+                        </td>
+                        <td style="border: none; width: 50%; vertical-align: top; padding: 0;">
+                            <div style="text-align: right;">
+                                <p style="margin: 0 0 60px 0; font-size: 10pt;"><strong>KETUA RT.......</strong></p>
+                                <p style="margin: 0; font-size: 10pt;">......................................</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-
-            <table style="border: none; width: 100%; margin-top: 10px;">
-                <tr style="border: none;">
-                    <td style="border: none; width: 50%; vertical-align: top; padding: 0;">
-                        <div style="text-align: left;">
-                            <p style="margin: 0 0 3px 0;">Mengetahui/menyetujui</p>
-                            <p style="margin: 0 0 60px 0;"><strong>LURAH {{ strtoupper($kelurahan_name) }}</strong></p>
-                            <p style="margin: 0;"><strong><u>{{ strtoupper($lurah_name) }}</u></strong></p>
-                        </div>
-                    </td>
-                    <td style="border: none; width: 50%; vertical-align: top; padding: 0;">
-                        <div style="text-align: right;">
-                            <p style="margin: 0 0 3px 0;"><strong>KETUA RT.......</strong></p>
-                            <p style="margin: 0 0 60px 0;">&nbsp;</p>
-                            <p style="margin: 0;">......................................</p>
-                        </div>
-                    </td>
-                </tr>
-            </table>
         </div>
     </div>
 

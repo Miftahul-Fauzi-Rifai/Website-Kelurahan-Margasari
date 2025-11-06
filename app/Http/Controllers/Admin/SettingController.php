@@ -23,9 +23,8 @@ class SettingController extends Controller
         ]);
 
         foreach ($request->settings as $setting) {
-            Setting::where('key', $setting['key'])->update([
-                'value' => $setting['value']
-            ]);
+            // Use Setting::set() method to automatically clear cache
+            Setting::set($setting['key'], $setting['value']);
         }
 
         return back()->with('success', 'Pengaturan berhasil diperbarui');
