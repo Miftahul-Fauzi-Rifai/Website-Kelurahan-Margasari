@@ -107,6 +107,7 @@
         <a href="{{ route('ketua-rt.reports.create') }}" class="alert-link">Buat sekarang</a>
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
+
     @elseif($this_month_report->status == 'draft')
     <div class="alert alert-info alert-dismissible fade show" role="alert">
         <i class="bi bi-info-circle-fill me-2"></i>
@@ -118,6 +119,7 @@
         </form>
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
+    
     @elseif($this_month_report->status == 'submitted')
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill me-2"></i>
@@ -245,6 +247,7 @@
 </style>
 @endpush
 @endsection
+
 @push('styles')
 <style>
 .d-flex.justify-content-between.align-items-center.mb-4 p {
@@ -256,3 +259,4 @@
 }
 </style>
 @endpush
+
