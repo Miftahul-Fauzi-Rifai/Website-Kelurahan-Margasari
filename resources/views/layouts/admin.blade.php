@@ -330,14 +330,14 @@
             <!-- Page Content -->
             <div class="container-fluid">
                 @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" data-auto-dismiss="true">
                         <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 @endif
                 
                 @if(session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" data-auto-dismiss="true">
                         <i class="bi bi-exclamation-triangle me-2"></i>{{ session('error') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
@@ -362,9 +362,9 @@
                 });
             }
             
-            // Auto-hide alerts after 5 seconds
+            // Auto-hide alert setelah 5 detik (hanya untuk session flash messages)
             setTimeout(function() {
-                const alerts = document.querySelectorAll('.alert');
+                const alerts = document.querySelectorAll('.alert[data-auto-dismiss="true"]');
                 alerts.forEach(function(alert) {
                     const bsAlert = new bootstrap.Alert(alert);
                     bsAlert.close();
