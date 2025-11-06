@@ -127,7 +127,7 @@
             @endif
 
             @if($report->admin_notes)
-            <div class="alert alert-info">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <h6 class="font-weight-bold">Catatan Admin</h6>
                 <p class="mb-0" style="white-space: pre-line;">{{ $report->admin_notes }}</p>
                 @if($report->reviewed_at)
@@ -135,6 +135,7 @@
                     <i class="bi bi-clock"></i> {{ $report->reviewed_at->format('d F Y, H:i') }}
                 </small>
                 @endif
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
             @endif
 

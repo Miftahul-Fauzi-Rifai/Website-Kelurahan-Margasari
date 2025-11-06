@@ -26,7 +26,7 @@
     </div>
 
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" data-auto-dismiss="true">
             <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -157,7 +157,7 @@
                     @if($complaint->tanggapan_admin)
                     <div class="mb-4">
                         <h6 class="text-primary mb-3">Tanggapan Petugas</h6>
-                        <div class="alert alert-info">
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
                             <div class="d-flex align-items-start">
                                 <i class="bi bi-chat-quote me-3 fs-4"></i>
                                 <div>
@@ -168,6 +168,7 @@
                                     </small>
                                 </div>
                             </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                     </div>
                     @endif
