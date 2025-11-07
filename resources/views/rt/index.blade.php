@@ -125,9 +125,11 @@
   const points = @json($mapPoints);
   const center = points.length ? [points[0].lat, points[0].lng] : [-1.2379, 116.8289];
   const map = L.map('map').setView(center, 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap contributors'
+  
+  // Google Maps Hybrid (Satelit + Label jalan & bangunan)
+  L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+    maxZoom: 20,
+    attribution: '&copy; Google Maps'
   }).addTo(map);
 
   const populationToColor = (pop) => {

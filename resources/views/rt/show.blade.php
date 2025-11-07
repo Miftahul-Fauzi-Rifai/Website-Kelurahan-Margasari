@@ -496,9 +496,11 @@
   };
 
   const map = L.map('map').setView([lat ?? -1.2379, lng ?? 116.8289], lat && lng ? 16 : 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap contributors'
+  
+  // Google Maps Hybrid (Satelit + Label jalan & bangunan)
+  L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+    maxZoom: 20,
+    attribution: '&copy; Google Maps'
   }).addTo(map);
 
   // Function untuk warna berdasarkan populasi
