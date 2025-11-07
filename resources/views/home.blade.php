@@ -17,14 +17,6 @@
                 Melayani masyarakat dengan sepenuh hati untuk menciptakan lingkungan
                 yang aman, nyaman, dan sejahtera bagi seluruh warga Marga Sari.
             </p>
-            <div class="d-flex flex-wrap gap-3">
-                <a href="#layanan" class="btn btn-warning text-dark fw-semibold">
-                    <i class="bi bi-grid"></i> Layanan Kami
-                </a>
-                <a href="#aspirasi" class="btn btn-outline-light fw-semibold">
-                    <i class="bi bi-chat-dots"></i> Sampaikan Aspirasi
-                </a>
-            </div>
         </div>
     </div>
 </section>
