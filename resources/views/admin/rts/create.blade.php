@@ -33,12 +33,12 @@
                                    id="rt_code" 
                                    name="rt_code" 
                                    value="{{ old('rt_code') }}"
-                                   placeholder="Contoh: 001 atau 1"
+                                   placeholder="Contoh: 01 atau 1"
                                    required>
                             @error('rt_code')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <small class="form-text text-muted">Format: 001, 002, 003, dst</small>
+                            <small class="form-text text-muted">Format: 01, 02, 03, dst (2 digit)</small>
                         </div>
 
                         <!-- Name (Optional) -->

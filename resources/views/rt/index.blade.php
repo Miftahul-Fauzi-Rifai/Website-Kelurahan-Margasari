@@ -29,7 +29,7 @@
                       class="form-control border-start-0" 
                       name="search" 
                       value="{{ $search }}" 
-                      placeholder="Cari RT (contoh: RT 001)" 
+                      placeholder="Cari RT (contoh: RT 01)" 
                       style="border-left: none !important; box-shadow: none;"
                     >
                   </div>
@@ -162,7 +162,7 @@
         justify-content: center;
         font-family: 'Arial', 'Helvetica', sans-serif;
         font-weight: 900;
-        font-size: 12px;
+        font-size: 11px;
         color: black;
         text-shadow: 
           -1px -1px 0 #fff,
@@ -176,7 +176,7 @@
         letter-spacing: 0.5px;
         text-align: center;
       ">
-        ${p.rt_code}
+        RT ${p.rt_code}
         <div style="
           position: absolute;
           bottom: -7px;

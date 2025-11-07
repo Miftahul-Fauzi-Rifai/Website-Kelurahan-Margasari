@@ -123,7 +123,7 @@
                             @foreach($rts as $rt)
                             <tr>
                                 <td>
-                                    <strong>RT {{ str_pad($rt->rt_code, 3, '0', STR_PAD_LEFT) }}</strong>
+                                    <strong>RT {{ $rt->rt_code }}</strong>
                                 </td>
                                 <td>{{ $rt->ketua_rt_name }}</td>
                                 <td>

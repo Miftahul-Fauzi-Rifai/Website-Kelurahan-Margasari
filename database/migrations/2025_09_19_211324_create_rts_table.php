@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('rts', function (Blueprint $table) {
             $table->id();
-            $table->string('rt_code', 3)->unique(); // e.g. 001..032
-            $table->string('rw_code', 3)->default('001');
+            $table->string('rt_code', 2)->unique(); // e.g. 01..32
             $table->string('name')->nullable(); // optional display name
             $table->string('ketua_rt_name')->nullable();
             $table->string('ketua_rt_phone')->nullable();
@@ -26,8 +25,6 @@ return new class extends Migration
             $table->decimal('longitude', 10, 7)->nullable();
             $table->json('boundaries')->nullable(); // GeoJSON polygon/linestring for map
             $table->timestamps();
-            
-            $table->index(['rw_code']);
         });
     }
 

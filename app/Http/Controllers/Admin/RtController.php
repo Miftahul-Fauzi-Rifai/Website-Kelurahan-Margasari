@@ -58,7 +58,7 @@ class RtController extends Controller
 
         // Auto-generate name if not provided
         if (empty($validated['name'])) {
-            $validated['name'] = 'RT ' . str_pad($validated['rt_code'], 3, '0', STR_PAD_LEFT);
+            $validated['name'] = 'RT ' . $validated['rt_code'];
         }
 
         Rt::create($validated);
@@ -104,7 +104,7 @@ class RtController extends Controller
 
         // Auto-generate name if not provided
         if (empty($validated['name'])) {
-            $validated['name'] = 'RT ' . str_pad($validated['rt_code'], 3, '0', STR_PAD_LEFT);
+            $validated['name'] = 'RT ' . $validated['rt_code'];
         }
 
         $rt->update($validated);

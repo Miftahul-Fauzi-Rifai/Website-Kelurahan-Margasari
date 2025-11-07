@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="h3 mb-0 text-gray-800">Edit Data RT</h1>
-            <p class="text-muted">Perbarui data RT {{ str_pad($rt->rt_code, 3, '0', STR_PAD_LEFT) }}</p>
+            <p class="text-muted">Perbarui data RT {{ $rt->rt_code }}</p>
         </div>
         <a href="{{ route('admin.rts.index') }}" class="btn btn-secondary">
             <i class="bi bi-arrow-left me-2"></i>Kembali
@@ -221,7 +221,7 @@
                     <table class="table table-sm">
                         <tr>
                             <td><strong>Kode RT:</strong></td>
-                            <td>{{ str_pad($rt->rt_code, 3, '0', STR_PAD_LEFT) }}</td>
+                            <td>{{ $rt->rt_code }}</td>
                         </tr>
                         <tr>
                             <td><strong>Dibuat:</strong></td>

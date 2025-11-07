@@ -51,7 +51,7 @@
                             <label for="title" class="form-label">Judul Laporan <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" 
                                    id="title" name="title" value="{{ old('title') }}" 
-                                   placeholder="Contoh: Laporan Kegiatan RT 001 Bulan Oktober 2025" required>
+                                   placeholder="Contoh: Laporan Kegiatan RT 01 Bulan Oktober 2025" required>
                             @error('title')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

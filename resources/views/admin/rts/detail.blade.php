@@ -7,7 +7,7 @@
     <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="h3 mb-0 text-gray-800">Detail Data RT {{ str_pad($rt->rt_code, 3, '0', STR_PAD_LEFT) }}</h1>
+            <h1 class="h3 mb-0 text-gray-800">Detail Data RT {{ $rt->rt_code }}</h1>
             <p class="text-muted">Lengkapi data detail RT untuk informasi yang lebih komprehensif</p>
         </div>
         <a href="{{ route('admin.rts.index') }}" class="btn btn-secondary">

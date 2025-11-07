@@ -87,7 +87,7 @@
                             <label for="email" class="form-label">Email untuk Login <span class="text-danger">*</span></label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" 
                                    id="email" name="email" value="{{ old('email') }}" 
-                                   placeholder="Contoh: ketuart001@margasari.id" required>
+                                   placeholder="Contoh: ketuart01@margasari.id" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

@@ -5,7 +5,7 @@
 @section('content')
 <section class="bg-primary text-white py-4 py-md-5 page-header-rt">
   <div class="container">
-    <h1 class="display-5 display-md-4 fw-bold mobile-title">Detail RT {{ str_pad($rt->rt_code, 3, '0', STR_PAD_LEFT) }}</h1>
+    <h1 class="display-5 display-md-4 fw-bold mobile-title">Detail RT {{ $rt->rt_code }}</h1>
     <p class="lead mb-0 mobile-subtitle">Informasi lengkap ketua RT, statistik penduduk, dan data wilayah</p>
   </div>
 </section>

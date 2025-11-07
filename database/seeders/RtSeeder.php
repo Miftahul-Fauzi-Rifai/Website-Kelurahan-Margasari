@@ -62,9 +62,9 @@ class RtSeeder extends Seeder
             $phoneNumber = '0812-' . rand(1000, 9999) . '-' . rand(1000, 9999);
             
             Rt::updateOrCreate(
-                ['rt_code' => sprintf('%03d', $coord['rt'])],
+                ['rt_code' => sprintf('%02d', $coord['rt'])],
                 [
-                    'name' => 'RT ' . sprintf('%03d', $coord['rt']),
+                    'name' => 'RT ' . sprintf('%02d', $coord['rt']),
                     'ketua_rt_name' => $ketuaNames[$index],
                     'ketua_rt_phone' => $phoneNumber,
                     'num_households' => $households,
