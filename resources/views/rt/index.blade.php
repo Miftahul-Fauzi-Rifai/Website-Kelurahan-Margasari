@@ -5,7 +5,6 @@
 
 @section('content')
 <section id="rt-hero" class="rt-hero-section text-white py-4 py-md-5 page-header-rt">
-    <div class="hero-overlay"></div>
     <div class="container position-relative">
         <h1 class="display-5 display-md-4 fw-bold mobile-title">Data RT Kelurahan Marga Sari</h1>
         <p class="lead mb-0 mobile-subtitle">Persebaran lokasi RT dan statistik singkat</p>
@@ -741,133 +740,21 @@
   }
 }
 
-/* ==== RT HERO SECTION SLIDESHOW ==== */
+/* ==== RT HERO SECTION - BACKGROUND BIRU ==== */
 .rt-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
 }
 
-/* Dua layer background untuk animasi slide */
-.rt-hero-section .hero-bg, 
-.rt-hero-section .hero-bg-next {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: opacity 0.8s ease-in-out;
-    z-index: 0;
-}
-
-.rt-hero-section .hero-bg {
-    opacity: 1;
-}
-
-.rt-hero-section .hero-bg-next {
-    opacity: 0;
-}
-
-/* Overlay gelap agar teks tetap terbaca */
-.rt-hero-section::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-}
-
-/* Isi hero di atas semua layer */
 .rt-hero-section .container {
     position: relative;
     z-index: 2;
-}
-
-/* Responsive untuk mobile */
-@media (max-width: 768px) {
-    .rt-hero-section::after {
-        background: rgba(0, 0, 0, 0.75);
-    }
 }
 </style>
 @endpush
 
 @push('scripts')
-<script>
-window.addEventListener("load", function () {
-    const hero = document.getElementById("rt-hero");
-    if (!hero) return;
-
-    const isMobile = window.innerWidth <= 768;
-    
-    // Untuk mobile, gunakan gambar statis
-    if (isMobile) {
-        hero.style.backgroundImage = "url('{{ asset('images/Kantor_Kelurahan_Margasari.png') }}')";
-        hero.style.backgroundPosition = "15% center";
-        hero.style.backgroundSize = "cover";
-        return;
-    }
-
-    // Tambahkan dua layer background untuk efek fade
-    hero.insertAdjacentHTML("beforeend", `
-        <div class="hero-bg hero-bg-1"></div>
-        <div class="hero-bg hero-bg-2"></div>
-    `);
-
-    const bg1 = hero.querySelector(".hero-bg-1");
-    const bg2 = hero.querySelector(".hero-bg-2");
-
-    const slides = [
-        { image: "{{ asset('images/Kantor_Kelurahan_Margasari.png') }}", position: "center 33%" },
-        { image: "{{ asset('images/Opening_Insos.jpg') }}", position: "center 15%" },
-        { image: "{{ asset('images/poto.kebun_sayur.jpg') }}", position: "center 20%" }
-    ];
-
-    let current = 0;
-    let showingBg1 = true;
-
-    // Set style awal
-    [bg1, bg2].forEach(bg => {
-        Object.assign(bg.style, {
-            position: "absolute",
-            inset: "0",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            opacity: "0",
-            transition: "opacity 0.8s ease-in-out",
-            zIndex: 0
-        });
-    });
-
-    // Gambar pertama langsung tampil
-    bg1.style.backgroundImage = `url('${slides[0].image}')`;
-    bg1.style.backgroundPosition = slides[0].position;
-    bg1.style.opacity = "1";
-
-    function changeSlide() {
-        const nextIndex = (current + 1) % slides.length;
-        const nextSlide = slides[nextIndex];
-
-        if (showingBg1) {
-            bg2.style.backgroundImage = `url('${nextSlide.image}')`;
-            bg2.style.backgroundPosition = nextSlide.position;
-            bg2.style.opacity = "1"; // Fade-in layer baru
-            bg1.style.opacity = "0"; // Fade-out layer lama
-        } else {
-            bg1.style.backgroundImage = `url('${nextSlide.image}')`;
-            bg1.style.backgroundPosition = nextSlide.position;
-            bg1.style.opacity = "1";
-            bg2.style.opacity = "0";
-        }
-
-        showingBg1 = !showingBg1;
-        current = nextIndex;
-    }
-
-    // Jalankan pertama kali dan setiap 6 detik
-    setInterval(changeSlide, 6000);
-});
-</script>
 @endpush
 
