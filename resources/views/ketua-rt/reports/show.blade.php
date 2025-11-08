@@ -20,9 +20,9 @@
             <h6 class="m-0 font-weight-bold text-success">Informasi Laporan</h6>
             <div>
                 {!! $report->status_badge !!}
-                <a href="{{ route('ketua-rt.reports.print', $report) }}" class="btn btn-sm btn-primary ms-2" target="_blank">
+                <button type="button" class="btn btn-sm btn-primary ms-2" onclick="printReport()">
                     <i class="bi bi-printer"></i> Cetak Laporan
-                </a>
+                </button>
                 @if(!in_array($report->status, ['approved', 'rejected']))
                     <a href="{{ route('ketua-rt.reports.edit', $report) }}" class="btn btn-sm btn-warning ms-2">
                         <i class="bi bi-pencil"></i> Edit
@@ -56,6 +56,13 @@
                     }
                 @endphp
                 @if(count($activities) > 0)
+                    <!-- Hint untuk scroll -->
+                    <div class="alert alert-info py-2 px-3 mb-2" style="font-size: 0.85rem;">
+                        <i class="bi bi-info-circle me-1"></i>
+                        <strong>Tip:</strong> Geser tabel ke kanan untuk melihat semua kolom
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </div>
+                    
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered">
                             <thead class="table-light">
@@ -82,12 +89,33 @@
                                         <td>{{ $activity['note'] ?? '-' }}</td>
                                         <td>
                                             @if(!empty($activity['photo']))
-                                                <a href="{{ asset('storage/' . $activity['photo']) }}" target="_blank">
-                                                    <img src="{{ asset('storage/' . $activity['photo']) }}" 
-                                                         alt="Foto Kegiatan" 
-                                                         class="img-thumbnail" 
-                                                         style="max-width: 100px; max-height: 80px;">
-                                                </a>
+                                                <img src="{{ asset('storage/' . $activity['photo']) }}" 
+                                                     alt="Foto Kegiatan" 
+                                                     class="img-thumbnail" 
+                                                     style="max-width: 100px; max-height: 80px; cursor: pointer;" 
+                                                     data-bs-toggle="modal" 
+                                                     data-bs-target="#photoModal{{ $index }}">
+                                                
+                                                <!-- Photo Modal -->
+                                                <div class="modal fade" id="photoModal{{ $index }}" tabindex="-1">
+                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Foto Kegiatan #{{ $index + 1 }}</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <img src="{{ asset('storage/' . $activity['photo']) }}" 
+                                                                     class="img-fluid" alt="Foto Kegiatan">
+                                                                <div class="mt-3 text-start">
+                                                                    <p class="mb-1"><strong>Tanggal:</strong> {{ !empty($activity['date']) ? \Carbon\Carbon::parse($activity['date'])->format('d/m/Y') : '-' }}</p>
+                                                                    <p class="mb-1"><strong>Uraian:</strong> {{ $activity['task'] ?? '-' }}</p>
+                                                                    <p class="mb-0"><strong>Keterangan:</strong> {{ $activity['note'] ?? '-' }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @else
                                                 <span class="text-muted">-</span>
                                             @endif
@@ -154,29 +182,84 @@
 </div>
 @endsection
 
+@push('scripts')
+<script>
+function printReport() {
+    // Show loading indicator
+    const btn = event.target.closest('button');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memuat...';
+    btn.disabled = true;
+    
+    // Fetch print content via AJAX
+    fetch('{{ route('ketua-rt.reports.print', $report) }}')
+        .then(response => response.text())
+        .then(html => {
+            // Create temporary iframe for printing
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.right = '0';
+            iframe.style.bottom = '0';
+            iframe.style.width = '0';
+            iframe.style.height = '0';
+            iframe.style.border = 'none';
+            
+            document.body.appendChild(iframe);
+            
+            const doc = iframe.contentWindow.document;
+            doc.open();
+            doc.write(html);
+            doc.close();
+            
+            // Wait for content to load then print
+            iframe.onload = function() {
+                setTimeout(() => {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                    
+                    // Remove iframe after printing
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                        btn.innerHTML = originalHTML;
+                        btn.disabled = false;
+                    }, 100);
+                }, 250);
+            };
+        })
+        .catch(error => {
+            console.error('Error loading print content:', error);
+            alert('Gagal memuat konten cetak. Silakan coba lagi.');
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+        });
+}
+</script>
+@endpush
+
 @push('styles')
 <style>
 /* === DETAIL LAPORAN — 100% RESPONSIF TANPA TERPOTONG === */
 
 html, body {
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
 .container-fluid {
     width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: hidden !important;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
 .card {
     border-radius: 0.75rem;
-    overflow: visible;
+    overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     border: 1px solid #e5e7eb;
     max-width: 100%;
+    width: 100%;
 }
 
 .card-header {
@@ -252,28 +335,32 @@ html, body {
 
 /* ===== TABEL ===== */
 .table-responsive {
-    overflow-x: auto;
+    overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
     background: #fff;
     border-radius: 0.75rem;
     border: 1px solid #e5e7eb;
     box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    padding: 0.25rem;
+    padding: 0.5rem;
     width: 100%;
     max-width: 100%;
+    margin: 0;
 }
 
 .table {
     width: 100%;
+    min-width: 650px;
     border-collapse: separate;
     border-spacing: 0;
+    margin: 0;
 }
 
 .table th,
 .table td {
     vertical-align: middle !important;
-    white-space: nowrap;
-    padding: 0.6rem;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 0.75rem;
     border-color: #ececec;
     font-size: 0.9rem;
 }
@@ -292,16 +379,21 @@ html, body {
     object-fit: cover;
 }
 
-/* Scrollbar tampak di mobile */
+/* Scrollbar lebih jelas dan visible */
 .table-responsive::-webkit-scrollbar {
-    height: 8px;
+    height: 10px;
+    width: 10px;
 }
 .table-responsive::-webkit-scrollbar-thumb {
-    background: #b5b5b5;
-    border-radius: 4px;
+    background: #6c757d;
+    border-radius: 5px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #495057;
 }
 .table-responsive::-webkit-scrollbar-track {
     background: #f1f1f1;
+    border-radius: 5px;
 }
 
 /* Hover lembut */
@@ -370,19 +462,29 @@ html, body {
 /* HP kecil */
 @media (max-width: 576px) {
     html, body {
-        overflow-x: hidden;
+        overflow-x: hidden !important;
+        width: 100%;
     }
 
     .container-fluid {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        overflow-x: hidden;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .card {
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: hidden;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .card-body {
+        padding: 0.75rem !important;
+        overflow-x: hidden !important;
     }
 
     .card-header {
@@ -390,38 +492,63 @@ html, body {
         align-items: flex-start;
         gap: 0.5rem;
         width: 100%;
+        padding: 0.75rem !important;
     }
 
     .card-header .btn {
         width: 100%;
         text-align: center;
+        margin-left: 0 !important;
+        margin-top: 0.25rem;
+    }
+
+    .alert {
+        font-size: 0.8rem !important;
+        padding: 0.5rem !important;
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+        width: calc(100% + 1.5rem);
     }
 
     .table-responsive {
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: auto;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+        padding: 0.5rem 0.75rem;
+        width: calc(100% + 1.5rem);
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
     }
 
     .table {
         width: 100%;
-        min-width: unset;
+        min-width: 600px;
+        font-size: 0.8rem;
     }
 
     .table th, .table td {
-        padding: 0.5rem;
-        font-size: 0.82rem;
+        padding: 0.5rem 0.4rem;
+        font-size: 0.75rem;
         white-space: normal;
     }
 
     .table img {
-        max-width: 70px;
-        max-height: 50px;
+        max-width: 60px;
+        max-height: 45px;
     }
 
     .mt-4 form .btn {
         width: 100%;
         font-size: 0.9rem;
+    }
+    
+    /* Pastikan tidak ada elemen yang overflow */
+    h5, h6, p, div {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
 </style>

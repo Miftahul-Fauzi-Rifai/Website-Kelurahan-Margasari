@@ -192,8 +192,10 @@
 
         /* === Overlay Sidebar di Mobile (tidak menggeser konten) === */
         @media (max-width: 992px) {
-           body {
-               overflow-x: hidden;
+           html, body {
+               overflow-x: hidden !important;
+               width: 100%;
+               max-width: 100%;
            }
        
            #sidebar {
@@ -236,7 +238,52 @@
            .content-wrapper {
                margin-left: 0 !important;
                transition: none !important;
+               overflow-x: hidden !important;
+               width: 100%;
+               max-width: 100%;
            }
+
+           .container-fluid {
+               padding-left: 1rem !important;
+               padding-right: 1rem !important;
+               overflow-x: hidden !important;
+               width: 100% !important;
+               max-width: 100% !important;
+           }
+        }
+
+        /* === Mobile Extra Small === */
+        @media (max-width: 576px) {
+            html, body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .content-wrapper {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .container-fluid {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .card {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .table-responsive {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
         }       
 
     </style>

@@ -23,9 +23,6 @@
                     <h6 class="m-0 font-weight-bold text-primary">Informasi Laporan</h6>
                     <div>
                         {!! $report->status_badge !!}
-                        <a href="{{ route('admin.reports.print', $report) }}" class="btn btn-sm btn-primary ms-2" target="_blank">
-                            <i class="bi bi-printer"></i> Cetak Laporan
-                        </a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -80,12 +77,33 @@
                                                 <td>{{ $activity['note'] ?? '-' }}</td>
                                                 <td>
                                                     @if(!empty($activity['photo']))
-                                                        <a href="{{ asset('storage/' . $activity['photo']) }}" target="_blank">
-                                                            <img src="{{ asset('storage/' . $activity['photo']) }}" 
-                                                                 alt="Foto Kegiatan" 
-                                                                 class="img-thumbnail" 
-                                                                 style="max-width: 100px; max-height: 80px;">
-                                                        </a>
+                                                        <img src="{{ asset('storage/' . $activity['photo']) }}" 
+                                                             alt="Foto Kegiatan" 
+                                                             class="img-thumbnail" 
+                                                             style="max-width: 100px; max-height: 80px; cursor: pointer;" 
+                                                             data-bs-toggle="modal" 
+                                                             data-bs-target="#photoModal{{ $index }}">
+                                                        
+                                                        <!-- Photo Modal -->
+                                                        <div class="modal fade" id="photoModal{{ $index }}" tabindex="-1">
+                                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Foto Kegiatan #{{ $index + 1 }}</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">
+                                                                        <img src="{{ asset('storage/' . $activity['photo']) }}" 
+                                                                             class="img-fluid" alt="Foto Kegiatan">
+                                                                        <div class="mt-3 text-start">
+                                                                            <p class="mb-1"><strong>Tanggal:</strong> {{ !empty($activity['date']) ? \Carbon\Carbon::parse($activity['date'])->format('d/m/Y') : '-' }}</p>
+                                                                            <p class="mb-1"><strong>Uraian:</strong> {{ $activity['task'] ?? '-' }}</p>
+                                                                            <p class="mb-0"><strong>Keterangan:</strong> {{ $activity['note'] ?? '-' }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @else
                                                         <span class="text-muted">-</span>
                                                     @endif
@@ -157,8 +175,12 @@
                     
                     <hr>
                     
-                    <a href="{{ route('admin.reports.print', $report) }}" class="btn btn-success btn-sm w-100" target="_blank">
+                    <button type="button" class="btn btn-success btn-sm w-100 mb-2" onclick="printReport()">
                         <i class="bi bi-printer"></i> Cetak Laporan
+                    </button>
+                    
+                    <a href="tel:{{ $report->user->phone ?? '' }}" class="btn btn-primary btn-sm w-100">
+                        <i class="bi bi-telephone"></i> Hubungi Ketua RT
                     </a>
                 </div>
             </div>
@@ -199,5 +221,74 @@
         </div>
     </div>
 </div>
+
+<!-- Print Container (Hidden) -->
+<div id="printContainer" style="display: none;">
+    <div id="printContent"></div>
+</div>
 @endsection
+
+@push('scripts')
+<script>
+function printReport() {
+    // Show loading indicator
+    const btn = event.target.closest('button');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memuat...';
+    btn.disabled = true;
+    
+    // Fetch print content via AJAX
+    fetch('{{ route('admin.reports.print', $report) }}')
+        .then(response => response.text())
+        .then(html => {
+            // Create temporary iframe for printing
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.right = '0';
+            iframe.style.bottom = '0';
+            iframe.style.width = '0';
+            iframe.style.height = '0';
+            iframe.style.border = 'none';
+            
+            document.body.appendChild(iframe);
+            
+            const doc = iframe.contentWindow.document;
+            doc.open();
+            doc.write(html);
+            doc.close();
+            
+            // Wait for content to load then print
+            iframe.onload = function() {
+                setTimeout(() => {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                    
+                    // Remove iframe after printing
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                        btn.innerHTML = originalHTML;
+                        btn.disabled = false;
+                    }, 100);
+                }, 250);
+            };
+        })
+        .catch(error => {
+            console.error('Error loading print content:', error);
+            alert('Gagal memuat konten cetak. Silakan coba lagi.');
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+        });
+}
+</script>
+@endpush
+
+@push('styles')
+<style>
+@media print {
+    .btn, .modal, .sidebar, .card-header, nav { display: none !important; }
+    .card { border: 1px solid #000 !important; box-shadow: none !important; }
+    .col-lg-8 { width: 100% !important; }
+}
+</style>
+@endpush
 
