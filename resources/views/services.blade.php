@@ -5,8 +5,9 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-primary text-white py-4 py-md-5 page-header-services">
-    <div class="container">
+<section id="services-hero" class="services-hero-section text-white py-4 py-md-5 page-header-services">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
         <h1 class="display-5 display-md-4 fw-bold mobile-title">Layanan Kelurahan</h1>
         <p class="lead mb-0 mobile-subtitle">Berbagai layanan publik yang tersedia untuk memudahkan urusan administrasi Anda</p>
     </div>
@@ -801,5 +802,108 @@
         font-size: 1.25rem;
     }
 }
+
+/* ==== SERVICES HERO SECTION SLIDESHOW ==== */
+.services-hero-section {
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.services-hero-section .hero-bg, 
+.services-hero-section .hero-bg-next {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 0;
+}
+
+.services-hero-section .hero-bg {
+    opacity: 1;
+}
+
+.services-hero-section .hero-bg-next {
+    opacity: 0;
+}
+
+.services-hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.services-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .services-hero-section::after {
+        background: rgba(0, 0, 0, 0.75);
+    }
+    
+    /* Add top margin to content inside hero to prevent text being covered */
+    .services-hero-section .container {
+        margin-top: 45px;
+    }
+}
+
+@media (max-width: 576px) {
+    .services-hero-section .container {
+        margin-top: 40px;
+    }
+}
 </style>
+@endpush
+
+@push('scripts')
+<script>
+window.addEventListener("load", function () {
+    const hero = document.getElementById("services-hero");
+    if (!hero) return;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        hero.style.backgroundImage = "url('{{ asset('images/Kantor_Kelurahan_Margasari.png') }}')";
+        hero.style.backgroundPosition = "15% center";
+        hero.style.backgroundSize = "cover";
+        return;
+    }
+    hero.insertAdjacentHTML("beforeend", `<div class="hero-bg hero-bg-1"></div><div class="hero-bg hero-bg-2"></div>`);
+    const bg1 = hero.querySelector(".hero-bg-1");
+    const bg2 = hero.querySelector(".hero-bg-2");
+    const slides = [
+        { image: "{{ asset('images/Kantor_Kelurahan_Margasari.png') }}", position: "center 33%" },
+        { image: "{{ asset('images/Opening_Insos.jpg') }}", position: "center 15%" },
+        { image: "{{ asset('images/poto.kebun_sayur.jpg') }}", position: "center 20%" }
+    ];
+    let current = 0, showingBg1 = true;
+    [bg1, bg2].forEach(bg => Object.assign(bg.style, {position: "absolute", inset: "0", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", opacity: "0", transition: "opacity 0.8s ease-in-out", zIndex: 0}));
+    bg1.style.backgroundImage = `url('${slides[0].image}')`;
+    bg1.style.backgroundPosition = slides[0].position;
+    bg1.style.opacity = "1";
+    function changeSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        const nextSlide = slides[nextIndex];
+        if (showingBg1) {
+            bg2.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg2.style.backgroundPosition = nextSlide.position;
+            bg2.style.opacity = "1";
+            bg1.style.opacity = "0";
+        } else {
+            bg1.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg1.style.backgroundPosition = nextSlide.position;
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
+        }
+        showingBg1 = !showingBg1;
+        current = nextIndex;
+    }
+    setInterval(changeSlide, 6000);
+});
+</script>
 @endpush

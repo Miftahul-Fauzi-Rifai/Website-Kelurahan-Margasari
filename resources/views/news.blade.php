@@ -4,8 +4,9 @@
 @section('meta_description', 'Berita terbaru dan informasi terkini dari Kelurahan Marga Sari, Kota Balikpapan.')
 
 @section('content')
-<section class="bg-primary text-white py-4 py-md-5 page-header-news">
-    <div class="container">
+<section id="news-hero" class="news-hero-section text-white py-4 py-md-5 page-header-news">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
         <div class="row">
             <div class="col-12">
                 <h1 class="display-6 fw-bold">Berita Terbaru</h1>
@@ -20,7 +21,7 @@
         @if($news->count() > 0)
             <div class="row g-4">
                 @foreach($news as $article)
-                <div class="col-lg-4 col-md-6">
+                <div class="col-6 col-md-6 col-lg-4">
                     <article class="card border-0 shadow-sm h-100">
                         @if($article->featured_image)
                         <img src="{{ asset('storage/' . $article->featured_image) }}" 
@@ -192,5 +193,159 @@
         font-size: 1rem !important;
     }
 }
+
+/* ==== NEWS HERO SECTION SLIDESHOW ==== */
+.news-hero-section {
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.news-hero-section .hero-bg, 
+.news-hero-section .hero-bg-next {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 0;
+}
+
+.news-hero-section .hero-bg {
+    opacity: 1;
+}
+
+.news-hero-section .hero-bg-next {
+    opacity: 0;
+}
+
+.news-hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.news-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .news-hero-section::after {
+        background: rgba(0, 0, 0, 0.75);
+    }
+    
+    /* News cards in 2-column layout for mobile */
+    .col-6 article.card {
+        font-size: 0.85rem;
+    }
+    
+    .col-6 .card-img-top {
+        height: 110px !important;
+    }
+    
+    .col-6 .card-body {
+        padding: 0.6rem 0.4rem !important;
+    }
+    
+    .col-6 .card-title {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.4rem !important;
+        line-height: 1.2;
+    }
+    
+    .col-6 .card-text {
+        font-size: 0.7rem !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.3;
+    }
+    
+    .col-6 .card-body small {
+        font-size: 0.65rem !important;
+    }
+    
+    .col-6 .badge {
+        font-size: 0.65rem !important;
+        padding: 0.25rem 0.4rem;
+    }
+    
+    /* Adjust gap between news cards */
+    .row.g-4 {
+        --bs-gutter-x: 0.5rem;
+        --bs-gutter-y: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Further optimization for very small screens */
+    .col-6 .card-img-top {
+        height: 100px !important;
+    }
+    
+    .col-6 .card-body {
+        padding: 0.5rem 0.3rem !important;
+    }
+    
+    .col-6 .card-title {
+        font-size: 0.75rem !important;
+    }
+    
+    .col-6 .card-text {
+        font-size: 0.65rem !important;
+    }
+}
 </style>
+@endpush
+
+@push('scripts')
+<script>
+window.addEventListener("load", function () {
+    const hero = document.getElementById("news-hero");
+    if (!hero) return;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        hero.style.backgroundImage = "url('{{ asset('images/Kantor_Kelurahan_Margasari.png') }}')";
+        hero.style.backgroundPosition = "15% center";
+        hero.style.backgroundSize = "cover";
+        return;
+    }
+    hero.insertAdjacentHTML("beforeend", `<div class="hero-bg hero-bg-1"></div><div class="hero-bg hero-bg-2"></div>`);
+    const bg1 = hero.querySelector(".hero-bg-1");
+    const bg2 = hero.querySelector(".hero-bg-2");
+    const slides = [
+        { image: "{{ asset('images/Kantor_Kelurahan_Margasari.png') }}", position: "center 33%" },
+        { image: "{{ asset('images/Opening_Insos.jpg') }}", position: "center 15%" },
+        { image: "{{ asset('images/poto.kebun_sayur.jpg') }}", position: "center 20%" }
+    ];
+    let current = 0, showingBg1 = true;
+    [bg1, bg2].forEach(bg => Object.assign(bg.style, {position: "absolute", inset: "0", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", opacity: "0", transition: "opacity 0.8s ease-in-out", zIndex: 0}));
+    bg1.style.backgroundImage = `url('${slides[0].image}')`;
+    bg1.style.backgroundPosition = slides[0].position;
+    bg1.style.opacity = "1";
+    function changeSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        const nextSlide = slides[nextIndex];
+        if (showingBg1) {
+            bg2.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg2.style.backgroundPosition = nextSlide.position;
+            bg2.style.opacity = "1";
+            bg1.style.opacity = "0";
+        } else {
+            bg1.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg1.style.backgroundPosition = nextSlide.position;
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
+        }
+        showingBg1 = !showingBg1;
+        current = nextIndex;
+    }
+    setInterval(changeSlide, 6000);
+});
+</script>
 @endpush

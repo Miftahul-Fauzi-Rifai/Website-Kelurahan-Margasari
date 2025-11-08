@@ -89,13 +89,6 @@
             }
         }
         
-        /* Hide navbar initially on mobile for hero section */
-        @media (max-width: 767px) {
-            .navbar-sticky {
-                transform: translateY(-100%);
-            }
-        }
-        
         /* Scrolled state - transparent background */
         .navbar-sticky.scrolled {
             background-color: rgba(255, 255, 255, 0.95) !important;
@@ -103,18 +96,54 @@
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
         }
 
-        /* Mobile Navbar: Hidden at top, Show on scroll */
+        /* Mobile Navbar: Always visible with transparent background */
         @media (max-width: 767px) {
             .navbar-sticky {
-                transform: translateY(-100%);
-                transition: transform 0.3s ease, background-color 0.3s ease;
+                transform: translateY(0) !important;
+                background-color: transparent !important;
+                backdrop-filter: none;
+                box-shadow: none !important;
+                transition: background-color 0.3s ease;
             }
             
+            /* When scrolled, add background */
             .navbar-sticky.show-on-scroll {
                 transform: translateY(0);
                 background-color: rgba(255, 255, 255, 0.95) !important;
                 backdrop-filter: blur(10px);
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15) !important;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            /* Navbar brand and links visible on transparent background */
+            .navbar-sticky .navbar-brand,
+            .navbar-sticky .navbar-nav .nav-link {
+                color: #ffffff !important;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            }
+            
+            /* When scrolled, change text color back to dark */
+            .navbar-sticky.show-on-scroll .navbar-brand,
+            .navbar-sticky.show-on-scroll .navbar-nav .nav-link {
+                color: #333 !important;
+                text-shadow: none;
+            }
+            
+            /* Hamburger icon - make it white on transparent */
+            .navbar-sticky .navbar-toggler {
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+            
+            .navbar-sticky .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            }
+            
+            /* When scrolled, hamburger back to dark */
+            .navbar-sticky.show-on-scroll .navbar-toggler {
+                border-color: rgba(0,0,0,.1);
+            }
+            
+            .navbar-sticky.show-on-scroll .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
             }
         }
         
@@ -349,15 +378,10 @@
                     header.classList.remove('scrolled');
                 }
                 
-                // Mobile specific behavior
+                // Mobile specific behavior - navbar always visible
                 if (isMobile()) {
-                    if (scrollTop > mobileShowThreshold) {
-                        // Show navbar when scrolled down past hero section
-                        header.classList.add('show-on-scroll');
-                    } else {
-                        // Hide navbar in hero section (default state)
-                        header.classList.remove('show-on-scroll');
-                    }
+                    // Always ensure navbar is visible on mobile
+                    header.classList.add('show-on-scroll');
                 } else {
                     // Desktop - ensure mobile classes are removed
                     header.classList.remove('show-on-scroll');

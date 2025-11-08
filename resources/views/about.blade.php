@@ -4,12 +4,13 @@
 @section('meta_description', 'Halaman profil lengkap Kelurahan Marga Sari, Kota Balikpapan.')
 
 @section('content')
-<section class="bg-primary text-white py-5">
-    <div class="container text-center">
+<section id="about-hero" class="about-hero-section text-white py-4 py-md-5 page-header-about">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
         <h1 class="display-5 display-md-4 fw-bold mobile-title">
             {{ $tentang->judul ?? 'Tentang Kelurahan Marga Sari' }}
         </h1>
-        <p class="lead mb-0">Halaman informasi Kelurahan Marga Sari</p>
+        <p class="lead mb-0 mobile-subtitle">Halaman informasi Kelurahan Marga Sari</p>
     </div>
 </section>
 
@@ -148,6 +149,7 @@
 </div>
 @endsection
 
+@push('styles')
 <style>
 /* ======== HEADER TENTANG (RAPIH DARI NAVBAR) ======== */
 section.bg-primary.text-white.py-5 {
@@ -380,4 +382,147 @@ section.bg-primary.text-white p.lead {
     }
 }
 
+/* Mobile Header Optimizations */
+.mobile-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@media (min-width: 576px) {
+    .mobile-title {
+        font-size: 2.2rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-title {
+        font-size: 2.5rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+/* Page Header Spacing untuk menghindari navbar */
+.page-header-about {
+    padding-top: 90px !important; /* Reasonable space from fixed navbar */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-header-about {
+        padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+    }
+}
+
+@media (max-width: 576px) {
+    .page-header-about {
+        padding-top: 70px !important; /* Minimal padding on small mobile */
+    }
+}
+
+/* ==== ABOUT HERO SECTION SLIDESHOW ==== */
+.about-hero-section {
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.about-hero-section .hero-bg, 
+.about-hero-section .hero-bg-next {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 0;
+}
+
+.about-hero-section .hero-bg {
+    opacity: 1;
+}
+
+.about-hero-section .hero-bg-next {
+    opacity: 0;
+}
+
+.about-hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.about-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .about-hero-section::after {
+        background: rgba(0, 0, 0, 0.75);
+    }
+}
+
 </style>
+@endpush
+
+@push('scripts')
+<script>
+window.addEventListener("load", function () {
+    const hero = document.getElementById("about-hero");
+    if (!hero) return;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        hero.style.backgroundImage = "url('{{ asset('images/Kantor_Kelurahan_Margasari.png') }}')";
+        hero.style.backgroundPosition = "15% center";
+        hero.style.backgroundSize = "cover";
+        return;
+    }
+    hero.insertAdjacentHTML("beforeend", `<div class="hero-bg hero-bg-1"></div><div class="hero-bg hero-bg-2"></div>`);
+    const bg1 = hero.querySelector(".hero-bg-1");
+    const bg2 = hero.querySelector(".hero-bg-2");
+    const slides = [
+        { image: "{{ asset('images/Kantor_Kelurahan_Margasari.png') }}", position: "center 33%" },
+        { image: "{{ asset('images/Opening_Insos.jpg') }}", position: "center 15%" },
+        { image: "{{ asset('images/poto.kebun_sayur.jpg') }}", position: "center 20%" }
+    ];
+    let current = 0, showingBg1 = true;
+    [bg1, bg2].forEach(bg => Object.assign(bg.style, {position: "absolute", inset: "0", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", opacity: "0", transition: "opacity 0.8s ease-in-out", zIndex: 0}));
+    bg1.style.backgroundImage = `url('${slides[0].image}')`;
+    bg1.style.backgroundPosition = slides[0].position;
+    bg1.style.opacity = "1";
+    function changeSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        const nextSlide = slides[nextIndex];
+        if (showingBg1) {
+            bg2.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg2.style.backgroundPosition = nextSlide.position;
+            bg2.style.opacity = "1";
+            bg1.style.opacity = "0";
+        } else {
+            bg1.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg1.style.backgroundPosition = nextSlide.position;
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
+        }
+        showingBg1 = !showingBg1;
+        current = nextIndex;
+    }
+    setInterval(changeSlide, 6000);
+});
+</script>
+@endpush

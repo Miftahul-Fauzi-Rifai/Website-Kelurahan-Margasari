@@ -4,10 +4,11 @@
 @section('meta_description', 'Sampaikan pengaduan dan aspirasi Anda kepada Kelurahan Marga Sari melalui form pengaduan online.')
 
 @section('content')
-<section class="bg-primary text-white py-4 py-md-5 page-header-complaint">
-    <div class="container">
-        <h1 class="display-5 display-md-4 fw-bold mobile-title mb-2 mb-md-3">Form Pengaduan Warga</h1>
-        <p class="lead mobile-subtitle mb-3 mb-lg-0">Sampaikan aspirasi, keluhan, dan saran Anda untuk kemajuan bersama</p>
+<section id="complaint-hero" class="complaint-hero-section text-white py-4 py-md-5 page-header-complaint">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <h1 class="display-5 display-md-4 fw-bold mobile-title">Form Pengaduan Warga</h1>
+        <p class="lead mb-0 mobile-subtitle">Sampaikan aspirasi, keluhan, dan saran Anda untuk kemajuan bersama</p>
     </div>
 </section>
 
@@ -366,5 +367,97 @@
         padding-top: 70px !important; /* Minimal padding on small mobile */
     }
 }
+
+/* ==== COMPLAINT HERO SECTION SLIDESHOW ==== */
+.complaint-hero-section {
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.complaint-hero-section .hero-bg, 
+.complaint-hero-section .hero-bg-next {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 0;
+}
+
+.complaint-hero-section .hero-bg {
+    opacity: 1;
+}
+
+.complaint-hero-section .hero-bg-next {
+    opacity: 0;
+}
+
+.complaint-hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.complaint-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .complaint-hero-section::after {
+        background: rgba(0, 0, 0, 0.75);
+    }
+}
 </style>
+@endpush
+
+@push('scripts')
+<script>
+window.addEventListener("load", function () {
+    const hero = document.getElementById("complaint-hero");
+    if (!hero) return;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        hero.style.backgroundImage = "url('{{ asset('images/Kantor_Kelurahan_Margasari.png') }}')";
+        hero.style.backgroundPosition = "15% center";
+        hero.style.backgroundSize = "cover";
+        return;
+    }
+    hero.insertAdjacentHTML("beforeend", `<div class="hero-bg hero-bg-1"></div><div class="hero-bg hero-bg-2"></div>`);
+    const bg1 = hero.querySelector(".hero-bg-1");
+    const bg2 = hero.querySelector(".hero-bg-2");
+    const slides = [
+        { image: "{{ asset('images/Kantor_Kelurahan_Margasari.png') }}", position: "center 33%" },
+        { image: "{{ asset('images/Opening_Insos.jpg') }}", position: "center 15%" },
+        { image: "{{ asset('images/poto.kebun_sayur.jpg') }}", position: "center 20%" }
+    ];
+    let current = 0, showingBg1 = true;
+    [bg1, bg2].forEach(bg => Object.assign(bg.style, {position: "absolute", inset: "0", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", opacity: "0", transition: "opacity 0.8s ease-in-out", zIndex: 0}));
+    bg1.style.backgroundImage = `url('${slides[0].image}')`;
+    bg1.style.backgroundPosition = slides[0].position;
+    bg1.style.opacity = "1";
+    function changeSlide() {
+        const nextIndex = (current + 1) % slides.length;
+        const nextSlide = slides[nextIndex];
+        if (showingBg1) {
+            bg2.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg2.style.backgroundPosition = nextSlide.position;
+            bg2.style.opacity = "1";
+            bg1.style.opacity = "0";
+        } else {
+            bg1.style.backgroundImage = `url('${nextSlide.image}')`;
+            bg1.style.backgroundPosition = nextSlide.position;
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
+        }
+        showingBg1 = !showingBg1;
+        current = nextIndex;
+    }
+    setInterval(changeSlide, 6000);
+});
+</script>
 @endpush

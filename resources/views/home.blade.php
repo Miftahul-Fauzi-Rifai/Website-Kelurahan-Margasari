@@ -9,8 +9,8 @@
 <section id="hero" class="hero-section text-white py-5">
     <div class="hero-overlay"></div>
     <div class="container position-relative py-5">
-        <div class="hero-content text-start">
-            <h1 class="fw-bold display-5">
+        <div class="hero-content text-center">
+            <h1 class="fw-bold display-3">
                 Selamat Datang di <span class="text-warning">Kelurahan Marga Sari</span>
             </h1>
             <p class="lead my-3">
@@ -108,7 +108,7 @@
                 
                 <div class="row g-4">
                     @forelse($latestNews->take(4) as $news)
-                    <div class="col-md-6">
+                    <div class="col-6 col-md-6">
                         <article class="card border-0 shadow-sm h-100">
                             @if($news->featured_image)
                                 <img src="{{ asset('storage/' . $news->featured_image) }}" class="card-img-top" alt="{{ $news->title }}" style="height: 200px; object-fit: cover;">
@@ -192,7 +192,7 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     color: white;
 }
 
@@ -238,7 +238,8 @@
 .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 600px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Responsif: teks & tombol */
@@ -255,18 +256,18 @@
     }
 
     .hero-content h1 {
-        font-size: 1.8rem;
-        text-align: left;
+        font-size: 2.5rem;
+        text-align: center;
     }
 
     .hero-content p {
         font-size: 1rem;
-        text-align: left;
+        text-align: center;
     }
 
     .hero-content .d-flex {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .hero-content .btn {
@@ -321,7 +322,7 @@ body {
 /* Mobile container fixes */
 @media (max-width: 991px) {
     .hero-section {
-        padding-top: 20px; /* Minimal padding since navbar is hidden */
+        padding-top: 20px; /* Minimal padding, navbar is transparent */
         min-height: 60vh; /* Normal height, not full screen */
     }
 }
@@ -334,7 +335,7 @@ body {
     }
     
     .hero-section {
-        padding-top: 20px; /* Minimal padding since navbar is hidden */
+        padding-top: 20px; /* Minimal padding, navbar is transparent */
         min-height: 60vh; /* Normal height */
     }
     
@@ -635,17 +636,30 @@ body {
     }
     
     .card-body {
-        padding: 1rem 0.75rem !important;
+        padding: 0.75rem 0.5rem !important;
     }
     
     .card-title {
-        font-size: 0.9rem !important;
+        font-size: 0.85rem !important;
         line-height: 1.2;
+        margin-bottom: 0.5rem !important;
     }
     
     .card-text {
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
         line-height: 1.3;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Optimize news card image for mobile 2-column layout */
+    .card-img-top {
+        height: 120px !important;
+        object-fit: cover;
+    }
+    
+    /* Make date and views info smaller on mobile */
+    .card-body .text-muted small {
+        font-size: 0.7rem !important;
     }
 }
 
@@ -689,6 +703,50 @@ body {
 
 .service-online-card:hover::before {
     opacity: 1;
+}
+
+/* Mobile News Section Optimization - 2 Column Layout */
+@media (max-width: 768px) {
+    /* News section title */
+    section .fw-bold {
+        font-size: 1.3rem;
+    }
+    
+    /* News cards in 2-column layout */
+    .col-6 article.card {
+        font-size: 0.85rem;
+    }
+    
+    .col-6 .card-img-top {
+        height: 110px !important;
+    }
+    
+    .col-6 .card-body {
+        padding: 0.6rem 0.4rem !important;
+    }
+    
+    .col-6 .card-title {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .col-6 .card-text {
+        font-size: 0.7rem !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .col-6 .card-body small {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Adjust gap between news cards */
+    .row.g-4 {
+        --bs-gutter-x: 0.5rem;
+        --bs-gutter-y: 0.75rem;
+    }
 }
 </style>
 @endpush
