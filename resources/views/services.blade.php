@@ -5,7 +5,7 @@
 
 @section('content')
 <!-- Page Header -->
-<section id="services-hero" class="services-hero-section text-white py-4 py-md-5 page-header-services">
+<section id="services-hero" class="services-hero-section text-white py-5 py-md-5 page-header-services">
     <div class="container position-relative">
         <h1 class="display-5 display-md-4 fw-bold mobile-title">Layanan Kelurahan</h1>
         <p class="lead mb-0 mobile-subtitle">Berbagai layanan publik yang tersedia untuk memudahkan urusan administrasi Anda</p>
@@ -666,18 +666,21 @@
 /* Page Header Spacing untuk menghindari navbar */
 .page-header-services {
     padding-top: 90px !important; /* Reasonable space from fixed navbar */
+    padding-bottom: 2rem !important; /* Jarak bawah untuk mobile */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .page-header-services {
         padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+        padding-bottom: 2.5rem !important; /* Tambahan jarak bawah mobile */
     }
 }
 
 @media (max-width: 576px) {
     .page-header-services {
         padding-top: 70px !important; /* Minimal padding on small mobile */
+        padding-bottom: 2rem !important; /* Jarak bawah yang cukup */
     }
     
     .page-header-services h1 {
