@@ -679,15 +679,6 @@
     .page-header-services {
         padding-top: 70px !important; /* Minimal padding on small mobile */
     }
-    
-    .page-header-services h1 {
-        font-size: 1.8rem !important;
-        line-height: 1.3;
-    }
-    
-    .page-header-services .lead {
-        font-size: 1rem !important;
-    }
 }
 
 /* Regular Service Cards Mobile Responsive */
