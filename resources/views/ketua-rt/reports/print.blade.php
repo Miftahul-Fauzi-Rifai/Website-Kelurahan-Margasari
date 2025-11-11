@@ -10,6 +10,10 @@
             margin: 1.5cm 2cm;
         }
 
+        @page:last {
+            margin-bottom: 8cm;
+        }
+
         * {
             margin: 0;
             padding: 0;
