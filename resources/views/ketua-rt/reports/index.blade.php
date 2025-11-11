@@ -53,7 +53,7 @@
                                             <i class="bi bi-eye"></i>
                                         </a>
                                         
-                                        @if(!in_array($report->status, ['approved', 'rejected']))
+                                        @if($report->status !== 'approved')
                                             <a href="{{ route('ketua-rt.reports.edit', $report) }}" 
                                                class="btn btn-sm btn-warning" title="Edit">
                                                 <i class="bi bi-pencil"></i>

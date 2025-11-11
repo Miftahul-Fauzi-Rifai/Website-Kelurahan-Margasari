@@ -151,10 +151,10 @@ class ReportController extends Controller
             abort(403);
         }
 
-        // Tidak bisa edit jika sudah direview
-        if (in_array($report->status, ['approved', 'rejected'])) {
+        // Tidak bisa edit jika sudah disetujui (approved)
+        if ($report->status === 'approved') {
             return redirect()->route('ketua-rt.reports.show', $report)
-                ->with('error', 'Laporan yang sudah direview tidak dapat diedit');
+                ->with('error', 'Laporan yang sudah disetujui tidak dapat diedit');
         }
 
         return view('ketua-rt.reports.edit', compact('report'));
@@ -168,9 +168,9 @@ class ReportController extends Controller
             abort(403);
         }
 
-        // Tidak bisa update jika sudah direview
-        if (in_array($report->status, ['approved', 'rejected'])) {
-            return back()->with('error', 'Laporan yang sudah direview tidak dapat diedit');
+        // Tidak bisa update jika sudah disetujui (approved)
+        if ($report->status === 'approved') {
+            return back()->with('error', 'Laporan yang sudah disetujui tidak dapat diedit');
         }
 
         $request->validate([
@@ -190,6 +190,12 @@ class ReportController extends Controller
         ]);
 
         $data = $request->except(['activities']);
+
+        // Jika status reviewed atau rejected, ubah kembali ke draft
+        if (in_array($report->status, ['reviewed', 'rejected'])) {
+            $data['status'] = 'draft';
+            $data['admin_notes'] = null; // Hapus catatan admin sebelumnya
+        }
 
         // Process activities - filter empty rows and handle photo upload
         if ($request->has('activities')) {

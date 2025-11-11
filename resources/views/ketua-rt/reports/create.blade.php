@@ -35,6 +35,24 @@
                         </div>
                     @endif
 
+                    <!-- Notifikasi Tips -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-lightbulb-fill me-2" style="font-size: 1.5rem;"></i>
+                            <div>
+                                <h6 class="alert-heading mb-2"><strong>💡 Tips Mengisi Laporan</strong></h6>
+                                <ul class="mb-0 small">
+                                    <li>Isi laporan secara <strong>ringkas dan jelas</strong></li>
+                                    <li>Usahakan <strong>tidak lebih dari 1 halaman</strong> saat dicetak</li>
+                                    <li>Gunakan <strong>poin-poin</strong> untuk memudahkan pembacaan</li>
+                                    <li>Lampirkan <strong>foto kegiatan</strong> jika diperlukan (maks 2MB per foto)</li>
+                                    <li>Fokus pada kegiatan dan kondisi <strong>penting</strong> saja</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
                     <form action="{{ route('ketua-rt.reports.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
@@ -164,6 +182,31 @@
 
 @push('styles')
 <style>
+/* ===================== ALERT TIPS ===================== */
+.alert-info {
+    background: linear-gradient(135deg, #e7f3ff 0%, #d4e9ff 100%);
+    border-left: 4px solid #0d6efd;
+    border-radius: 0.5rem;
+}
+
+.alert-info .bi-lightbulb-fill {
+    color: #ffc107;
+}
+
+.alert-info h6 {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.alert-info ul li {
+    margin-bottom: 0.25rem;
+    color: #495057;
+}
+
+.alert-info ul li strong {
+    color: #0d6efd;
+}
+
 /* ===================== DASAR RESPONSIF ===================== */
 html, body {
     width: 100%;

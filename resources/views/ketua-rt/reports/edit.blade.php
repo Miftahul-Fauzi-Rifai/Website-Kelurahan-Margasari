@@ -35,6 +35,44 @@
                         </div>
                     @endif
 
+                    <!-- Notifikasi untuk laporan yang direview/ditolak -->
+                    @if(in_array($report->status, ['reviewed', 'rejected']))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-exclamation-triangle-fill me-2" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6 class="alert-heading mb-2"><strong>⚠️ Laporan Perlu Diperbaiki</strong></h6>
+                                    <p class="mb-1">Status: <strong>{!! $report->status_badge !!}</strong></p>
+                                    @if($report->admin_notes)
+                                        <p class="mb-1"><strong>Catatan Admin:</strong></p>
+                                        <p class="mb-0 fst-italic">"{{ $report->admin_notes }}"</p>
+                                    @endif
+                                    <hr class="my-2">
+                                    <p class="mb-0 small">Silakan perbaiki laporan sesuai catatan di atas, kemudian kirim ulang.</p>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    <!-- Notifikasi Tips -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-lightbulb-fill me-2" style="font-size: 1.5rem;"></i>
+                            <div>
+                                <h6 class="alert-heading mb-2"><strong>💡 Tips Mengisi Laporan</strong></h6>
+                                <ul class="mb-0 small">
+                                    <li>Isi laporan secara <strong>ringkas dan jelas</strong></li>
+                                    <li>Usahakan <strong>tidak lebih dari 1 halaman</strong> saat dicetak</li>
+                                    <li>Gunakan <strong>poin-poin</strong> untuk memudahkan pembacaan</li>
+                                    <li>Lampirkan <strong>foto kegiatan</strong> jika diperlukan (maks 2MB per foto)</li>
+                                    <li>Fokus pada kegiatan dan kondisi <strong>penting</strong> saja</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
                     <form action="{{ route('ketua-rt.reports.update', $report) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -191,6 +229,46 @@
 
 @push('styles')
 <style>
+/* ===================== ALERT STYLES ===================== */
+.alert-warning {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+    border-left: 4px solid #ffc107;
+    border-radius: 0.5rem;
+}
+
+.alert-warning .bi-exclamation-triangle-fill {
+    color: #ff6b6b;
+}
+
+.alert-warning h6 {
+    color: #856404;
+    font-weight: 600;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #e7f3ff 0%, #d4e9ff 100%);
+    border-left: 4px solid #0d6efd;
+    border-radius: 0.5rem;
+}
+
+.alert-info .bi-lightbulb-fill {
+    color: #ffc107;
+}
+
+.alert-info h6 {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.alert-info ul li {
+    margin-bottom: 0.25rem;
+    color: #495057;
+}
+
+.alert-info ul li strong {
+    color: #0d6efd;
+}
+
 /* ===== EDIT LAPORAN — RESPONSIF UNTUK SEMUA DEVICE ===== */
 
 /* --- Struktur umum --- */
