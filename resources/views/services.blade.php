@@ -666,18 +666,25 @@
 /* Page Header Spacing untuk menghindari navbar */
 .page-header-services {
     padding-top: 90px !important; /* Reasonable space from fixed navbar */
+    padding-bottom: 2rem !important;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .page-header-services {
-        padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
+        padding-top: 100px !important; /* More padding on mobile */
+        padding-bottom: 2.5rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 }
 
 @media (max-width: 576px) {
     .page-header-services {
-        padding-top: 70px !important; /* Minimal padding on small mobile */
+        padding-top: 90px !important; /* Adjusted padding for small mobile */
+        padding-bottom: 2rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 }
 
@@ -764,13 +771,14 @@
 /* Mobile Header Optimizations - sama dengan Data RT */
 .mobile-title {
     font-size: 1.8rem;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
 }
 
 .mobile-subtitle {
     font-size: 1rem;
     opacity: 0.9;
+    line-height: 1.5;
 }
 
 @media (min-width: 576px) {
