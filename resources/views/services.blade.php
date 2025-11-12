@@ -8,7 +8,7 @@
 <section id="services-hero" class="services-hero-section text-white py-4 py-md-5 page-header-services">
     <div class="container position-relative">
         <h1 class="display-5 display-md-4 fw-bold mobile-title">Layanan Kelurahan</h1>
-        <p class="lead mb-0 mobile-subtitle">Berbagai layanan publik yang tersedia untuk memudahkan urusan administrasi Anda</p>
+        <p class="lead mb-0 mobile-subtitle">Layanan administrasi dan pelayanan publik</p>
     </div>
 </section>
 
@@ -663,28 +663,21 @@
     margin-bottom: 0.5rem;
 }
 
-/* Page Header Spacing untuk menghindari navbar */
+/* Page Header Spacing - SAMA DENGAN DATA RT */
 .page-header-services {
     padding-top: 90px !important; /* Reasonable space from fixed navbar */
-    padding-bottom: 2rem !important;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .page-header-services {
-        padding-top: 100px !important; /* More padding on mobile */
-        padding-bottom: 2.5rem !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
+        padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
     }
 }
 
 @media (max-width: 576px) {
     .page-header-services {
-        padding-top: 90px !important; /* Adjusted padding for small mobile */
-        padding-bottom: 2rem !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
+        padding-top: 70px !important; /* Minimal padding on small mobile */
     }
 }
 
@@ -768,17 +761,16 @@
     }
 }
 
-/* Mobile Header Optimizations - sama dengan Data RT */
+/* Mobile Header Optimizations - SAMA DENGAN DATA RT */
 .mobile-title {
     font-size: 1.8rem;
-    line-height: 1.3;
-    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
 }
 
 .mobile-subtitle {
     font-size: 1rem;
     opacity: 0.9;
-    line-height: 1.5;
 }
 
 @media (min-width: 576px) {
@@ -801,7 +793,7 @@
     }
 }
 
-/* ==== SERVICES HERO SECTION - BACKGROUND ORANGE ==== */
+/* ==== SERVICES HERO SECTION - BACKGROUND ORANGE - SAMA DENGAN DATA RT ==== */
 .services-hero-section {
     position: relative;
     overflow: hidden;
@@ -812,6 +804,28 @@
 .services-hero-section .container {
     position: relative;
     z-index: 2;
+}
+
+/* Mobile specific fixes for hero section */
+@media (max-width: 576px) {
+    .services-hero-section {
+        min-height: auto;
+    }
+    
+    .services-hero-section .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    .services-hero-section h1 {
+        font-size: 1.5rem !important;
+        word-break: break-word;
+    }
+    
+    .services-hero-section p {
+        font-size: 0.9rem !important;
+        word-break: break-word;
+    }
 }
 </style>
 @endpush

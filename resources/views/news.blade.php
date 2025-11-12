@@ -6,12 +6,8 @@
 @section('content')
 <section id="news-hero" class="news-hero-section text-white py-4 py-md-5 page-header-news">
     <div class="container position-relative">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="display-6 fw-bold">Berita Terbaru</h1>
-                <p class="lead mb-0">Informasi dan berita terkini dari Kelurahan Marga Sari</p>
-            </div>
-        </div>
+        <h1 class="display-5 display-md-4 fw-bold mobile-title">Berita Terbaru</h1>
+        <p class="lead mb-0 mobile-subtitle">Informasi dan berita terkini dari Kelurahan Marga Sari</p>
     </div>
 </section>
 
@@ -158,7 +154,7 @@
 }
 
 
-/* Page Header Spacing untuk menghindari navbar */
+/* Page Header Spacing untuk menghindari navbar - SAMA DENGAN DATA RT */
 .page-header-news {
     padding-top: 90px !important; /* Reasonable space from fixed navbar */
 }
@@ -167,10 +163,6 @@
 @media (max-width: 768px) {
     .page-header-news {
         padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
-    }
-    
-    .display-6 {
-        font-size: 2rem;
     }
     
     .card-body {
@@ -182,14 +174,37 @@
     .page-header-news {
         padding-top: 70px !important; /* Minimal padding on small mobile */
     }
-    
-    .page-header-news h1 {
-        font-size: 1.8rem !important;
-        line-height: 1.3;
+}
+
+/* Mobile Header Optimizations - SAMA DENGAN DATA RT */
+.mobile-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@media (min-width: 576px) {
+    .mobile-title {
+        font-size: 2.2rem;
     }
     
-    .page-header-news .lead {
-        font-size: 1rem !important;
+    .mobile-subtitle {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-title {
+        font-size: 2.5rem;
+    }
+    
+    .mobile-subtitle {
+        font-size: 1.25rem;
     }
 }
 
