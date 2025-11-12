@@ -154,7 +154,7 @@
 section.bg-primary.text-white.py-5 {
     padding-top: 90px !important; /* beri ruang antara navbar dan header */
     padding-bottom: 40px !important;
-    background: linear-gradient(180deg, #0d6efd, #0a58ca); /* gradasi lembut */
+    background: linear-gradient(90deg, #B45D08, #E9942B); /* gradasi lembut */
 }
 
 section.bg-primary.text-white h1 {
@@ -246,8 +246,29 @@ section.bg-primary.text-white p.lead {
 }
 
 /* Card logo tengah */
+.card-header.bg-primary {
+    background: linear-gradient(90deg, #E9942B 80%) !important;
+    border: none;
+}
+
+.card.logo-card h5 {
+    color: #8C4A06 !important;
+}
+.card.logo-card p {
+    color: #555 !important;
+}
+
+.card-header i {
+    color: #FFD37A;
+    margin-right: 6px;
+}
+
+.card {
+    border-color: #f0b06e !important;
+}
+
+
 .card.logo-card {
-    border: 1px solid #dee2e6; /* tipis, abu lembut */
     background-color: #fff;
     display: inline-block;
     padding: 10px 15px; /* dikurangi supaya tidak lebar */
@@ -257,6 +278,7 @@ section.bg-primary.text-white p.lead {
 <>
 /* ======== STRUKTUR ORGANISASI - CLEAN UNIFORM LOOK ======== */
 .org-chart {
+    background: linear-gradient(180deg, #FFF5EB 0%, #FFD9A0 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -282,8 +304,8 @@ section.bg-primary.text-white p.lead {
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 .org-title {
-    background: #f2f6ff; /* warna lembut seragam */
-    color: #0d47a1;
+    background: linear-gradient(90deg, #ffeed1ff);
+    color: #572d03ff;
     font-weight: 600;
     font-size: 0.9rem;
     border-bottom: 1px solid #e0e6f0;
@@ -329,7 +351,6 @@ section.bg-primary.text-white p.lead {
 }
 
 #sosial-media .card-header {
-    background: linear-gradient(90deg, #0d6efd, #0072ff);
     font-weight: 600;
     border: none;
     padding: 12px 20px;
@@ -431,12 +452,12 @@ section.bg-primary.text-white p.lead {
     }
 }
 
-/* ==== ABOUT HERO SECTION - BACKGROUND BIRU ==== */
+/* ==== ABOUT HERO SECTION - BACKGROUND ==== */
 .about-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
-    background: linear-gradient(135deg, #CC710A 0%, #CC710A 100%);
+    background: linear-gradient(120deg, #8C4A06 0%, #B45D08 45%, #CC710A 80%, #E9942B 100%);
 }
 
 .about-hero-section .container {
