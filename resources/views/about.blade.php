@@ -472,29 +472,12 @@ section.bg-primary.text-white p.lead {
         padding-top: 70px !important; /* Minimal padding on small mobile */
     }
 }
-
-<<<<<<< Updated upstream
-/* ==== ABOUT HERO SECTION - BACKGROUND ==== */
-=======
-<<<<<<< HEAD
 /* ==== ABOUT HERO SECTION - BACKGROUND ORANGE ==== */
-=======
-/* ==== ABOUT HERO SECTION - BACKGROUND ==== */
->>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
->>>>>>> Stashed changes
 .about-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
-<<<<<<< Updated upstream
-    background: linear-gradient(120deg, #8C4A06 0%, #B45D08 45%, #CC710A 80%, #E9942B 100%);
-=======
-<<<<<<< HEAD
     background: linear-gradient(135deg, #CC710A 0%, #A35808 100%);
-=======
-    background: linear-gradient(120deg, #8C4A06 0%, #B45D08 45%, #CC710A 80%, #E9942B 100%);
->>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
->>>>>>> Stashed changes
 }
 
 .about-hero-section .container {
