@@ -352,10 +352,6 @@
                                 @endif
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-person me-2 text-success"></i>
-                                Profile
-                            </a>
                             <a class="dropdown-item" href="{{ route('home') }}" target="_blank">
                                 <i class="bi bi-globe me-2 text-success"></i>
                                 Lihat Website

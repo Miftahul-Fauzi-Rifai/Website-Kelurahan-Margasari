@@ -271,9 +271,6 @@
                         Pastikan data yang dimasukkan sudah benar dan lengkap.
                     </p>
                 </div>
-                <div class="col-lg-4 text-lg-end mt-2 mt-lg-0 d-none d-md-block">
-                    <i class="bi bi-laptop" style="font-size: 4rem; opacity: 0.3;"></i>
-                </div>
             </div>
         </div>
     </div>

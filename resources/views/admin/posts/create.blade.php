@@ -130,10 +130,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <button type="submit" class="btn btn-primary" id="saveBtn">
-                                    <i class="bi bi-check me-2"></i>Simpan Post
-                                </button>
-                                <button type="button" class="btn btn-success" id="saveAndNewBtn" onclick="saveAndNew()">
-                                    <i class="bi bi-plus me-2"></i>Simpan & Buat Baru
+                                    <i class="bi bi-check me-2"></i>Simpan & Posting
                                 </button>
                             </div>
                             <a href="{{ route('admin.posts.index') }}" class="btn btn-outline-secondary">

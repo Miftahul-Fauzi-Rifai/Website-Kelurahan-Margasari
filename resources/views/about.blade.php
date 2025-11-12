@@ -151,9 +151,7 @@
 @push('styles')
 <style>
 /* ======== HEADER TENTANG (RAPIH DARI NAVBAR) ======== */
-<<<<<<< HEAD
 /* Styles moved to .about-hero-section below */
-=======
 section.bg-primary.text-white.py-5 {
     padding-top: 90px !important; /* beri ruang antara navbar dan header */
     padding-bottom: 40px !important;
@@ -308,18 +306,12 @@ section.bg-primary.text-white p.lead {
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 .org-title {
-<<<<<<< Updated upstream
     background: linear-gradient(90deg, #ffeed1ff);
     color: #572d03ff;
-=======
-<<<<<<< HEAD
     background: #fff5e6; /* warna orange lembut */
     color: #CC710A;
-=======
     background: linear-gradient(90deg, #ffeed1ff);
     color: #572d03ff;
->>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
->>>>>>> Stashed changes
     font-weight: 600;
     font-size: 0.9rem;
     border-bottom: 1px solid #f0e6d0;
@@ -365,13 +357,7 @@ section.bg-primary.text-white p.lead {
 }
 
 #sosial-media .card-header {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
     background: #CC710A;
-=======
->>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
->>>>>>> Stashed changes
     font-weight: 600;
     border: none;
     padding: 12px 20px;
