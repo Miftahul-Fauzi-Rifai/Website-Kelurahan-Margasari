@@ -21,7 +21,7 @@
                 <img src="{{ asset($tentang->logo ?? 'images/logo-balikpapan.png') }}" 
                      alt="Logo Kelurahan" 
                      class="img-fluid mb-2" width="130">
-                <h5 class="fw-bold text-primary mb-0">Kelurahan Marga Sari</h5>
+                <h5 class="fw-bold mb-0" style="color:rgb(0, 0, 0);">Kelurahan Marga Sari</h5>
                 <p class="text-muted mb-0">Kecamatan Balikpapan Barat, Kota Balikpapan</p>
             </div>
         </div>
@@ -29,7 +29,7 @@
 
     <!-- Tentang -->
     <div id="profil-umum" class="card mb-4">
-        <div class="card-header bg-primary text-white fw-bold">
+        <div class="card-header text-white fw-bold" style="background-color: #CC710A;">
             <i class="bi bi-info-square"></i> Tentang Kelurahan
         </div>
         <div class="card-body">
@@ -52,7 +52,7 @@
 
     <!-- Struktur Organisasi -->
     <div id="struktur" class="card mb-4">
-        <div class="card-header bg-primary text-white fw-bold">
+        <div class="card-header text-white fw-bold" style="background-color: #CC710A;">
             <i class="bi bi-diagram-3"></i> Struktur Organisasi
         </div>
         <div class="card-body text-center">
@@ -101,7 +101,7 @@
 
     <!-- Sosial Media -->
     <div id="sosial-media" class="card mb-4">
-        <div class="card-header bg-primary text-white fw-bold">
+        <div class="card-header text-white fw-bold" style="background-color: #CC710A;">
             <i class="bi bi-share"></i> Sosial Media Kelurahan
         </div>
         <div class="card-body text-center py-4">
@@ -130,7 +130,7 @@
 
     <!-- Lokasi Kelurahan -->
         <div id="lokasi" class="card mb-4">
-        <div class="card-header bg-primary text-white fw-bold">
+        <div class="card-header text-white fw-bold" style="background-color: #CC710A;">
             <i class="bi bi-geo-alt"></i> Lokasi
         </div>
         <div class="card-body">
@@ -151,6 +151,9 @@
 @push('styles')
 <style>
 /* ======== HEADER TENTANG (RAPIH DARI NAVBAR) ======== */
+<<<<<<< HEAD
+/* Styles moved to .about-hero-section below */
+=======
 section.bg-primary.text-white.py-5 {
     padding-top: 90px !important; /* beri ruang antara navbar dan header */
     padding-bottom: 40px !important;
@@ -177,6 +180,7 @@ section.bg-primary.text-white p.lead {
         font-size: 1.6rem;
     }
 }
+>>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
 
 
 //* --- Tentang Kelurahan Section --- */
@@ -304,11 +308,21 @@ section.bg-primary.text-white p.lead {
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 .org-title {
+<<<<<<< Updated upstream
     background: linear-gradient(90deg, #ffeed1ff);
     color: #572d03ff;
+=======
+<<<<<<< HEAD
+    background: #fff5e6; /* warna orange lembut */
+    color: #CC710A;
+=======
+    background: linear-gradient(90deg, #ffeed1ff);
+    color: #572d03ff;
+>>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
+>>>>>>> Stashed changes
     font-weight: 600;
     font-size: 0.9rem;
-    border-bottom: 1px solid #e0e6f0;
+    border-bottom: 1px solid #f0e6d0;
     border-radius: 10px 10px 0 0;
     padding: 6px 0;
 }
@@ -351,6 +365,13 @@ section.bg-primary.text-white p.lead {
 }
 
 #sosial-media .card-header {
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    background: #CC710A;
+=======
+>>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
+>>>>>>> Stashed changes
     font-weight: 600;
     border: none;
     padding: 12px 20px;
@@ -452,12 +473,28 @@ section.bg-primary.text-white p.lead {
     }
 }
 
+<<<<<<< Updated upstream
 /* ==== ABOUT HERO SECTION - BACKGROUND ==== */
+=======
+<<<<<<< HEAD
+/* ==== ABOUT HERO SECTION - BACKGROUND ORANGE ==== */
+=======
+/* ==== ABOUT HERO SECTION - BACKGROUND ==== */
+>>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
+>>>>>>> Stashed changes
 .about-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
+<<<<<<< Updated upstream
     background: linear-gradient(120deg, #8C4A06 0%, #B45D08 45%, #CC710A 80%, #E9942B 100%);
+=======
+<<<<<<< HEAD
+    background: linear-gradient(135deg, #CC710A 0%, #A35808 100%);
+=======
+    background: linear-gradient(120deg, #8C4A06 0%, #B45D08 45%, #CC710A 80%, #E9942B 100%);
+>>>>>>> e65801c122cdaaf3b20891654c029591b2fcc104
+>>>>>>> Stashed changes
 }
 
 .about-hero-section .container {

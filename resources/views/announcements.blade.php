@@ -26,7 +26,7 @@
                         @endif
                         <div class="card-body d-flex flex-column">
                             <div class="mb-2">
-                                <span class="badge bg-primary">Pengumuman</span>
+                                <span class="badge" style="background-color: #CC710A; color: white;">Pengumuman</span>
                                 @if($announcement->priority ?? false)
                                     <span class="badge bg-danger ms-1">PENTING</span>
                                 @endif
@@ -55,7 +55,7 @@
                                     {{ $announcement->published_at ? $announcement->published_at->format('d M Y') : $announcement->created_at->format('d M Y') }}
                                 </small>
                                 <a href="{{ route('post.show', $announcement->slug) }}" 
-                                   class="btn btn-sm btn-outline-primary w-100">
+                                   class="btn btn-sm btn-outline-warning w-100">
                                     Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
@@ -89,7 +89,7 @@
                         <p class="text-muted mb-4">
                             Saat ini belum ada pengumuman yang dipublikasikan. Silakan kembali lagi nanti untuk mendapatkan informasi terbaru.
                         </p>
-                        <a href="{{ route('home') }}" class="btn btn-primary">
+                        <a href="{{ route('home') }}" class="btn" style="background-color: #CC710A; color: white;">
                             <i class="bi bi-house me-2"></i>Kembali ke Beranda
                         </a>
                     </div>
@@ -293,12 +293,12 @@
     }
 }
 
-/* ==== ANNOUNCEMENTS HERO SECTION - BACKGROUND BIRU ==== */
+/* ==== ANNOUNCEMENTS HERO SECTION - BACKGROUND ORANGE ==== */
 .announcements-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, #CC710A 0%, #A35808 100%);
 }
 
 .announcements-hero-section .container {

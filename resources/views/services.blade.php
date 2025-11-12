@@ -176,7 +176,7 @@
 <section class="pt-0 pb-4 pt-md-1 pb-md-5 bg-light" style="margin-top: -4rem;">
     <div class="container">
         <div class="text-center mb-3 mb-md-4" style="padding-top: -5rem;">
-            <h2 class="fw-bold text-primary">
+            <h2 class="fw-bold" style="color: #CC710A;">
                 LAYANAN ONLINE
             </h2>
             <p class="lead text-muted d-none d-md-block">Akses layanan administrasi secara online melalui formulir digital</p>
@@ -253,7 +253,7 @@
             @endforeach
         </div>
         
-        <div class="mt-4 mt-md-5 p-3 p-md-4 bg-primary text-white rounded">
+        <div class="mt-4 mt-md-5 p-3 p-md-4 text-white rounded" style="background-color: #CC710A;">
             <div class="row align-items-center">
                 <div class="col-lg-8">
                     <h6 class="mb-2 d-md-none">

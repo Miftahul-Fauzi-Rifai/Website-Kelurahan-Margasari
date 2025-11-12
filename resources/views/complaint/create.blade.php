@@ -25,7 +25,7 @@
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body p-3 p-sm-4 p-md-5">
                         <div class="text-center mb-4">
-                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <div class="text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; background-color: #CC710A;">
                                 <i class="bi bi-megaphone fs-4"></i>
                             </div>
                             <h3 class="fw-bold">Formulir Pengaduan</h3>
@@ -38,7 +38,7 @@
                             <!-- Data Pelapor -->
                             <div class="row mb-4">
                                 <div class="col-12">
-                                    <h5 class="fw-bold text-primary mb-3">
+                                    <h5 class="fw-bold mb-3" style="color: #CC710A;">
                                         <i class="bi bi-person me-2"></i>Data Pelapor
                                     </h5>
                                 </div>
@@ -83,7 +83,7 @@
                             <!-- Data Pengaduan -->
                             <div class="row mb-4">
                                 <div class="col-12">
-                                    <h5 class="fw-bold text-primary mb-3">
+                                    <h5 class="fw-bold mb-3" style="color: #CC710A;">
                                         <i class="bi bi-file-text me-2"></i>Detail Pengaduan
                                     </h5>
                                 </div>
@@ -154,7 +154,7 @@
                                         <a href="{{ url()->previous() }}" class="btn btn-outline-secondary order-2 order-sm-1">
                                             <i class="bi bi-arrow-left me-2"></i>Kembali
                                         </a>
-                                        <button type="submit" class="btn btn-primary btn-lg order-1 order-sm-2 w-100 w-sm-auto">
+                                        <button type="submit" class="btn btn-lg order-1 order-sm-2 w-100 w-sm-auto" style="background-color: #CC710A; color: white; border: none;">
                                             <i class="bi bi-send me-2"></i>Kirim Pengaduan
                                         </button>
                                     </div>
@@ -174,8 +174,8 @@
 <style>
 /* Form Styling */
 .form-control:focus, .form-select:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: #CC710A;
+    box-shadow: 0 0 0 0.25rem rgba(204, 113, 10, 0.25);
     transition: all 0.3s ease;
 }
 
@@ -186,7 +186,7 @@
 }
 
 .form-control:hover:not(:focus), .form-select:hover:not(:focus) {
-    border-color: #0d6efd;
+    border-color: #CC710A;
 }
 
 /* Card Styling */
@@ -200,18 +200,18 @@
 }
 
 /* Button Styling */
-.btn-primary {
-    background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
+button[type="submit"] {
+    background: linear-gradient(135deg, #CC710A 0%, #A35808 100%) !important;
     border: none;
     border-radius: 0.5rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #0056b3 0%, #003f82 100%);
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #A35808 0%, #8B4A07 100%) !important;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+    box-shadow: 0 4px 8px rgba(204, 113, 10, 0.3);
 }
 
 .btn-outline-secondary {
@@ -225,11 +225,11 @@
 
 
 /* Icon in header */
-.bg-primary.rounded-circle {
+.rounded-circle[style*="background-color"] {
     transition: all 0.3s ease;
 }
 
-.bg-primary.rounded-circle:hover {
+.rounded-circle[style*="background-color"]:hover {
     transform: scale(1.05);
 }
 
@@ -279,8 +279,8 @@
 }
 
 /* Loading state for submit button */
-.btn-primary:disabled {
-    background: #6c757d;
+button[type="submit"]:disabled {
+    background: #6c757d !important;
     border-color: #6c757d;
     cursor: not-allowed;
 }
@@ -302,7 +302,7 @@
 }
 
 .form-control[type="file"]::-webkit-file-upload-button {
-    background: #0d6efd;
+    background: #CC710A;
     color: white;
     border: none;
     border-radius: 0.25rem;

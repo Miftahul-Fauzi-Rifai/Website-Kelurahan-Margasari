@@ -103,7 +103,7 @@
             <div class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2 class="fw-bold">Berita Terbaru</h2>
-                    <a href="{{ route('news') }}" class="btn btn-outline-primary">Lihat Semua</a>
+                    <a href="{{ route('news') }}" class="btn btn-outline-warning">Lihat Semua</a>
                 </div>
                 
                 <div class="row g-4">

@@ -25,11 +25,11 @@
         
         .navbar-light .navbar-nav .nav-link:hover,
         .navbar-light .navbar-nav .nav-link:focus {
-            color: #007bff !important;
+            color: #CC710A  !important;
         }
         
         .navbar-light .navbar-nav .nav-link.active {
-            color: #007bff !important;
+            color: #CC710A !important;
             font-weight: 600;
         }
         
@@ -54,7 +54,7 @@
         .navbar-light .navbar-nav .dropdown-item:hover,
         .navbar-light .navbar-nav .dropdown-item:focus {
             background-color: #f8f9fa;
-            color: #007bff;
+            color: #CC710A;
         }
         
         /* Header shadow */

@@ -36,7 +36,7 @@
                         
                         <div class="card-body d-flex flex-column">
                             <div class="mb-2">
-                                <span class="badge bg-primary mb-2">Berita</span>
+                                <span class="badge mb-2" style="background-color: #CC710A; color: white;">Berita</span>
                                 <small class="text-muted d-block">
                                     <i class="bi bi-calendar me-1"></i>
                                     {{ $article->published_at ? $article->published_at->format('d M Y') : $article->created_at->format('d M Y') }}
@@ -67,7 +67,7 @@
                             
                             <div class="mt-auto">
                                 <a href="{{ route('post.show', $article->slug) }}" 
-                                   class="btn btn-outline-primary btn-sm">
+                                   class="btn btn-outline-warning btn-sm">
                                     Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
@@ -109,7 +109,7 @@
                         <p class="text-muted mb-4">
                             Saat ini belum ada berita yang dipublikasikan. Silakan kembali lagi nanti untuk mendapatkan informasi terbaru.
                         </p>
-                        <a href="{{ route('home') }}" class="btn btn-primary">
+                        <a href="{{ route('home') }}" class="btn" style="background-color: #CC710A; color: white;">
                             <i class="bi bi-house me-2"></i>Kembali ke Beranda
                         </a>
                     </div>
@@ -129,10 +129,10 @@
                     Ikuti update berita dan informasi terkini dari Kelurahan Marga Sari
                 </p>
                 <div class="d-flex gap-2 justify-content-center">
-                    <a href="{{ route('announcements') }}" class="btn btn-outline-primary">
+                    <a href="{{ route('announcements') }}" class="btn btn-outline-warning">
                         <i class="bi bi-megaphone me-2"></i>Lihat Pengumuman
                     </a>
-                    <a href="{{ route('complaint.create') }}" class="btn btn-primary">
+                    <a href="{{ route('complaint.create') }}" class="btn" style="background-color: #CC710A; color: white;">
                         <i class="bi bi-envelope me-2"></i>Kontak Kami
                     </a>
                 </div>
@@ -193,12 +193,12 @@
     }
 }
 
-/* ==== NEWS HERO SECTION - BACKGROUND BIRU ==== */
+/* ==== NEWS HERO SECTION - BACKGROUND ORANGE ==== */
 .news-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, #CC710A 0%, #A35808 100%);
 }
 
 .news-hero-section .container {

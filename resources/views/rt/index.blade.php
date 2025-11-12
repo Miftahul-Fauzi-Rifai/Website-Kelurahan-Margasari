@@ -35,7 +35,7 @@
                       >
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn" style="background-color: #CC710A; color: white;">
                     <i class="bi bi-search"></i><span class="d-none d-md-inline ms-1">Cari</span>
                   </button>
                   @if($search)
@@ -67,13 +67,13 @@
                     <div class="flex-grow-1">
                       <div class="d-flex justify-content-between align-items-start">
                         <div>
-                          <strong class="text-primary rt-title">RT {{ $rt->rt_code }}</strong>
+                          <strong class="rt-title" style="color: #CC710A;">RT {{ $rt->rt_code }}</strong>
                           @if($rt->ketua_rt_name)
                             <div class="small text-success rt-ketua">{{ Str::limit($rt->ketua_rt_name, 20) }}</div>
                           @endif
                         </div>
                         <div class="text-end">
-                          <span class="badge bg-primary rounded-pill rt-badge">{{ $rt->num_population ?? 0 }}</span>
+                          <span class="badge rounded-pill rt-badge" style="background-color: #CC710A;">{{ $rt->num_population ?? 0 }}</span>
                           <div class="small text-muted d-none d-sm-block">warga</div>
                         </div>
                       </div>
@@ -225,7 +225,7 @@
     const popup = `
       <div style="min-width: 200px;">
         <div class="mb-2">
-          <strong class="text-primary">${p.name}</strong>
+          <strong style="color: #CC710A;">${p.name}</strong>
         </div>
         <div class="mb-2">
           <small class="text-muted d-block"><i class="bi bi-person-fill"></i> Ketua RT:</small>
@@ -238,7 +238,7 @@
         <div class="row text-center mb-2">
           <div class="col-6">
             <div class="border-end">
-              <div class="h6 mb-0 text-primary">${p.num_population || 0}</div>
+              <div class="h6 mb-0" style="color: #CC710A;">${p.num_population || 0}</div>
               <small class="text-muted">Warga</small>
             </div>
           </div>
@@ -248,7 +248,7 @@
           </div>
         </div>
         <div class="d-grid">
-          <a class="btn btn-sm btn-light border" href="${`{{ url('/data-rt') }}/${p.rt_code}`}" style="background-color: white; color: #0d6efd; border-color: #0d6efd; font-weight: 500;">
+          <a class="btn btn-sm btn-light border" href="${`{{ url('/data-rt') }}/${p.rt_code}`}" style="background-color: white; color: #CC710A; border-color: #CC710A; font-weight: 500;">
             <i class="bi bi-eye"></i> Lihat Detail
           </a>
         </div>
@@ -342,9 +342,9 @@
   }
 
   #map .leaflet-popup-content .btn:hover {
-    background-color: #0d6efd !important;
+    background-color: #CC710A !important;
     color: white !important;
-    border-color: #0d6efd !important;
+    border-color: #CC710A !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
@@ -390,8 +390,8 @@
   }
   
   .form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: #CC710A;
+    box-shadow: 0 0 0 0.25rem rgba(204, 113, 10, 0.25);
   }
   
   /* Custom scrollbar untuk daftar RT */
