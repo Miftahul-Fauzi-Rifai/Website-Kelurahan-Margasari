@@ -12,7 +12,7 @@
         </div>
         <div class="text-muted">
             <i class="bi bi-calendar3 me-1"></i>
-            {{ now()->format('l, d F Y') }}
+            {{ now()->locale('id')->translatedFormat('l, d F Y, H:i') }}
         </div>
     </div>
 
