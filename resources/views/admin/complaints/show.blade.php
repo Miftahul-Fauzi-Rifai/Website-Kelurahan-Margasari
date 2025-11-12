@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Detail Pengaduan #' . $complaint->id . ' - Admin Dashboard')
+@section('title', 'Detail Pengaduan' . $complaint->id . ' - Admin Dashboard')
 
 @section('content')
 <div class="container-fluid">
@@ -8,13 +8,13 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div>
             <h1 class="h3 mb-0 text-gray-800">
-                <i class="bi bi-file-text me-2"></i>Detail Pengaduan #{{ $complaint->id }}
+                <i class="bi bi-file-text me-2"></i>Detail Pengaduan
             </h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.complaints.index') }}">Pengaduan</a></li>
-                    <li class="breadcrumb-item active">Detail #{{ $complaint->id }}</li>
+                    <li class="breadcrumb-item active">Detail {{ $complaint->id }}</li>
                 </ol>
             </nav>
         </div>
@@ -59,7 +59,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Tanggal Masuk:</td>
-                                    <td>{{ $complaint->created_at->format('d F Y, H:i') }} WIB</td>
+                                    <td>{{ $complaint->created_at->format('d F Y, H:i') }} WITA</td>
                                 </tr>
                                 <tr>
                                     <td class="text-muted">Kategori:</td>
@@ -164,7 +164,7 @@
                                     <p class="mb-2" style="white-space: pre-line;">{{ $complaint->tanggapan_admin }}</p>
                                     <small class="text-muted">
                                         <strong>{{ $complaint->admin ? $complaint->admin->name : 'Admin' }}</strong> • 
-                                        {{ $complaint->tanggal_tanggapan ? $complaint->tanggal_tanggapan->format('d F Y, H:i') : '-' }} WIB
+                                        {{ $complaint->tanggal_tanggapan ? $complaint->tanggal_tanggapan->format('d F Y, H:i') : '-' }} WITA
                                     </small>
                                 </div>
                             </div>
@@ -358,6 +358,98 @@
         </div>
     </div>
 </div>
+<!-- ===================== CETAK FORMULIR PENGADUAN ===================== -->
+<div class="d-none d-print-block mt-4">
+    <table style="width: 100%; border: none; margin-bottom: 10px;">
+        <tr>
+            <td style="width: 20%; text-align: center;">
+                <img src="{{ asset('images/logo-Balikpapan.png') }}" alt="Logo Kota" style="width: 80px; height: auto;">
+            </td>
+            <td style="width: 60%; text-align: center; vertical-align: middle;">
+                <h5 style="margin:0;">PEMERINTAH KOTA BALIKPAPAN</h5>
+                <h5 style="margin:0;">KELURAHAN MARGA SARI</h5>
+                <p style="margin:0; font-size: 12px;">Jl. Semoi No.46 RT.14 Kel. Margasari, Kec. Balikpapan Barat, Kalimantan Timur. Telp. 0853-9330-6350 - Email. margasari33@gmail.com</p>
+            </td>
+            <td style="width: 20%; text-align: center;">
+                <img src="{{ asset('images/LOGO_KELMARGA.png') }}" alt="Logo Kelurahan" style="width: 80px; height: auto;">
+            </td>
+        </tr>
+    </table>
+
+    <hr style="border: 1.5px solid black; margin: 5px 0 15px 0;">
+    <h5 style="text-align: center; font-weight: bold; letter-spacing: 0.5px; margin: 18px 0 25px 0;">FORMULIR PENGADUAN</h5>
+
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #000; font-size: 12pt; margin-top: 10px;">
+        <tr>
+            <td style="width: 25%; border: 1px solid #000; padding: 6px;"><b>No. Register</b></td>
+            <td style="border: 1px solid #000; padding: 6px;">#{{ $complaint->id }}</td>
+        </tr>
+    </table>
+
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #000; margin-top: 8px;">
+        <tr style="background: #f3f3f3;">
+            <th colspan="2" style="border: 1px solid #000; padding: 5px; text-align:center;">IDENTITAS PELAPOR</th>
+        </tr>
+        <tr>
+            <td style="width: 30%; border: 1px solid #000; padding: 5px;">Nama</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->nama_pelapor }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 5px;">Alamat</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->alamat_pelapor }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 5px;">Telepon</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->telepon_pelapor }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 5px;">Email</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->email_pelapor ?? '-' }}</td>
+        </tr>
+    </table>
+
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #000; margin-top: 8px;">
+        <tr style="background: #f3f3f3;">
+            <th colspan="2" style="border: 1px solid #000; padding: 5px; text-align:center;">KRONOLOGI</th>
+        </tr>
+        <tr>
+            <td style="width: 30%; border: 1px solid #000; padding: 5px;">Waktu Pengaduan</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->created_at->format('d F Y, H:i') }} WITA</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 5px;">Judul Pengaduan</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->judul_pengaduan }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 5px;">Uraian/Kronologis</td>
+            <td style="border: 1px solid #000; padding: 5px;">{{ $complaint->deskripsi_pengaduan }}</td>
+        </tr>
+        @if($complaint->foto_pendukung)
+        <tr>
+            <td style="border: 1px solid #000; padding: 5px;">Lampiran</td>
+            <td style="border: 1px solid #000; padding: 5px;">
+                <img src="{{ asset('storage/' . $complaint->foto_pendukung) }}" alt="Lampiran" style="max-width:250px; border:1px solid #000;">
+            </td>
+        </tr>
+        @endif
+    </table>
+
+    <div style="margin-top: 80px; width: 100%;">
+        <table style="width: 100%; border: none; font-size: 12pt;">
+            <tr>
+                <td style="width: 60%;"></td>
+                <td style="width: 40%; text-align: center;">
+                    Balikpapan, {{ now()->format('d F Y') }}<br>
+                    Penerima Pengadu,<br><br><br><br>
+                    (...........................................)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- =================== END CETAK FORMULIR PENGADUAN =================== -->
+
+
 @endsection
 
 @push('scripts')
@@ -451,5 +543,94 @@ function confirmDelete(complaintId) {
     .card { border: 1px solid #000 !important; box-shadow: none !important; }
     .col-lg-8 { width: 100% !important; }
 }
+
+@media print {
+    /* Hilangkan bagian dashboard & tombol */
+    .sidebar, .navbar, .breadcrumb, .btn, .card-header, .card-footer, .modal, .alert {
+        display: none !important;
+    }
+
+    body {
+        font-family: "Times New Roman", serif;
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 2cm;
+    }
+
+    .card, .col-lg-8, .col-lg-4, .container-fluid {
+        border: none !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .table {
+        border: 1px solid #000 !important;
+        border-collapse: collapse !important;
+    }
+
+    .table th, .table td {
+        border: 1px solid #000 !important;
+        padding: 6px !important;
+        vertical-align: top !important;
+    }
+
+    /* Agar hanya print layout resmi */
+    .d-print-block { display: block !important; }
+    .d-none, .col-lg-4 { display: none !important; }
+}
+
+@media print {
+    /* Hilangkan dashboard dan elemen lainnya */
+    .sidebar, .navbar, .breadcrumb, .btn, .card, .modal, .alert, footer {
+        display: none !important;
+    }
+
+    body {
+        font-family: "Times New Roman", serif;
+        color: #000;
+        background: #fff !important;
+        font-size: 12pt;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 1.5cm;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        vertical-align: top;
+    }
+
+    .d-print-block {
+        display: block !important;
+    }
+}
+
+@media print {
+    /* Pastikan heading halaman tidak ikut tercetak */
+    .d-sm-flex.align-items-center.justify-content-between.mb-4 {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    h1.h3.text-gray-800,
+    nav[aria-label="breadcrumb"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
 </style>
 @endpush
