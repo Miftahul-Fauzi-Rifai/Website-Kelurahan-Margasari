@@ -740,12 +740,12 @@
   }
 }
 
-/* ==== RT HERO SECTION - BACKGROUND BIRU ==== */
+/* ==== RT HERO SECTION - BACKGROUND ORANGE ==== */
 .rt-hero-section {
     position: relative;
     overflow: hidden;
     color: white;
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, #CC710A 0%, #A35808 100%);
 }
 
 .rt-hero-section .container {
