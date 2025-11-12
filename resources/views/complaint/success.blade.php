@@ -84,7 +84,7 @@
                                 <strong>Butuh bantuan lebih lanjut?</strong>
                             </p>
                             <p class="small text-muted">
-                                Hubungi kami di <strong>(0542) 123456</strong> atau email <strong>kelurahan@margasari.go.id</strong>
+                                Hubungi kami di <strong>0853-9330-6350</strong> atau email <strong>margasari33@gmail.com</strong>
                             </p>
                         </div>
                     </div>

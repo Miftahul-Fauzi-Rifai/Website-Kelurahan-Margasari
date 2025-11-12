@@ -436,7 +436,7 @@ section.bg-primary.text-white p.lead {
     position: relative;
     overflow: hidden;
     color: white;
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, #CC710A 0%, #CC710A 100%);
 }
 
 .about-hero-section .container {
