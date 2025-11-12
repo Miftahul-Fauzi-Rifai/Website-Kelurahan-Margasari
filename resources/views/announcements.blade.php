@@ -16,7 +16,7 @@
         @if($announcements->count() > 0)
             <div class="row g-4">
                 @foreach($announcements as $announcement)
-                <div class="col-6 col-md-12">
+                <div class="col-6 col-md-6 col-lg-6">
                     <article class="card border-0 shadow-sm h-100">
                         @if($announcement->featured_image)
                         <img src="{{ asset('storage/' . $announcement->featured_image) }}" 
