@@ -32,6 +32,23 @@ class RoleMiddleware
             }
         }
 
-        abort(403, 'Unauthorized.');
+        // User is authenticated but doesn't have required role
+        // Logout and redirect to login with message
+        $requiredRole = $roles[0] ?? 'required';
+        $message = '';
+        
+        if ($requiredRole === 'admin' && $user->isKetuaRT()) {
+            $message = 'Anda login sebagai Ketua RT. Untuk mengakses dashboard Admin, silakan login sebagai Admin.';
+        } elseif ($requiredRole === 'ketua_rt' && $user->isAdmin()) {
+            $message = 'Anda login sebagai Admin. Untuk mengakses dashboard Ketua RT, silakan login sebagai Ketua RT.';
+        } else {
+            $message = 'Anda tidak memiliki akses ke halaman ini.';
+        }
+        
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('login')->withErrors(['email' => $message]);
     }
 }
