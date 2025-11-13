@@ -460,7 +460,7 @@
   }
 }
 
-/* Leaflet Popup Styling */
+/* Leaflet Popup Styling - COMPACT SIZE */
 .leaflet-popup-content-wrapper {
   background-color: #fff;
   color: #333;
@@ -468,8 +468,8 @@
 }
 
 .leaflet-popup-content {
-  margin: 15px;
-  line-height: 1.4;
+  margin: 10px;
+  line-height: 1.3;
 }
 
 .leaflet-popup-content h6 {
@@ -748,18 +748,18 @@
 
     const marker = L.marker([lat, lng], { icon: divIcon }).addTo(map);
 
-    // Create popup content
+    // Create popup content (COMPACT SIZE)
     let popupContent = `
-      <div style="min-width: 220px; color: #333;">
-        <h6 class="fw-bold mb-2" style="color: #0d6efd;">${rtData.name}</h6>
+      <div style="min-width: 160px; padding: 4px; color: #333;">
+        <h6 class="fw-bold mb-2" style="color: #0d6efd; font-size: 0.9rem;">${rtData.name}</h6>
     `;
 
     // Tambahkan alamat jika ada
     if (rtData.address && rtData.address.trim() !== '') {
       popupContent += `
         <div class="mb-2" style="color: #333;">
-          <i class="bi bi-house-door me-1" style="color: #28a745;"></i>
-          <span class="small">${rtData.address}</span>
+          <i class="bi bi-house-door me-1" style="color: #28a745; font-size: 0.85rem;"></i>
+          <span class="small" style="font-size: 0.8rem;">${rtData.address}</span>
         </div>
       `;
     }
@@ -767,8 +767,8 @@
     // Tambahkan link Google Maps
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     popupContent += `
-        <hr class="my-2" style="border-color: #dee2e6;">
-        <a href="${googleMapsUrl}" target="_blank" class="btn btn-sm btn-primary w-100" style="background-color: #CC710A; border-color: #CC710A; color: #fff; text-decoration: none;">
+        <hr class="my-2" style="border-color: #dee2e6; margin: 6px 0;">
+        <a href="${googleMapsUrl}" target="_blank" class="btn btn-sm btn-primary w-100" style="background-color: #CC710A; border-color: #CC710A; color: #fff; text-decoration: none; padding: 6px 8px; font-size: 0.8rem;">
           <i class="bi bi-geo-alt-fill me-1"></i>Buka di Google Maps
         </a>
       </div>
