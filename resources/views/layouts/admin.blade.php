@@ -130,6 +130,32 @@
             transform: scale(1.05);
         }
         
+        /* Badge styles for notifications */
+        .badge-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .badge-info {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .badge-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        
         @media (max-width: 768px) {
             .sidebar {
                 min-height: auto;
