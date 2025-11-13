@@ -113,14 +113,14 @@
                     <div class="mb-4">
                         <h6 class="text-primary mb-3">Judul Pengaduan</h6>
                         <div class="bg-light p-3 rounded">
-                            <h5 class="mb-0">{{ $complaint->judul_pengaduan }}</h5>
+                            <h5 class="mb-0" style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">{{ $complaint->judul_pengaduan }}</h5>
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <h6 class="text-primary mb-3">Deskripsi Pengaduan</h6>
                         <div class="bg-light p-3 rounded">
-                            <p class="mb-0" style="white-space: pre-line;">{{ $complaint->deskripsi_pengaduan }}</p>
+                            <p class="mb-0" style="white-space: pre-line; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">{{ $complaint->deskripsi_pengaduan }}</p>
                         </div>
                     </div>
 
@@ -161,7 +161,7 @@
                             <div class="d-flex align-items-start">
                                 <i class="bi bi-chat-quote me-3 fs-4"></i>
                                 <div>
-                                    <p class="mb-2" style="white-space: pre-line;">{{ $complaint->tanggapan_admin }}</p>
+                                    <p class="mb-2" style="white-space: pre-line; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">{{ $complaint->tanggapan_admin }}</p>
                                     <small class="text-muted">
                                         <strong>{{ $complaint->admin ? $complaint->admin->name : 'Admin' }}</strong> • 
                                         {{ $complaint->tanggal_tanggapan ? $complaint->tanggal_tanggapan->format('d F Y, H:i') : '-' }} WITA
@@ -463,6 +463,18 @@ function confirmDelete(complaintId) {
 
 @push('styles')
 <style>
+/* Prevent long text overflow */
+.bg-light p, .bg-light h5, .alert p {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+}
+
+.card-body {
+    overflow-x: hidden !important;
+}
+
 /* Timeline Styles */
 .timeline {
     position: relative;

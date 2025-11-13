@@ -151,18 +151,20 @@
                                                            value="{{ old('activities.'.$index.'.date', $activity['date'] ?? '') }}">
                                                 </td>
                                                 <td>
-                                                    <input type="text" 
-                                                           class="form-control form-control-sm" 
-                                                           name="activities[{{ $index }}][task]" 
-                                                           value="{{ old('activities.'.$index.'.task', $activity['task'] ?? '') }}"
-                                                           placeholder="Contoh: Kerja bakti membersihkan lingkungan">
+                                                    <textarea 
+                                                        class="form-control form-control-sm multiline" 
+                                                        name="activities[{{ $index }}][task]" 
+                                                        rows="2" 
+                                                        data-autosize
+                                                        placeholder="Contoh: Kerja bakti membersihkan lingkungan">{{ old('activities.'.$index.'.task', $activity['task'] ?? '') }}</textarea>
                                                 </td>
                                                 <td>
-                                                    <input type="text" 
-                                                           class="form-control form-control-sm" 
-                                                           name="activities[{{ $index }}][note]" 
-                                                           value="{{ old('activities.'.$index.'.note', $activity['note'] ?? '') }}"
-                                                           placeholder="Opsional">
+                                                    <textarea 
+                                                        class="form-control form-control-sm multiline" 
+                                                        name="activities[{{ $index }}][note]" 
+                                                        rows="2" 
+                                                        data-autosize
+                                                        placeholder="Opsional">{{ old('activities.'.$index.'.note', $activity['note'] ?? '') }}</textarea>
                                                 </td>
                                                 <td>
                                                     @if(!empty($activity['photo']))
@@ -190,7 +192,18 @@
                         </div>
 
                         <script>
-                            // Script removed - fixed 5 rows only
+                            // Autosize untuk textarea kegiatan
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const autosize = (el) => {
+                                    el.style.height = 'auto';
+                                    el.style.overflow = 'hidden';
+                                    el.style.height = (el.scrollHeight) + 'px';
+                                };
+                                document.querySelectorAll('textarea[data-autosize]').forEach(t => {
+                                    autosize(t);
+                                    t.addEventListener('input', () => autosize(t));
+                                });
+                            });
                         </script>
 
                         <div class="mb-3">
@@ -354,12 +367,10 @@ textarea {
 .table-responsive {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    border: 2px solid #dee2e6;
     background: #fff;
-    padding: 0.25rem;
-    width: 100%;
-    max-width: 100%;
+    margin-bottom: 1rem;
 }
 
 .table {
@@ -373,17 +384,20 @@ textarea {
 .table td {
     vertical-align: middle !important;
     white-space: nowrap;
-    padding: 0.6rem;
-    border-color: #ececec;
+    padding: 0.75rem;
+    border: 1.5px solid #c8ced3 !important;
     font-size: 0.9rem;
 }
 
 .table thead th {
-    background: #f8f9fa;
-    color: #333;
-    font-weight: 600;
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #495057;
+    font-weight: 700;
     text-transform: uppercase;
     font-size: 0.85rem;
+    border-bottom: 2px solid #adb5bd !important;
+    border-top: 2px solid #adb5bd !important;
+    text-align: center;
 }
 
 /* --- Tombol Update & Batal --- */
@@ -559,13 +573,53 @@ textarea {
     }
 
     .table {
-        width: 700px; /* biar bisa digeser tanpa mengecilkan kolom */
+        width: 700px;
+        border-collapse: separate !important;
+        border-spacing: 0;
     }
 
     .table th, .table td {
-        padding: 0.45rem 0.5rem;
+        padding: 0.5rem;
         font-size: 0.82rem;
         white-space: nowrap;
+        border: 1px solid #dee2e6 !important;
+        border-right-width: 2px !important;
+        border-bottom-width: 2px !important;
+    }
+    
+    .table thead th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        border-top-width: 2px !important;
+    }
+    
+    .table tbody tr:last-child td {
+        border-bottom-width: 2px !important;
+    }
+
+    /* Textarea multiline di mobile */
+    #activities-table textarea.form-control-sm.multiline {
+        display: block;
+        width: 100%;
+        min-height: 3.5rem; /* ~2 baris */
+        max-height: 10rem;
+        padding: 0.5rem 0.6rem;
+        border-radius: 0.4rem;
+        border: 1px solid #ced4da;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-y: auto;
+        overflow-x: hidden;
+        line-height: 1.5;
+        resize: vertical;
+        font-size: 0.85rem;
+    }
+
+    #activities-table textarea.form-control-sm.multiline:focus {
+        border-color: #CC710A;
+        box-shadow: 0 0 0 2px rgba(204, 113, 10, 0.15);
+        outline: none;
     }
 
     /* Tombol */

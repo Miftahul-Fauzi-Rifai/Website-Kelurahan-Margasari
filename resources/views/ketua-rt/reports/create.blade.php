@@ -112,18 +112,20 @@
                                                            value="{{ old('activities.'.$i.'.date') }}">
                                                 </td>
                                                 <td>
-                                                    <input type="text" 
-                                                           class="form-control form-control-sm" 
-                                                           name="activities[{{ $i }}][task]" 
-                                                           value="{{ old('activities.'.$i.'.task') }}"
-                                                           placeholder="Contoh: Kerja bakti membersihkan lingkungan">
+                                                    <textarea 
+                                                        class="form-control form-control-sm multiline" 
+                                                        name="activities[{{ $i }}][task]" 
+                                                        rows="2" 
+                                                        data-autosize
+                                                        placeholder="Contoh: Kerja bakti membersihkan lingkungan">{{ old('activities.'.$i.'.task') }}</textarea>
                                                 </td>
                                                 <td>
-                                                    <input type="text" 
-                                                           class="form-control form-control-sm" 
-                                                           name="activities[{{ $i }}][note]" 
-                                                           value="{{ old('activities.'.$i.'.note') }}"
-                                                           placeholder="Opsional">
+                                                    <textarea 
+                                                        class="form-control form-control-sm multiline" 
+                                                        name="activities[{{ $i }}][note]" 
+                                                        rows="2" 
+                                                        data-autosize
+                                                        placeholder="Opsional">{{ old('activities.'.$i.'.note') }}</textarea>
                                                 </td>
                                                 <td>
                                                     <input type="file" 
@@ -141,7 +143,18 @@
                         </div>
 
                         <script>
-                            // Script removed - fixed 5 rows only
+                            // Autosize untuk textarea kegiatan
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const autosize = (el) => {
+                                    el.style.height = 'auto';
+                                    el.style.overflow = 'hidden';
+                                    el.style.height = (el.scrollHeight) + 'px';
+                                };
+                                document.querySelectorAll('textarea[data-autosize]').forEach(t => {
+                                    autosize(t);
+                                    t.addEventListener('input', () => autosize(t));
+                                });
+                            });
                         </script>
 
                         <div class="mb-3">
@@ -275,25 +288,61 @@ html, body {
 .table-responsive {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    border: 2px solid #dee2e6;
     background: #fff;
-    padding: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.table {
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .table th, .table td {
     vertical-align: middle !important;
-    padding: 0.6rem;
+    padding: 0.75rem;
     font-size: 0.9rem;
-    border-color: #ececec;
+    border: 1.5px solid #c8ced3 !important;
     white-space: nowrap;
 }
 
 .table thead th {
-    background: #f8f9fa;
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
     text-transform: uppercase;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: #495057;
+    border-bottom: 2px solid #adb5bd !important;
+    border-top: 2px solid #adb5bd !important;
+    text-align: center;
+}
+
+.table tbody td {
+    background: #fff;
+}
+
+.table tbody tr:hover td {
+    background-color: #f8f9fa;
+}
+
+/* Textarea dalam tabel */
+#activities-table textarea.multiline {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 0.5rem;
+    width: 100%;
+    resize: vertical;
+    min-height: 2.5rem;
+}
+
+#activities-table textarea.multiline:focus {
+    border-color: #CC710A;
+    box-shadow: 0 0 0 0.2rem rgba(204, 113, 10, 0.15);
+    outline: 0;
 }
 
 /* --- Tombol --- */
@@ -347,32 +396,34 @@ html, body {
     }
 
     /* Input tabel seperti textarea */
-    #activities-table input[type="text"].form-control-sm {
+    /* Textarea multiline di mobile: minimal 2 baris, bisa di-resize */
+    #activities-table textarea.form-control-sm.multiline {
         display: block;
         width: 100%;
-        min-height: 3rem;
-        max-height: 8rem;
-        padding: 0.55rem 0.65rem;
-        border-radius: 0.45rem;
-        border: 2px solid #ced4da;
-        white-space: normal;
+        min-height: 3.5rem; /* ~2 baris */
+        max-height: 10rem;
+        padding: 0.5rem 0.6rem;
+        border-radius: 0.4rem;
+        border: 1px solid #ced4da;
+        white-space: pre-wrap;
+        word-wrap: break-word;
         word-break: break-word;
         overflow-y: auto;
         overflow-x: hidden;
-        line-height: 1.4;
+        line-height: 1.5;
         resize: vertical;
         font-size: 0.85rem;
     }
 
-    #activities-table input[type="text"].form-control-sm:focus {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
+    #activities-table textarea.form-control-sm.multiline:focus {
+        border-color: #CC710A;
+        box-shadow: 0 0 0 2px rgba(204, 113, 10, 0.15);
         outline: none;
     }
 
     #activities-table td {
         vertical-align: top !important;
-        padding: 0.45rem;
+        padding: 0.5rem;
     }
 
     #activities-table input[type="date"].form-control-sm,
@@ -384,11 +435,26 @@ html, body {
 
     .table {
         width: 700px;
+        border-collapse: separate !important;
+        border-spacing: 0;
     }
 
     .table th, .table td {
         font-size: 0.82rem;
         white-space: nowrap;
+        border: 1px solid #dee2e6 !important;
+        border-right-width: 2px !important;
+        border-bottom-width: 2px !important;
+    }
+    
+    .table thead th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        border-top-width: 2px !important;
+    }
+    
+    .table tbody tr:last-child td {
+        border-bottom-width: 2px !important;
     }
 
     .d-flex.gap-2 {
