@@ -420,33 +420,39 @@
     });
 
     const popup = `
-      <div style="min-width: 200px;">
-        <div class="mb-2">
-          <strong style="color: #CC710A;">${p.name}</strong>
+      <div style="min-width: 180px; padding: 6px;">
+        <div class="mb-2 pb-1 border-bottom">
+          <strong style="color: #CC710A; font-size: 0.95rem;">${p.name}</strong>
         </div>
         <div class="mb-2">
-          <small class="text-muted d-block"><i class="bi bi-person-fill"></i> Ketua RT:</small>
-          <strong>${p.ketua_rt_name ?? 'Belum ada data'}</strong>
-        </div>
-        <div class="mb-2">
-          <small class="text-muted d-block"><i class="bi bi-telephone-fill"></i> Telepon:</small>
-          <span>${p.ketua_rt_phone ?? 'Belum ada data'}</span>
-        </div>
-        <div class="row text-center mb-2">
-          <div class="col-6">
-            <div class="border-end">
-              <div class="h6 mb-0" style="color: #CC710A;">${p.num_population || 0}</div>
-              <small class="text-muted">Warga</small>
+          <div class="d-flex align-items-start mb-1">
+            <i class="bi bi-person-fill me-2" style="color: #CC710A; font-size: 0.85rem; margin-top: 2px;"></i>
+            <div style="flex: 1;">
+              <small class="text-muted d-block" style="font-size: 0.7rem;">Ketua RT</small>
+              <strong style="font-size: 0.85rem;">${p.ketua_rt_name ?? 'Belum ada data'}</strong>
             </div>
           </div>
-          <div class="col-6">
-            <div class="h6 mb-0 text-success">${p.num_households || 0}</div>
-            <small class="text-muted">KK</small>
+          <div class="d-flex align-items-start">
+            <i class="bi bi-telephone-fill me-2" style="color: #28a745; font-size: 0.85rem; margin-top: 2px;"></i>
+            <div style="flex: 1;">
+              <small class="text-muted d-block" style="font-size: 0.7rem;">Telepon</small>
+              <span style="font-size: 0.8rem;">${p.ketua_rt_phone ?? 'Belum ada data'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-around mb-2 py-1 border-top border-bottom" style="background-color: #fafafa;">
+          <div class="text-center">
+            <div class="fw-bold" style="color: #CC710A; font-size: 1.1rem;">${p.num_population || 0}</div>
+            <small class="text-muted" style="font-size: 0.7rem;">Warga</small>
+          </div>
+          <div class="text-center">
+            <div class="fw-bold text-success" style="font-size: 1.1rem;">${p.num_households || 0}</div>
+            <small class="text-muted" style="font-size: 0.7rem;">KK</small>
           </div>
         </div>
         <div class="d-grid">
-          <a class="btn btn-sm btn-light border" href="${`{{ url('/data-rt') }}/${p.rt_code}`}" style="background-color: white; color: #CC710A; border-color: #CC710A; font-weight: 500;">
-            <i class="bi bi-eye"></i> Lihat Detail
+          <a class="btn btn-sm border" href="${`{{ url('/data-rt') }}/${p.rt_code}`}" style="background-color: #CC710A; color: white; border-color: #CC710A; font-weight: 500; padding: 6px; font-size: 0.8rem;">
+            <i class="bi bi-eye me-1"></i> Lihat Detail
           </a>
         </div>
       </div>
@@ -1079,4 +1085,5 @@
 
 @push('scripts')
 @endpush
+
 
