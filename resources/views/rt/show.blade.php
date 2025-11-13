@@ -376,6 +376,37 @@
 
 @push('styles')
 <style>
+/* Orange Theme - Override Blue Colors */
+.bg-primary {
+  background-color: #CC710A !important;
+}
+
+.text-primary {
+  color: #CC710A !important;
+}
+
+.btn-primary {
+  background-color: #CC710A !important;
+  border-color: #CC710A !important;
+}
+
+.btn-primary:hover {
+  background-color: #A35808 !important;
+  border-color: #A35808 !important;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(204, 113, 10, 0.25) !important;
+}
+
+.badge.bg-info {
+  background-color: #CC710A !important;
+}
+
+.card-header.bg-primary {
+  background-color: #CC710A !important;
+}
+
 /* Page Header Spacing untuk menghindari navbar */
 .page-header-rt {
   padding-top: 90px !important;
@@ -442,7 +473,7 @@
 }
 
 .leaflet-popup-content h6 {
-  color: #0d6efd !important;
+  color: #CC710A !important;
   margin-bottom: 8px;
 }
 
@@ -512,40 +543,207 @@
     return '#4575b4';
   };
 
+  // Data batas wilayah Kelurahan Margasari
+  const kelurahanBoundary = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Batas Kelurahan Margasari"
+        },
+        "geometry": {
+          "coordinates": [
+            [
+              116.82265233098497,
+              -1.240431056886834
+            ],
+            [
+              116.82234187253704,
+              -1.2401206711876824
+            ],
+            [
+              116.82226425792862,
+              -1.2403057088092595
+            ],
+            [
+              116.82199294163911,
+              -1.2401064795903665
+            ],
+            [
+              116.8217272608806,
+              -1.2397513266998175
+            ],
+            [
+              116.82139292105006,
+              -1.2393722979325759
+            ],
+            [
+              116.82101380356221,
+              -1.2390738500450311
+            ],
+            [
+              116.8204248624819,
+              -1.238865153390222
+            ],
+            [
+              116.81973368880739,
+              -1.2386936613280994
+            ],
+            [
+              116.81924431766424,
+              -1.2386331347151298
+            ],
+            [
+              116.81847242297795,
+              -1.2385625203312571
+            ],
+            [
+              116.81754176089697,
+              -1.2386297752996427
+            ],
+            [
+              116.817150001985,
+              -1.238697856149571
+            ],
+            [
+              116.81755828130315,
+              -1.2375828021183395
+            ],
+            [
+              116.81812783057933,
+              -1.2360086414736031
+            ],
+            [
+              116.81854744260562,
+              -1.2348736419046702
+            ],
+            [
+              116.81868723328097,
+              -1.23438345968097
+            ],
+            [
+              116.82007677918779,
+              -1.2344524690934975
+            ],
+            [
+              116.82237970373365,
+              -1.2345989046826844
+            ],
+            [
+              116.823837031734,
+              -1.2347151453596297
+            ],
+            [
+              116.8247482746599,
+              -1.2348486616248522
+            ],
+            [
+              116.82548395473657,
+              -1.2354428935335733
+            ],
+            [
+              116.8263220016513,
+              -1.2363472666382904
+            ],
+            [
+              116.82736759527216,
+              -1.2374563389483768
+            ],
+            [
+              116.82793276982841,
+              -1.2380985942335343
+            ],
+            [
+              116.8281246376045,
+              -1.2406043551182648
+            ],
+            [
+              116.82616147688486,
+              -1.240604877985632
+            ],
+            [
+              116.82432717778568,
+              -1.2404954592413162
+            ],
+            [
+              116.82353964394099,
+              -1.2404144561198507
+            ],
+            [
+              116.8226622784897,
+              -1.2404383692451546
+            ],
+            [
+              116.82265233098497,
+              -1.240431056886834
+            ]
+          ],
+          "type": "LineString"
+        }
+      }
+    ]
+  };
+
+  // Tambahkan garis batas kelurahan ke peta
+  L.geoJSON(kelurahanBoundary, {
+    style: {
+      color: '#CC710A',
+      weight: 3,
+      opacity: 0.8,
+      dashArray: '10, 5',
+      fillOpacity: 0
+    },
+    onEachFeature: function(feature, layer) {
+      if (feature.properties && feature.properties.name) {
+        layer.bindPopup(`
+          <div style="text-align: center; padding: 5px;">
+            <strong style="color: #CC710A; font-size: 14px;">${feature.properties.name}</strong>
+          </div>
+        `);
+      }
+    }
+  }).addTo(map);
+
   if (lat && lng) {
-    // Create custom HTML marker dengan nomor RT
+    // Create Modern Location Pin marker with RT number (Compact Size)
     const markerHtml = `
-      <div class="rt-marker" style="
-        background-color: ${populationToColor(rtData.num_population)};
-        border: 2px solid #fff;
-        border-radius: 5px;
-        width: 50px;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Arial', 'Helvetica', sans-serif;
-        font-weight: 900;
-        font-size: 12px;
-        color: black;
-        text-shadow: 
-          -1px -1px 0 #fff,
-          1px -1px 0 #fff,
-          -1px 1px 0 #fff,
-          1px 1px 0 #fff,
-          0 0 1px #fff;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.4);
-        position: relative;
-      ">
-        RT ${rtData.rt_code}
+      <div style="position: relative; width: 36px; height: 42px;">
+        <svg width="36" height="42" viewBox="0 0 50 58">
+          <defs>
+            <linearGradient id="pin-grad-detail">
+              <stop offset="0%" stop-color="${populationToColor(rtData.num_population)}" stop-opacity="1"/>
+              <stop offset="100%" stop-color="${populationToColor(rtData.num_population)}" stop-opacity="0.8"/>
+            </linearGradient>
+            <filter id="shadow-detail">
+              <feDropShadow dx="0" dy="3" stdDeviation="2" flood-opacity="0.4"/>
+            </filter>
+          </defs>
+          <!-- Main Pin Shape -->
+          <path d="M25 2 C 13 2, 4 11, 4 22 C 4 33, 25 54, 25 54 C 25 54, 46 33, 46 22 C 46 11, 37 2, 25 2 Z" 
+                fill="url(#pin-grad-detail)" 
+                stroke="white" 
+                stroke-width="2.5"
+                filter="url(#shadow-detail)"/>
+          <!-- White Circle Inside -->
+          <circle cx="25" cy="21" r="13" fill="white" opacity="0.98"/>
+          <!-- RT Number Only (Big & Clear) -->
+          <text x="25" y="26" 
+                font-family="'Arial Black', 'Arial', 'Helvetica', sans-serif" 
+                font-weight="900" 
+                font-size="16" 
+                fill="#000000" 
+                text-anchor="middle"
+                dominant-baseline="middle">${rtData.rt_code}</text>
+        </svg>
       </div>
     `;
 
     const divIcon = L.divIcon({
       html: markerHtml,
       className: 'custom-marker',
-      iconSize: [50, 35],
-      iconAnchor: [25, 35]
+      iconSize: [36, 42],
+      iconAnchor: [18, 39]
     });
 
     const marker = L.marker([lat, lng], { icon: divIcon }).addTo(map);
@@ -570,15 +768,15 @@
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     popupContent += `
         <hr class="my-2" style="border-color: #dee2e6;">
-        <a href="${googleMapsUrl}" target="_blank" class="btn btn-sm btn-primary w-100" style="background-color: #0d6efd; border-color: #0d6efd; color: #fff; text-decoration: none;">
+        <a href="${googleMapsUrl}" target="_blank" class="btn btn-sm btn-primary w-100" style="background-color: #CC710A; border-color: #CC710A; color: #fff; text-decoration: none;">
           <i class="bi bi-geo-alt-fill me-1"></i>Buka di Google Maps
         </a>
       </div>
     `;
     
-    // Bind popup dengan offset agar muncul di atas marker
+    // Bind popup dengan offset agar muncul pas di atas marker (tidak menabrak logo)
     marker.bindPopup(popupContent, {
-      offset: [0, -20], // Geser popup ke atas 20px
+      offset: [0, -15], // Geser popup ke atas sedikit, pas di atas logo
       closeButton: true,
       autoClose: false,
       closeOnClick: false

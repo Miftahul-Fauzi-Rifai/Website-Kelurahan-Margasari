@@ -22,6 +22,17 @@
 
 <article class="py-5">
     <div class="container">
+        <!-- Back Navigation -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <a href="{{ $post->type === 'berita' ? route('news') : route('announcements') }}" 
+                   class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>
+                    Kembali ke {{ $post->type === 'berita' ? 'Berita' : 'Pengumuman' }}
+                </a>
+            </div>
+        </div>
+
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <!-- Article Header -->
@@ -105,66 +116,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Related Posts -->
-        @if($relatedPosts->count() > 0)
-        <div class="row mt-5">
-            <div class="col-12">
-                <h4 class="fw-bold mb-4">
-                    {{ $post->type === 'berita' ? 'Berita' : 'Pengumuman' }} Terkait
-                </h4>
-            </div>
-        </div>
-        
-        <div class="row g-4">
-            @foreach($relatedPosts as $related)
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 shadow-sm h-100">
-                    @if($related->featured_image)
-                    <img src="{{ asset('storage/' . $related->featured_image) }}" 
-                         class="card-img-top" 
-                         alt="{{ $related->title }}" 
-                         style="height: 150px; object-fit: cover;">
-                    @else
-                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
-                         style="height: 150px;">
-                        <i class="bi bi-{{ $related->type === 'berita' ? 'newspaper' : 'megaphone' }} text-muted fs-2"></i>
-                    </div>
-                    @endif
-                    
-                    <div class="card-body">
-                        <h6 class="card-title">
-                            <a href="{{ route('post.show', $related->slug) }}" 
-                               class="text-decoration-none text-dark">
-                                {{ Str::limit($related->title, 60) }}
-                            </a>
-                        </h6>
-                        <small class="text-muted">
-                            <i class="bi bi-calendar me-1"></i>
-                            {{ $related->published_at ? $related->published_at->format('d M Y') : $related->created_at->format('d M Y') }}
-                        </small>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        @endif
-
-        <!-- Navigation -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="d-flex justify-content-between">
-                    <a href="{{ $post->type === 'berita' ? route('news') : route('announcements') }}" 
-                       class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-left me-2"></i>
-                        Kembali ke {{ $post->type === 'berita' ? 'Berita' : 'Pengumuman' }}
-                    </a>
-                    <a href="{{ route('home') }}" class="btn btn-primary">
-                        <i class="bi bi-house me-2"></i>Beranda
-                    </a>
                 </div>
             </div>
         </div>
