@@ -81,9 +81,9 @@ Restrictions:
 
 -   Redistribution, copying, sublicensing, or commercial use by any party
     other than Kelurahan Marga Sari is prohibited without written permission
-    from the original developers (Abi, Bu, Bren).
+    from the original developers.
 -   This license applies only to the deployment instance provided under the
-    INSOS program.
+    Social Inovation program.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -92,7 +92,7 @@ THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
 FROM THE USE OF THIS SOFTWARE.
 
 For permissions beyond this license, contact:
-Email: (tambahkan email developer)
+Email: alianputratama@gmail.com
 
 ## Penulis
 
