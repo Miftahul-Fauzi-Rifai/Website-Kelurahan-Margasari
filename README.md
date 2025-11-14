@@ -92,7 +92,7 @@ THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
 FROM THE USE OF THIS SOFTWARE.
 
 For permissions beyond this license, contact:
-Email: alianputratama@gmail.com
+Email:
 
 ## Penulis
 
