@@ -81,6 +81,46 @@
 </div>
 @endsection
 
+@push('styles')
+<style>
+/* Orange Theme for Login Page */
+.card-header.bg-primary {
+    background-color: #CC710A !important;
+}
+
+.btn-primary {
+    background-color: #CC710A !important;
+    border-color: #CC710A !important;
+}
+
+.btn-primary:hover {
+    background-color: #A35808 !important;
+    border-color: #A35808 !important;
+}
+
+.btn-primary:focus {
+    background-color: #A35808 !important;
+    border-color: #A35808 !important;
+    box-shadow: 0 0 0 0.25rem rgba(204, 113, 10, 0.25) !important;
+}
+
+.form-control:focus {
+    border-color: #CC710A !important;
+    box-shadow: 0 0 0 0.25rem rgba(204, 113, 10, 0.25) !important;
+}
+
+.form-check-input:checked {
+    background-color: #CC710A !important;
+    border-color: #CC710A !important;
+}
+
+.form-check-input:focus {
+    border-color: #CC710A !important;
+    box-shadow: 0 0 0 0.25rem rgba(204, 113, 10, 0.25) !important;
+}
+</style>
+@endpush
+
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {

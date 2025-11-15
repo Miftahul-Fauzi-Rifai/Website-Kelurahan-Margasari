@@ -1,66 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Digitalisasi Layanan Sistem Pengarsipan & Pengaduan Sosial Kelurahan Marga Sari Kota Balikpapan
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyek ini merupakan bagian dari Program Inovasi Sosial Mahasiswa yang bertujuan meningkatkan kualitas layanan publik di Kelurahan Marga sari, Kota Balikpapan.
 
-## About Laravel
+Kami mengembangkan Sistem Digital Pengarsipan & Pengaduan Sosial yang mampu mempercepat akses layanan, meningkatkan transparansi, serta meminimalkan hambatan administratif dalam kelurahan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sistem ini dibangun menggunakan pendekatan human-centered design dan memprioritaskan kemudahan penggunaan bagi RT, warga, dan pihak kelurahan.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Inovasi Sosial Mahasiswa Institut Teknologi Kalimantan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Tujuan Inovasi
 
-## Learning Laravel
+-   Meningkatkan efisiensi layanan administrasi kelurahan
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Menyediakan sistem pengaduan yang transparan dan dapat dilacak
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   Meningkatkan kolaborasi digital antara RT dan kelurahan
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   Mengurangi pengarsipan manual dan duplikasi data
 
-## Laravel Sponsors
+-   Memberikan pengalaman layanan publik yang lebih modern, cepat, dan responsif
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Inovasi Sosial Mahasiswa Institut Teknologi Kalimantan
 
-### Premium Partners
+### Tujuan Inovasi
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   Meningkatkan efisiensi layanan administrasi kelurahan
 
-## Contributing
+-   Menyediakan sistem pengaduan yang transparan dan dapat dilacak
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   Meningkatkan kolaborasi digital antara RT dan kelurahan
 
-## Code of Conduct
+-   Mengurangi pengarsipan manual dan duplikasi data
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   Memberikan pengalaman layanan publik yang lebih modern, cepat, dan responsif
 
-## Security Vulnerabilities
+## Fitur
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-   Pengaduan warga + tracking
+-   Manajemen pengaduan
+-   Sistem pengarsipan surat & dokumen
+-   Dashboard statistik
+-   Notifikasi otomatis
+-   Upload foto & dokumen
+-   Profil kelurahan + struktur organisasi
+-   Integrasi Google Maps
+
+## Teknologi
+
+-   Laravel 10, PHP 8, MySQL
+-   Blade, Bootstrap 5, CSS Custom
+-   Laravel Auth (RBAC)
+-   File Upload (Storage)
+-   Composer, NPM, Vite
+-   GitHub, Nginx/Apache
+
+## 👨‍💻 Tim Developer
+
+Proyek Inovasi Sosial – Digitalisasi Sistem Pengarsipan & Pengaduan Sosial  
+dikembangkan oleh tiga mahasiswa inovasi sosial dari Institut Teknologi Kalimantan:
+
+-   **Anugrah Alian Putratama** – UI/UX Designer & Frontend Developer
+-   **Muhammad Fauzi Rifai** – Backend Developer & Database Architect
+-   **Muhammad Alif Setiawan** – System Analyst & Quality Assurance
+
+Tim bekerja bersama Kelurahan Marga Sari untuk menyediakan sistem digital yang modern, aman, dan mudah digunakan dalam pelayanan publik.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT License (Modified – Restricted Distribution)
+
+Copyright (c) 2025
+Tim Developer Inovasi Sosial Kelurahan Marga Sari  
+ Anugrah Alian Putratama, Miftahul Fauzi Rifai, Muhammad Alif Setiawan
+
+Permission is hereby granted to the Kelurahan Marga Sari to use, modify,
+and operate this software internally for administrative and social service
+purposes.
+
+Restrictions:
+
+-   Redistribution, copying, sublicensing, or commercial use by any party
+    other than Kelurahan Marga Sari is prohibited without written permission
+    from the original developers.
+-   This license applies only to the deployment instance provided under the
+    Social Inovation program.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+FROM THE USE OF THIS SOFTWARE.
+
+For permissions beyond this license, contact:
+Email:
+
+## Penulis
+
+-   [@Anugrah Alian Putratama](https://www.github.com/Alian13)
+-   [@Miftahul Fauzi Rifai](https://www.github.com/Miftahul-Fauzi-Rifai-1)
+-   [@Muhammad Alif Setiawan](https://www.github.com/shoryuwu)

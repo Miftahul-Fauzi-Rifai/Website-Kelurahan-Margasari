@@ -670,11 +670,21 @@
     .page-header-services {
         padding-top: 80px !important; /* Less padding on mobile since navbar auto-hides */
     }
+    
+    /* Push header down to avoid navbar overlap */
+    .services-hero-section {
+        margin-top: 60px !important;
+    }
 }
 
 @media (max-width: 576px) {
     .page-header-services {
         padding-top: 70px !important; /* Minimal padding on small mobile */
+    }
+    
+    /* Push header down to avoid navbar overlap */
+    .services-hero-section {
+        margin-top: 60px !important;
     }
 }
 
