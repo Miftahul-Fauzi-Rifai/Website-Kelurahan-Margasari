@@ -61,13 +61,9 @@
                             <i class="bi bi-lightbulb-fill me-2" style="font-size: 1.5rem;"></i>
                             <div>
                                 <h6 class="alert-heading mb-2"><strong>💡 Tips Mengisi Laporan</strong></h6>
-                                <ul class="mb-0 small">
-                                    <li>Isi laporan secara <strong>ringkas dan jelas</strong></li>
-                                    <li>Usahakan <strong>tidak lebih dari 1 halaman</strong> saat dicetak</li>
-                                    <li>Gunakan <strong>poin-poin</strong> untuk memudahkan pembacaan</li>
-                                    <li>Lampirkan <strong>foto kegiatan</strong> jika diperlukan (maks 2MB per foto)</li>
-                                    <li>Fokus pada kegiatan dan kondisi <strong>penting</strong> saja</li>
-                                </ul>
+                                <p class="mb-0 small">
+                                    Isi laporan secara ringkas dan jelas. Lampirkan foto kegiatan jika diperlukan (maksimal 2MB per foto). Fokus pada kegiatan dan kondisi penting yang terjadi selama bulan berjalan.
+                                </p>
                             </div>
                         </div>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -96,16 +92,6 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="description" class="form-label">Deskripsi/Ringkasan <span class="text-danger">*</span></label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" 
-                                      id="description" name="description" rows="4" required>{{ old('description', $report->description) }}</textarea>
-                            @error('description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <small class="text-muted">Tuliskan ringkasan kondisi lingkungan dan warga pada bulan ini</small>
-                        </div>
-
-                        <div class="mb-3">
                             <label class="form-label">Kegiatan yang Dilakukan</label>
                             <small class="text-muted d-block mb-3">Isi setiap kegiatan dengan detail tanggal, uraian tugas, keterangan, dan foto (opsional)</small>
                             
@@ -121,8 +107,6 @@
                                         }
                                     }
                                 }
-                                // Batasi maksimal 5 kegiatan
-                                $activities = array_slice($activities, 0, 5);
                                 // Pastikan minimal ada 5 slot
                                 while(count($activities) < 5) {
                                     $activities[] = ['date' => '', 'task' => '', 'note' => '', 'photo' => ''];
@@ -135,12 +119,13 @@
                                         <tr>
                                             <th width="5%">NO</th>
                                             <th width="15%">TANGGAL</th>
-                                            <th width="35%">URAIAN TUGAS</th>
+                                            <th width="30%">URAIAN TUGAS</th>
                                             <th width="20%">KETERANGAN</th>
                                             <th width="25%">FOTO</th>
+                                            <th width="5%">AKSI</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="activities-tbody">
                                         @foreach($activities as $index => $activity)
                                             <tr class="activity-row">
                                                 <td class="text-center align-middle row-number">{{ $index + 1 }}</td>
@@ -183,12 +168,22 @@
                                                         <input type="hidden" name="activities[{{ $index }}][photo_old]" value="{{ $activity['photo'] }}">
                                                     @endif
                                                 </td>
+                                                <td class="text-center align-middle">
+                                                    @if($index >= 5)
+                                                    <button type="button" class="btn btn-danger btn-sm remove-row">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <small class="text-muted d-block mt-2">Isi kegiatan yang ada saja, maksimal 5 kegiatan. Baris kosong akan diabaikan.</small>
+                            <button type="button" class="btn btn-success btn-sm" id="add-activity-row">
+                                <i class="bi bi-plus-circle"></i> Tambah Baris Kegiatan
+                            </button>
+                            <small class="text-muted d-block mt-2">Klik tombol "Tambah Baris" untuk menambah kegiatan. Baris kosong akan diabaikan saat submit.</small>
                         </div>
 
                         <script>
@@ -199,9 +194,93 @@
                                     el.style.overflow = 'hidden';
                                     el.style.height = (el.scrollHeight) + 'px';
                                 };
-                                document.querySelectorAll('textarea[data-autosize]').forEach(t => {
-                                    autosize(t);
-                                    t.addEventListener('input', () => autosize(t));
+                                
+                                const initAutosize = () => {
+                                    document.querySelectorAll('textarea[data-autosize]').forEach(t => {
+                                        autosize(t);
+                                        t.addEventListener('input', () => autosize(t));
+                                    });
+                                };
+                                
+                                initAutosize();
+
+                                // Fungsi untuk update nomor baris
+                                const updateRowNumbers = () => {
+                                    document.querySelectorAll('#activities-tbody .row-number').forEach((el, index) => {
+                                        el.textContent = index + 1;
+                                    });
+                                    // Update name attribute untuk semua input
+                                    document.querySelectorAll('#activities-tbody tr').forEach((row, index) => {
+                                        row.querySelectorAll('input, textarea').forEach(input => {
+                                            const name = input.getAttribute('name');
+                                            if (name) {
+                                                const newName = name.replace(/activities\[\d+\]/, `activities[${index}]`);
+                                                input.setAttribute('name', newName);
+                                            }
+                                        });
+                                    });
+                                };
+
+                                // Tambah baris baru
+                                let rowCount = {{ count($activities) }};
+                                document.getElementById('add-activity-row').addEventListener('click', function() {
+                                    const tbody = document.getElementById('activities-tbody');
+                                    const newRow = document.createElement('tr');
+                                    newRow.classList.add('activity-row');
+                                    newRow.innerHTML = `
+                                        <td class="text-center align-middle row-number">${rowCount + 1}</td>
+                                        <td>
+                                            <input type="date" 
+                                                   class="form-control form-control-sm" 
+                                                   name="activities[${rowCount}][date]">
+                                        </td>
+                                        <td>
+                                            <textarea 
+                                                class="form-control form-control-sm multiline" 
+                                                name="activities[${rowCount}][task]" 
+                                                rows="2" 
+                                                data-autosize
+                                                placeholder="Contoh: Kerja bakti membersihkan lingkungan"></textarea>
+                                        </td>
+                                        <td>
+                                            <textarea 
+                                                class="form-control form-control-sm multiline" 
+                                                name="activities[${rowCount}][note]" 
+                                                rows="2" 
+                                                data-autosize
+                                                placeholder="Opsional"></textarea>
+                                        </td>
+                                        <td>
+                                            <input type="file" 
+                                                   class="form-control form-control-sm" 
+                                                   name="activities[${rowCount}][photo]"
+                                                   accept="image/*">
+                                            <small class="text-muted">Max 2MB</small>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <button type="button" class="btn btn-danger btn-sm remove-row">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    `;
+                                    tbody.appendChild(newRow);
+                                    rowCount++;
+                                    initAutosize();
+                                    updateRowNumbers();
+                                });
+
+                                // Hapus baris
+                                document.addEventListener('click', function(e) {
+                                    if (e.target.closest('.remove-row')) {
+                                        const row = e.target.closest('tr');
+                                        const tbody = document.getElementById('activities-tbody');
+                                        if (tbody.querySelectorAll('tr').length > 1) {
+                                            row.remove();
+                                            updateRowNumbers();
+                                        } else {
+                                            alert('Minimal harus ada 1 baris kegiatan');
+                                        }
+                                    }
                                 });
                             });
                         </script>

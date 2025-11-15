@@ -74,7 +74,7 @@ class ReportController extends Controller
         $request->validate([
             'month' => 'required|date_format:Y-m',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'activities' => 'nullable|array',
             'activities.*.date' => 'nullable|date',
             'activities.*.task' => 'nullable|string',
@@ -101,6 +101,7 @@ class ReportController extends Controller
         $data['user_id'] = $user->id;
         $data['rt_code'] = $user->rt;
         $data['status'] = 'draft';
+        $data['description'] = $request->description ?? '-'; // Default value jika kosong
 
         // Process activities - filter empty rows and handle photo upload
         if ($request->has('activities')) {
@@ -176,7 +177,7 @@ class ReportController extends Controller
         $request->validate([
             'month' => 'required|date_format:Y-m',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'activities' => 'nullable|array',
             'activities.*.date' => 'nullable|date',
             'activities.*.task' => 'nullable|string',
@@ -190,6 +191,7 @@ class ReportController extends Controller
         ]);
 
         $data = $request->except(['activities']);
+        $data['description'] = $request->description ?? '-'; // Default value jika kosong
 
         // Jika status reviewed atau rejected, ubah kembali ke draft
         if (in_array($report->status, ['reviewed', 'rejected'])) {

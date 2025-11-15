@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title></title>
     <style>
         @page {
-            size: landscape;
+            size: A4 landscape;
             margin: 1.5cm 2cm;
-        }
-
-        @page:last {
-            margin-bottom: 8cm;
         }
 
         * {
@@ -34,7 +33,6 @@
             width: 100%;
             margin: 0;
             padding: 0;
-            padding-bottom: 150px;
             position: relative;
         }
 
@@ -119,13 +117,11 @@
             image-rendering: crisp-edges;
         }
 
-        /* Signature section styling - Tetap di posisi bawah fixed */
+        /* Signature section mengikuti alur dokumen (tidak fixed) agar tidak dobel */
         .signature-section {
-            position: fixed;
-            bottom: 1.5cm;
-            left: 2cm;
-            right: 2cm;
             page-break-inside: avoid;
+            break-inside: avoid;
+            margin-top: 20px;
         }
 
         @media print {
@@ -164,6 +160,16 @@
             .page-break {
                 page-break-after: always;
             }
+
+            /* Supaya tabel rapi saat pindah halaman */
+            table { page-break-inside: auto; }
+            /* JANGAN gunakan display: table-header-group agar header TIDAK auto-repeat */
+            thead { display: none; } /* Sembunyikan thead di halaman 2+ */
+            tfoot { display: table-row-group; }
+            tr { page-break-inside: avoid; page-break-after: auto; }
+            
+            /* Tampilkan thead HANYA di halaman pertama */
+            table:first-of-type thead { display: table-header-group; }
         }
 
         /* Button styles */
@@ -216,14 +222,14 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>LAPORAN BULANAN</h1>
+            <h1>LAPORAN BULAN {{ strtoupper(\Carbon\Carbon::parse($report->month . '-01')->locale('id')->isoFormat('MMMM YYYY')) }}</h1>
             <h2>PELAKSANAAN TUGAS DAN FUNGSI KETUA RUKUN TETANGGA (RT) {{ $report->rt_code }}</h2>
-            <h2>KELURAHAN {{ strtoupper($kelurahan_name) }}</h2>
+            <h2>KELURAHAN {{ strtoupper(str_replace('KELURAHAN ', '', $kelurahan_name)) }}</h2>
         </div>
 
         <!-- Content -->
         <div class="content">
-            <table>
+            <table id="report-table">
                 <thead>
                     <tr>
                         <th width="8%" style="text-align: center;">NO</th>
@@ -268,30 +274,37 @@
                         <tr>
                             <td class="text-center">1</td>
                             <td></td>
-                            <td>{{ $report->description }}</td>
+                            <td>Tidak ada kegiatan tercatat</td>
                             <td></td>
                         </tr>
                     @endforelse
                 </tbody>
+                <tfoot>
+                    <!-- Baris kosong untuk memastikan garis bawah tabel tertutup pada halaman terakhir -->
+                    <tr>
+                        <td colspan="4" style="height:0; padding:0; border-top:1px solid #000; border-bottom:1px solid #000;"></td>
+                    </tr>
+                </tfoot>
             </table>
 
-            <!-- Signature Section - Tetap di Bawah -->
-            <div class="signature-section">
-                <p style="text-align: right; margin-bottom: 15px; margin-top: 0; font-size: 10pt;">Balikpapan, ....................................</p>
-                
+            <!-- Signature Section - Muncul sekali di akhir dokumen -->
+            <div class="signature-section">                
                 <table style="border: none; width: 100%; margin-top: 0;">
                     <tr style="border: none;">
-                        <td style="border: none; width: 50%; vertical-align: top; padding: 0;">
-                            <div style="text-align: left;">
+                        <td style="border: none; width: 50%; vertical-align: top; padding: 0; padding-left: 50px;">
+                            <div>
                                 <p style="margin: 0 0 2px 0; font-size: 10pt;">Mengetahui/menyetujui</p>
-                                <p style="margin: 0 0 60px 0; font-size: 10pt;"><strong>LURAH {{ strtoupper($kelurahan_name) }}</strong></p>
+                                <p style="margin: 0 0 2px 0; font-size: 10pt;"><strong>LURAH {{ strtoupper(str_replace('KELURAHAN ', '', $kelurahan_name)) }}</strong></p>
+                                <p style="margin: 0 0 60px 0; font-size: 10pt;">&nbsp;</p>
                                 <p style="margin: 0; font-size: 10pt;"><strong>{{ strtoupper($lurah_name) }}</strong></p>
                             </div>
                         </td>
-                        <td style="border: none; width: 50%; vertical-align: top; padding: 0;">
-                            <div style="text-align: right;">
-                                <p style="margin: 0 0 60px 0; font-size: 10pt;"><strong>KETUA RT.......</strong></p>
-                                <p style="margin: 0; font-size: 10pt;">......................................</p>
+                        <td style="border: none; width: 50%; vertical-align: top; padding: 0; padding-right: 50px;">
+                            <div style="float: right;">
+                                <p style="margin: 0 0 2px 0; font-size: 10pt;">Balikpapan, {{ \Carbon\Carbon::now()->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+                                <p style="margin: 0 0 2px 0; font-size: 10pt;"><strong>KETUA RT {{ $report->rt_code }}</strong></p>
+                                <p style="margin: 0 0 60px 0; font-size: 10pt;">&nbsp;</p>
+                                <p style="margin: 0; font-size: 10pt;"><strong>{{ strtoupper($report->user->name) }}</strong></p>
                             </div>
                         </td>
                     </tr>
