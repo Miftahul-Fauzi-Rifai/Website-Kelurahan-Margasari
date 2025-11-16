@@ -54,6 +54,7 @@ Route::get('/tentang', [HomeController::class, 'about'])->name('about');
 Route::get('/layanan', [HomeController::class, 'services'])->name('services');
 Route::get('/berita', [HomeController::class, 'news'])->name('news');
 Route::get('/pengumuman', [HomeController::class, 'announcements'])->name('announcements');
+Route::get('/chatbot', function() { return view('chatbot.index'); })->name('chatbot.fullpage');
 Route::get('/data-rt', [RtController::class, 'index'])->name('rt.index');
 Route::get('/data-rt/{rt_code}', [RtController::class, 'show'])->name('rt.show');
 Route::get('/pengaduan', [ComplaintController::class, 'create'])->name('complaint.create');

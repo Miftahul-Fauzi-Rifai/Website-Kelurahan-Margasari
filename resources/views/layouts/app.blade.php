@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="@yield('meta_description', 'Website resmi Kelurahan Marga Sari, Kota Balikpapan')">
-    <meta name="keywords" content="@yield('meta_keywords', 'kelurahan, marga sari, balikpapan, layanan, berita, pengumuman')">
+    <meta name="keywords" content="@yield('meta_keywords', 'kelurahan, marga sari, balikpapan, layanan, berita, pengumuman')">>
     
     <title>@yield('title', 'Kelurahan Marga Sari - Kota Balikpapan')</title>
     
@@ -417,8 +417,8 @@
         });
     </script>
     
-    <!-- Chatbot JS -->
-    <script src="{{ asset('js/chatbot.js') }}"></script>
+    {{-- Chatbot JS - Disabled: Using iframe widget instead --}}
+    {{-- <script src="{{ asset('js/chatbot.js') }}"></script> --}}
     
     @stack('scripts')
 </body>
