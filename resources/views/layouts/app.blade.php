@@ -17,6 +17,10 @@
     
     <!-- White Header Styling -->
     <style>
+    main {
+    padding-top: 50px; /* Sesuaikan tinggi navbar */
+    }
+
         /* White navbar styling */
         .navbar-light .navbar-nav .nav-link {
             color: #333 !important;
@@ -175,6 +179,9 @@
 
         /* Responsif di HP: kecilin dikit */
         @media (max-width: 768px) {
+            main {
+                padding-top: 25px; /* Sesuaikan tinggi navbar di mobile */
+            }
             .navbar-brand img {
                 height: 38px;
                 margin-top: -3px;
@@ -339,12 +346,17 @@
         
         <div class="bg-black py-3">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
+
+                <!-- BARIS 1 -->
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
                         <small>&copy; {{ date('Y') }} Kelurahan Marga Sari. All rights reserved.</small>
                     </div>
-                    <div class="col-md-6 text-md-end">
+                    <div class="col-md-6 text-center text-md-end">
                         <small>Kota Balikpapan, Kalimantan Timur</small>
+                    </div>
+                    <div class="col-md-6 text-center text-md-start">
+                        <small>Developed by <strong>Inovasi Sosial MargaVision - Institut Teknologi Kalimantan</strong></small>
                     </div>
                 </div>
             </div>

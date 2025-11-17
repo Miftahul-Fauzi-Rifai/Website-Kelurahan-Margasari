@@ -8,21 +8,7 @@ Sistem ini dibangun menggunakan pendekatan human-centered design dan mempriorita
 
 ## Inovasi Sosial Mahasiswa Institut Teknologi Kalimantan
 
-### Tujuan Inovasi
-
--   Meningkatkan efisiensi layanan administrasi kelurahan
-
--   Menyediakan sistem pengaduan yang transparan dan dapat dilacak
-
--   Meningkatkan kolaborasi digital antara RT dan kelurahan
-
--   Mengurangi pengarsipan manual dan duplikasi data
-
--   Memberikan pengalaman layanan publik yang lebih modern, cepat, dan responsif
-
-## Inovasi Sosial Mahasiswa Institut Teknologi Kalimantan
-
-### Tujuan Inovasi
+### Tujuan
 
 -   Meningkatkan efisiensi layanan administrasi kelurahan
 
@@ -54,7 +40,7 @@ Sistem ini dibangun menggunakan pendekatan human-centered design dan mempriorita
 -   Composer, NPM, Vite
 -   GitHub, Nginx/Apache
 
-## 👨‍💻 Tim Developer
+## 👨‍💻 Tim Pengembang
 
 Proyek Inovasi Sosial – Digitalisasi Sistem Pengarsipan & Pengaduan Sosial  
 dikembangkan oleh tiga mahasiswa inovasi sosial dari Institut Teknologi Kalimantan:
@@ -65,7 +51,7 @@ dikembangkan oleh tiga mahasiswa inovasi sosial dari Institut Teknologi Kalimant
 
 Tim bekerja bersama Kelurahan Marga Sari untuk menyediakan sistem digital yang modern, aman, dan mudah digunakan dalam pelayanan publik.
 
-## License
+## Lisensi
 
 MIT License (Modified – Restricted Distribution)
 

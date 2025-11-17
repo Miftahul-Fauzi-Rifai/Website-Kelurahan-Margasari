@@ -440,7 +440,7 @@
                 <td style="width: 60%;"></td>
                 <td style="width: 40%; text-align: center;">
                     Balikpapan, {{ now()->format('d F Y') }}<br>
-                    Penerima Pengadu,<br><br><br><br>
+                    Penerima Pengaduan,<br><br><br><br>
                     (...........................................)
                 </td>
             </tr>
