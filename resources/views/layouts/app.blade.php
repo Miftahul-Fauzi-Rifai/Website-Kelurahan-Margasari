@@ -18,7 +18,7 @@
     <!-- White Header Styling -->
     <style>
     main {
-    padding-top: 50px; /* Sesuaikan tinggi navbar */
+    padding-top: 0px; /* Sesuaikan tinggi navbar */
     }
 
         /* White navbar styling */
@@ -180,7 +180,7 @@
         /* Responsif di HP: kecilin dikit */
         @media (max-width: 768px) {
             main {
-                padding-top: 25px; /* Sesuaikan tinggi navbar di mobile */
+                padding-top: 0px; /* Sesuaikan tinggi navbar di mobile */
             }
             .navbar-brand img {
                 height: 38px;
